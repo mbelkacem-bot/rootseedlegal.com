@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace Client – Root & Seed Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--rouge:#FF3131;--rouge-fonce:#CC1F1F;--noir:#080808;--blanc:#F4F4F4;--gris:#949494;--border:#1E1E1E;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--noir);color:var(--blanc);font-family:'Montserrat',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;}
+    .back{position:absolute;top:2rem;left:2rem;}
+    .back a{color:var(--gris);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:color 0.3s;}
+    .back a:hover{color:var(--rouge);}
+    .container{text-align:center;max-width:560px;width:100%;}
+    .icon-wrap{width:72px;height:72px;border:1px solid rgba(255,49,49,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 2rem;font-size:1.8rem;}
+    .badge{display:inline-block;background:rgba(255,49,49,0.1);color:var(--rouge);padding:5px 16px;border-radius:20px;font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:1.5rem;}
+    h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;margin-bottom:0.8rem;line-height:1.2;}
+    h1 em{color:var(--rouge);font-style:italic;}
+    .subtitle{font-size:0.87rem;color:var(--gris);line-height:1.8;margin-bottom:3rem;max-width:420px;margin-left:auto;margin-right:auto;}
+    .features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:3rem;text-align:left;}
+    .feature{background:#111;border:1px solid var(--border);padding:1.2rem;border-radius:2px;}
+    .feature-icon{font-size:1.1rem;margin-bottom:0.5rem;display:block;}
+    .feature h3{font-size:0.85rem;color:var(--blanc);margin-bottom:0.3rem;font-family:'Cormorant Garamond',serif;font-size:1rem;}
+    .feature p{font-size:0.75rem;color:var(--gris);line-height:1.6;}
+    .cta-group{display:flex;flex-direction:column;gap:1rem;align-items:center;}
+    /* Le lien principal — à remplacer par votre URL de connexion */
+    .btn-login{
+      display:inline-block;width:100%;max-width:360px;
+      background:var(--rouge);color:var(--blanc);
+      padding:16px 32px;border-radius:2px;
+      font-family:'Montserrat',sans-serif;font-size:0.8rem;
+      font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+      text-decoration:none;transition:all 0.3s;
+      box-shadow:0 4px 24px rgba(255,49,49,0.3);
+    }
+    .btn-login:hover{background:var(--rouge-fonce);transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,49,49,0.5);}
+    .note{font-size:0.72rem;color:#555;line-height:1.6;}
+    .note a{color:var(--gris);text-decoration:underline;}
+    .divider{width:40px;height:1px;background:var(--rouge);margin:2rem auto;}
+    @media(max-width:480px){.features{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+  <div class="back"><a href="index.html">← Retour au site</a></div>
+
+  <div class="container">
+    <div class="icon-wrap">🔐</div>
+    <span class="badge">Accès sécurisé</span>
+    <h1>Espace <em>Client</em></h1>
+    <p class="subtitle">
+      Accédez à votre espace privatif pour consulter l'état de votre dossier, 
+      son avancement, les étapes clés, la stratégie et le contexte en toute confidentialité.
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <span class="feature-icon">📋</span>
+        <h3>Suivi de dossier</h3>
+        <p>Consultez l'avancement de votre affaire en temps réel</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🗺️</span>
+        <h3>Étapes & jalons</h3>
+        <p>Visualisez les prochaines étapes et les délais importants</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎯</span>
+        <h3>Stratégie juridique</h3>
+        <p>Comprenez la stratégie adoptée pour votre dossier</p>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔒</span>
+        <h3>Confidentialité absolue</h3>
+        <p>Accès protégé, données chiffrées, secret professionnel</p>
+      </div>
+    </div>
+
+    <div class="cta-group">
+      <!-- ✏️ MODIFIEZ href="..." avec votre URL de connexion réelle -->
+      <a href="#" class="btn-login">Se connecter à mon espace →</a>
+      <p class="note">
+        Vous n'avez pas encore accès ? <a href="index.html#contact">Contactez le cabinet</a><br>
+        pour recevoir vos identifiants de connexion.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+    <p class="note">Root & Seed Legal · Me Mounia Belkacem · <a href="index.html">Retour au site</a></p>
+  </div>
+
+</body>
+</html>
