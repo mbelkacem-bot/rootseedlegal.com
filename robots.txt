@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /guide-administration.html
+
+Sitemap: https://www.rootseedlegal.com/sitemap.xml
