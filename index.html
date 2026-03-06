@@ -106,7 +106,7 @@
 
     /* ===== HERO ===== */
     .hero {
-      position: relative; min-height: 100vh;
+      position: relative; min-height: 100svh;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; padding-top: 80px;
     }
@@ -134,14 +134,14 @@
       content: '——'; margin: 0 0.8em; opacity: 0.5;
     }
     .hero-title {
-      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-size: clamp(2.2rem, 8vw, 7rem);
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300; color: var(--blanc);
       letter-spacing: -0.01em; margin-bottom: 1rem;
     }
     .hero-title em { color: var(--rouge); font-style: italic; }
     .hero-subtitle {
-      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-size: clamp(0.88rem, 2.5vw, 1.3rem);
       color: var(--gris); font-weight: 300;
       max-width: 620px; margin: 0 auto 2.5rem;
     }
@@ -609,16 +609,25 @@
 
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      section { padding: 70px 4%; }
+      section { padding: 60px 5%; }
+      .section-title { font-size: clamp(1.6rem, 5vw, 2.5rem); }
       .services-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-item:not(:last-child)::after { display: none; }
+      .stat-number { font-size: 2.5rem; }
       .uhnwi-features { grid-template-columns: 1fr 1fr; }
       .approach-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
+      .contact-form input, .contact-form textarea, .contact-form select { font-size: 16px; }
       .footer-top { grid-template-columns: 1fr; }
       .blog-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
+      .contact-info-item { font-size: 0.82rem; }
+      .service-card { padding: 1.8rem 1.5rem; }
+      .full-testimonials { grid-template-columns: 1fr !important; }
+      .testimonial-card { padding: 1.5rem; }
+      .testimonial-text { font-size: 0.82rem; }
+      .lx-strip-items { gap: 0.8rem; }
     }
     @media (max-width: 480px) {
 
@@ -627,6 +636,10 @@
       .uhnwi-features { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr; }
       .hero-actions { flex-direction: column; align-items: center; }
+      section { padding: 50px 5% !important; }
+      .hero-content { padding: 0 5%; }
+      .hero-subtitle { font-size: 0.85rem; }
+      .btn-primary, .btn-outline { width: 100%; text-align: center; padding: 14px 20px; font-size: 0.75rem; }
     }
 
     /* ===== ANIMATIONS ===== */
@@ -1738,7 +1751,10 @@
       .orbit-universe { width: min(520px,90vw); height: min(520px,90vw); }
       .about--with-photo,
       section.about--with-photo { grid-template-columns: 1fr !important; gap: 2rem !important; }
-      .about-photo-frame { width: 220px; height: 280px; }
+      .about-photo-frame { width: 180px; height: 240px; margin: 0 auto; }
+      .about--with-photo .about-inner, section.about--with-photo { padding: 50px 5% !important; }
+      .about-name { font-size: 1.4rem; }
+      .about-text { font-size: 0.84rem; }
     }
     @media (max-width: 768px) {
       .citations-inner { flex-direction: column; }
