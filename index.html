@@ -34,6 +34,7 @@
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    html { overflow-x: hidden; max-width: 100%; }
     body {
       background: var(--noir);
       color: var(--blanc);
@@ -342,11 +343,13 @@
     }
     .uhnwi-inner {
       max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 1;
+      width: 100%; box-sizing: border-box;
     }
-    .uhnwi-inner .section-title { font-size: clamp(2.5rem, 5vw, 4rem); }
+    .uhnwi-inner .section-title { font-size: clamp(1.6rem, 5vw, 4rem); }
     .uhnwi-features {
       display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 2rem; margin: 3.5rem 0;
+      width: 100%; box-sizing: border-box;
     }
     .uhnwi-feature {
       text-align: center;
@@ -1697,6 +1700,17 @@
       margin: 0 auto !important;
       padding: 80px 4% !important;
     }
+    @media (max-width: 900px) {
+      .about--with-photo .about-inner,
+      .about--with-photo > .container,
+      section.about--with-photo {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        padding: 60px 5% !important;
+      }
+      .about-photo-frame { width: 200px !important; height: 260px !important; margin: 0 auto !important; }
+      .about-photo-wrap { margin-bottom: 1.5rem; }
+    }
     .about-photo-wrap { text-align: center; }
     .about-photo-frame {
       position: relative;
@@ -1751,8 +1765,10 @@
       .orbit-universe { width: min(520px,90vw); height: min(520px,90vw); }
       .about--with-photo,
       section.about--with-photo { grid-template-columns: 1fr !important; gap: 2rem !important; }
-      .about-photo-frame { width: 180px; height: 240px; margin: 0 auto; }
-      .about--with-photo .about-inner, section.about--with-photo { padding: 50px 5% !important; }
+      .about--with-photo .about-inner,
+      .about--with-photo > .container,
+      section.about--with-photo { grid-template-columns: 1fr !important; gap: 2rem !important; padding: 50px 5% !important; }
+      .about-photo-frame { width: 180px !important; height: 240px !important; margin: 0 auto !important; }
       .about-name { font-size: 1.4rem; }
       .about-text { font-size: 0.84rem; }
     }
