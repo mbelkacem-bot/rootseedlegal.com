@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suivi Dossier — Root & Seed Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --noir: #080808;
+      --noir-card: #0f0f0f;
+      --noir-border: #1c1c1c;
+      --blanc: #f0f0f0;
+      --blanc-soft: #c0c0c0;
+      --gris: #666;
+      --or: #b8972a;
+      --or-soft: #d4b24a;
+      --or-light: #ead98a;
+      --vert: #27ae60;
+      --vert-soft: #2ecc71;
+      --orange: #d35400;
+      --rouge: #922b21;
+      --bleu: #1a5276;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--noir);
+      color: var(--blanc);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── TOP NAV ── */
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,8,8,0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--noir-border);
+      padding: 0 2rem;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      color: var(--blanc);
+    }
+
+    .nav-logo em { color: var(--or); font-style: italic; }
+
+    .nav-meta {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    .nav-ref {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--or-soft);
+      text-transform: uppercase;
+    }
+
+    /* ── HERO DOSSIER ── */
+    .dossier-hero {
+      background: linear-gradient(160deg, #0a0a0a 0%, #0d0d10 60%, #080808 100%);
+      border-bottom: 1px solid var(--noir-border);
+      padding: 2.5rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dossier-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(184,151,42,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .dossier-eyebrow {
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--or-soft);
+      margin-bottom: 0.6rem;
+    }
+
+    .dossier-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--blanc);
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+    }
+
+    .dossier-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--blanc-soft);
+    }
+
+    .meta-chip-label {
+      color: var(--gris);
+      text-transform: uppercase;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+    }
+
+    /* ── PROGRESS BAR GLOBALE ── */
+    .global-progress {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--noir-border);
+      border-radius: 6px;
+      padding: 1.2rem 1.5rem;
+    }
+
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+    }
+
+    .progress-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    .progress-pct {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--or-soft);
+      font-weight: 600;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--or) 0%, var(--or-soft) 100%);
+      transition: width 1.2s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── CONTENU PRINCIPAL ── */
+    .main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+    }
+
+    /* ── SECTION GÉNÉRIQUE ── */
+    .section {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-card {
+      background: var(--noir-card);
+      border: 1px solid var(--noir-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .section-card-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--noir-border);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-icon {
+      font-size: 1rem;
+      width: 22px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .section-card-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blanc-soft);
+      flex: 1;
+    }
+
+    .section-tag {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    .tag-ok { background: rgba(39,174,96,0.15); color: var(--vert-soft); border: 1px solid rgba(39,174,96,0.2); }
+    .tag-encours { background: rgba(184,151,42,0.12); color: var(--or-soft); border: 1px solid rgba(184,151,42,0.2); }
+    .tag-avenor { background: rgba(102,102,102,0.1); color: var(--gris); border: 1px solid rgba(102,102,102,0.15); }
+
+    .section-card-body {
+      padding: 1.5rem;
+    }
+
+    /* ── TEXTES ── */
+    .body-text {
+      font-size: 0.78rem;
+      color: var(--blanc-soft);
+      line-height: 1.9;
+    }
+
+    .body-text p + p { margin-top: 0.8rem; }
+
+    .highlight {
+      color: var(--or-light);
+      font-weight: 600;
+    }
+
+    /* ── QUALIFICATION JURIDIQUE ── */
+    .qual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .qual-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 4px;
+      padding: 0.9rem 1rem;
+    }
+
+    .qual-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 0.3rem;
+    }
+
+    .qual-value {
+      font-size: 0.75rem;
+      color: var(--blanc);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    /* ── ROAD MAP ── */
+    .roadmap {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step {
+      display: flex;
+      gap: 1.2rem;
+      position: relative;
+    }
+
+    .step-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 32px;
+    }
+
+    .step-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-dot.done {
+      background: rgba(39,174,96,0.2);
+      border: 2px solid var(--vert);
+      color: var(--vert-soft);
+    }
+
+    .step-dot.active {
+      background: rgba(184,151,42,0.15);
+      border: 2px solid var(--or);
+      color: var(--or-soft);
+      box-shadow: 0 0 0 4px rgba(184,151,42,0.08);
+    }
+
+    .step-dot.pending {
+      background: rgba(255,255,255,0.03);
+      border: 2px solid rgba(255,255,255,0.1);
+      color: var(--gris);
+    }
+
+    .step-line {
+      flex: 1;
+      width: 2px;
+      background: rgba(255,255,255,0.06);
+      margin: 3px 0;
+      min-height: 24px;
+    }
+
+    .step-line.done-line {
+      background: linear-gradient(180deg, var(--vert), rgba(39,174,96,0.2));
+    }
+
+    .step-line.active-line {
+      background: linear-gradient(180deg, var(--or), rgba(184,151,42,0.1));
+    }
+
+    .step:last-child .step-line { display: none; }
+
+    .step-right {
+      flex: 1;
+      padding-bottom: 1.5rem;
+    }
+
+    .step:last-child .step-right { padding-bottom: 0; }
+
+    .step-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--blanc);
+      margin-bottom: 0.2rem;
+      margin-top: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .step-title.pending { color: var(--gris); }
+
+    .step-date {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--gris);
+      margin-bottom: 0.4rem;
+    }
+
+    .step-date.active { color: var(--or-soft); }
+
+    .step-desc {
+      font-size: 0.7rem;
+      color: rgba(192,192,192,0.7);
+      line-height: 1.7;
+    }
+
+    .step-desc.pending { color: rgba(102,102,102,0.6); }
+
+    /* ── ESTIMATION GAIN ── */
+    .gain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .gain-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 4px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .gain-card-icon { font-size: 1.2rem; margin-bottom: 0.4rem; }
+
+    .gain-card-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--or-soft);
+      margin-bottom: 0.2rem;
+    }
+
+    .gain-card-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    /* ── RISQUES ── */
+    .risque-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .risque-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      padding: 0.8rem 1rem;
+      border-radius: 4px;
+      border: 1px solid;
+    }
+
+    .risque-item.faible {
+      background: rgba(39,174,96,0.05);
+      border-color: rgba(39,174,96,0.12);
+    }
+
+    .risque-item.moyen {
+      background: rgba(211,84,0,0.06);
+      border-color: rgba(211,84,0,0.15);
+    }
+
+    .risque-item.eleve {
+      background: rgba(146,43,33,0.08);
+      border-color: rgba(146,43,33,0.2);
+    }
+
+    .risque-level {
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.18rem 0.5rem;
+      border-radius: 2px;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .risque-item.faible .risque-level { color: var(--vert-soft); background: rgba(39,174,96,0.12); }
+    .risque-item.moyen .risque-level { color: #e67e22; background: rgba(211,84,0,0.12); }
+    .risque-item.eleve .risque-level { color: #e74c3c; background: rgba(146,43,33,0.15); }
+
+    .risque-text {
+      font-size: 0.7rem;
+      color: var(--blanc-soft);
+      line-height: 1.6;
+    }
+
+    .risque-text strong {
+      display: block;
+      font-size: 0.72rem;
+      margin-bottom: 0.15rem;
+    }
+
+    /* ── CALENDRIER ── */
+    .calendar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .cal-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cal-date {
+      text-align: center;
+      flex-shrink: 0;
+      width: 48px;
+    }
+
+    .cal-day {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--or);
+      line-height: 1;
+    }
+
+    .cal-month {
+      font-size: 0.52rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    .cal-sep {
+      width: 1px;
+      height: 36px;
+      background: var(--noir-border);
+      flex-shrink: 0;
+    }
+
+    .cal-info { flex: 1; }
+
+    .cal-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--blanc-soft);
+      margin-bottom: 0.1rem;
+    }
+
+    .cal-sub {
+      font-size: 0.62rem;
+      color: var(--gris);
+    }
+
+    .cal-chip {
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .cal-chip.urgent { background: rgba(146,43,33,0.15); color: #e74c3c; border: 1px solid rgba(146,43,33,0.2); }
+    .cal-chip.info { background: rgba(26,82,118,0.15); color: #5dade2; border: 1px solid rgba(26,82,118,0.2); }
+    .cal-chip.ok { background: rgba(39,174,96,0.12); color: var(--vert-soft); border: 1px solid rgba(39,174,96,0.18); }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--noir-border);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      font-size: 0.6rem;
+      color: var(--gris);
+      letter-spacing: 0.08em;
+      line-height: 1.7;
+    }
+
+    .footer-right {
+      font-size: 0.6rem;
+      color: rgba(102,102,102,0.5);
+    }
+
+    .footer-avocat {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.62rem;
+      color: var(--gris);
+    }
+
+    .footer-avocat-badge {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a1a2e, #2d2d4a);
+      border: 1px solid rgba(184,151,42,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .footer-avocat strong {
+      color: var(--blanc-soft);
+      display: block;
+      font-size: 0.65rem;
+    }
+
+    /* ── DIVIDER ── */
+    .or-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,151,42,0.2), transparent);
+      margin: 0.5rem 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .qual-grid { grid-template-columns: 1fr; }
+      .gain-grid { grid-template-columns: 1fr; }
+      .dossier-title { font-size: 1.35rem; }
+      .topnav { padding: 0 1rem; }
+      .main { padding: 1.5rem 1rem 3rem; }
+      .dossier-hero { padding: 2rem 1rem 1.5rem; }
+      .section-card-body { padding: 1.2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .dossier-meta-row { gap: 0.8rem; }
+      .gain-card-value { font-size: 1.1rem; }
+      .nav-meta { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="topnav">
+  <div class="nav-logo">Root <em>&</em> Seed Legal</div>
+  <div class="nav-meta">Suivi de dossier · Confidentiel</div>
+  <div class="nav-ref" id="navRef">RSL-2025-001</div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="dossier-hero">
+  <div class="hero-inner">
+    <div class="dossier-eyebrow">Dossier en cours — Espace client privé</div>
+    <h1 class="dossier-title" id="dossierTitle">Litige bail commercial — Contestation de hausse de loyer</h1>
+
+    <div class="dossier-meta-row">
+      <div class="meta-chip">
+        <span class="meta-chip-label">Client&nbsp;</span>
+        <span id="metaClient">Mme Sophie Durand</span>
+      </div>
+      <div class="meta-chip">
+        <span class="meta-chip-label">Avocat&nbsp;</span>
+        <span>Me Mounia Belkacem</span>
+      </div>
+      <div class="meta-chip">
+        <span class="meta-chip-label">Ouverture&nbsp;</span>
+        <span>Janvier 2025</span>
+      </div>
+      <div class="meta-chip">
+        <span class="meta-chip-label">Juridiction&nbsp;</span>
+        <span>TJ Paris</span>
+      </div>
+    </div>
+
+    <div class="global-progress">
+      <div class="progress-header">
+        <span class="progress-label">Avancement global du dossier</span>
+        <span class="progress-pct">65%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width: 65%"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<div class="main">
+
+  <!-- 1. CONTEXTE -->
+  <div class="section">
+    <div class="section-card">
+      <div class="section-card-header">
+        <span class="section-icon">📋</span>
+        <span class="section-card-title">Contexte</span>
+      </div>
+      <div class="section-card-body">
+        <div class="body-text">
+          <p>Vous êtes locataire d'un local commercial situé rue de Rivoli, Paris 1er, exploité sous bail commercial 3/6/9 depuis 12 ans. Votre bailleur a notifié, en décembre 2024, une demande de révision de loyer portant ce dernier à la hausse de <span class="highlight">+42 %</span>.</p>
+          <p>Cette demande intervient à la date triennale et se prévaut d'une clause d'indexation contractuelle. Vous nous avez mandatés pour analyser la légitimité de cette hausse, contester les sommes réclamées et obtenir le maintien de conditions locatives conformes à la loi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. QUALIFICATION JURIDIQUE -->
+  <div class="section">
+    <div class="section-card">
+      <div class="section-card-header">
+        <span class="section-icon">⚖️</span>
+        <span class="section-card-title">Qualification juridique</span>
+        <span class="section-tag tag-ok">Établie</span>
+      </div>
+      <div class="section-card-body">
+        <div class="body-text" style="margin-bottom: 1.2rem">
+          <p>L'analyse du bail et des indices disponibles établit que la hausse réclamée est <span class="highlight">contraire à l'article L.145-38 du Code de commerce</span>. Le plafonnement par l'indice des loyers commerciaux (ILC) en vigueur limite la révision à <strong>+2,8 %</strong> maximum sur la période concernée.</p>
+        </div>
+        <div class="qual-grid">
+          <div class="qual-item">
+            <div class="qual-label">Fondement principal</div>
+            <div class="qual-value">Art. L.145-38 C. com. — Révision triennale plafonnée ILC</div>
+          </div>
+          <div class="qual-item">
+            <div class="qual-label">Qualification de la demande adverse</div>
+            <div class="qual-value">Révision illégale — Dépassement du plafond légal de 39,2 %</div>
+          </div>
+          <div class="qual-item">
+            <div class="qual-label">Procédure engagée</div>
+            <div class="qual-value">Référé — Ordonnance provisoire urgente</div>
+          </div>
+          <div class="qual-item">
+            <div class="qual-label">Juridiction saisie</div>
+            <div class="qual-value">Tribunal Judiciaire de Paris — 18e Chambre</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. STRATÉGIE -->
+  <div class="section">
+    <div class="section-card">
+      <div class="section-card-header">
+        <span class="section-icon">🎯</span>
+        <span class="section-card-title">Stratégie adoptée</span>
+        <span class="section-tag tag-encours">En cours</span>
+      </div>
+      <div class="section-card-body">
+        <div class="body-text">
+          <p><strong style="color: var(--blanc)">Phase 1 — Pression amiable (terminée) :</strong> Envoi d'une mise en demeure LRAR détaillant l'illégalité de la demande, avec mise en avant du risque procédural pour le bailleur. Pas de réponse satisfaisante obtenue.</p>
+          <p><strong style="color: var(--blanc)">Phase 2 — Référé (en cours) :</strong> Saisine du juge des référés pour obtenir une ordonnance provisoire bloquant l'application de la hausse contestée pendant la durée de la procédure au fond. Audience fixée au 18 avril 2025.</p>
+          <p><strong style="color: var(--blanc)">Phase 3 — Fond (à venir) :</strong> Si le référé est favorable, engagement d'une procédure au fond pour obtenir la fixation définitive du loyer au montant légalement révisé, avec remboursement des éventuels trop-perçus.</p>
+          <p style="margin-top: 1rem; padding: 0.9rem 1rem; background: rgba(184,151,42,0.06); border-left: 2px solid var(--or); border-radius: 0 4px 4px 0; font-size: 0.72rem; color: var(--or-light);">
+            Notre position est solide : le dépassement du plafond ILC est objectivement chiffrable et non contestable sur le fond. L'enjeu du référé est de vous protéger immédiatement de toute obligation de payer la hausse illégale en attendant la décision définitive.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. ROAD MAP -->
+  <div class="section">
+    <div class="section-card">
+      <div class="section-card-header">
+        <span class="section-icon">🗺</span>
+        <span class="section-card-title">Étapes du dossier</span>
+      </div>
+      <div class="section-card-body">
+        <div class="roadmap">
+
+          <div class="step">
+            <div class="step-left">
+              <div class="step-dot done">✓</div>
+              <div class="step-line done-line"></div>
+            </div>
+            <div class="step-right">
+              <div class="step-title">Analyse du bail et des indices ILC</div>
+              <div class="step-date">Janvier 2025</div>
+              <div class="step-desc">Étude du contrat de bail, vérification des indices applicables, chiffrage de l'écart illégal. Conclusion : hausse plafonnée à +2,8 % maximum.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-left">
+              <div class="step-dot done">✓</div>
+              <div class="step-line done-line"></div>
+            </div>
+            <div class="step-right">
+              <div class="step-title">Mise en demeure au bailleur (LRAR)</div>
+              <div class="step-date">Février 2025</div>
+              <div class="step-desc">Lettre détaillant l'illégalité, sommant le bailleur de retirer sa demande. Réponse reçue : refus de retrait, justification insuffisante.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-left">
+              <div class="step-dot done">✓</div>
+              <div class="step-line done-line"></div>
+            </div>
+            <div class="step-right">
+              <div class="step-title">Assignation en référé déposée</div>
+              <div class="step-date">Mars 2025</div>
+              <div class="step-desc">Assignation déposée au greffe du TJ Paris. Demande de suspension de la hausse et d'ordonnance de non-paiement du différentiel illégal.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-left">
+              <div class="step-dot active">→</div>
+              <div class="step-line active-line"></div>
+            </div>
+            <div class="step-right">
+              <div class="step-title">Audience de référé — TJ Paris</div>
+              <div class="step-date active">18 avril 2025 · 14h00 — En attente</div>
+              <div class="step-desc">Plaidoirie devant le juge des référés. Nous présentons le dossier complet. Le juge rend généralement sa décision dans les 8 à 15 jours suivant l'audience.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-left">
+              <div class="step-dot pending">5</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-right">
+              <div class="step-title pending">Ordonnance de référé</div>
+              <div class="step-date">Prévu : mai 2025</div>
+              <div class="step-desc pending">Rendu de la décision provisoire. Si favorable : suspension immédiate de la hausse illégale. Si défavorable : recours en appel possible sous 15 jours.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-left">
+              <div class="step-dot pending">6</div>
+              <div class="step-line"></div>
+            </div>
+            <div class="step-right">
+              <div class="step-title pending">Procédure au fond (si nécessaire)</div>
+              <div class="step-date">Prévu : été – automne 2025</div>
+              <div class="step-desc pending">Fixation définitive du loyer par le tribunal. Délai habituel : 6 à 9 mois. Objectif : fixation du loyer au montant légal + remboursement des trop-perçus éventuels.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-left">
+              <div class="step-dot pending">✦</div>
+            </div>
+            <div class="step-right">
+              <div class="step-title pending">Clôture du dossier</div>
+              <div class="step-date">Prévu : fin 2025</div>
+              <div class="step-desc pending">Exécution de la décision, régularisation des comptes entre les parties, archivage du dossier.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. ESTIMATION DE GAIN -->
+  <div class="section">
+    <div class="section-card">
+      <div class="section-card-header">
+        <span class="section-icon">💰</span>
+        <span class="section-card-title">Estimation de gain</span>
+        <span class="section-tag tag-ok">Évalué</span>
+      </div>
+      <div class="section-card-body">
+        <div class="gain-grid" style="margin-bottom: 1.2rem">
+          <div class="gain-card">
+            <div class="gain-card-icon">📉</div>
+            <div class="gain-card-value">~11 200 €</div>
+            <div class="gain-card-label">Économie annuelle</div>
+          </div>
+          <div class="gain-card">
+            <div class="gain-card-icon">📆</div>
+            <div class="gain-card-value">~33 600 €</div>
+            <div class="gain-card-label">Sur 3 ans (période triennale)</div>
+          </div>
+          <div class="gain-card">
+            <div class="gain-card-icon">⚖️</div>
+            <div class="gain-card-value">85 %</div>
+            <div class="gain-card-label">Probabilité de succès estimée</div>
+          </div>
+        </div>
+        <div class="body-text" style="font-size: 0.7rem; color: var(--gris)">
+          Ces estimations sont calculées sur la base de l'écart entre le loyer légal (+2,8 %) et le loyer demandé (+42 %), appliqué sur votre loyer actuel. La probabilité de succès est établie au regard de la jurisprudence constante en matière d'ILC, du caractère objectivement chiffrable du dépassement et de la solidité du dossier constitué.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. RISQUES -->
+  <div class="section">
+    <div class="section-card">
+      <div class="section-card-header">
+        <span class="section-icon">⚠️</span>
+        <span class="section-card-title">Analyse des risques</span>
+      </div>
+      <div class="section-card-body">
+        <div class="risque-list">
+
+          <div class="risque-item faible">
+            <span class="risque-level">Faible</span>
+            <div class="risque-text">
+              <strong>Rejet du référé sur la forme</strong>
+              L'urgence à justifier devant le juge des référés est établie par le risque de mise en demeure de payer la hausse illégale. Ce risque est maîtrisé par la rédaction de l'assignation.
+            </div>
+          </div>
+
+          <div class="risque-item moyen">
+            <span class="risque-level">Modéré</span>
+            <div class="risque-text">
+              <strong>Clause d'échelle mobile atypique dans le bail</strong>
+              Votre bail contient une clause d'indexation spécifique. Le bailleur pourrait tenter d'en invoquer une interprétation extensive. Nous avons contre-argumenté ce point dans l'assignation, mais le juge conserve un pouvoir d'appréciation.
+            </div>
+          </div>
+
+          <div class="risque-item moyen">
+            <span class="risque-level">Modéré</span>
+            <div class="risque-text">
+              <strong>Durée de la procédure au fond</strong>
+              Si le référé est favorable mais que le bailleur refuse d'exécuter, une procédure au fond sera nécessaire. Délai estimé : 8 à 12 mois supplémentaires. Impact : vous continuez à payer le loyer légal, mais la résolution définitive prend du temps.
+            </div>
+          </div>
+
+          <div class="risque-item faible">
+            <span class="risque-level">Faible</span>
+            <div class="risque-text">
+              <strong>Résiliation du bail par le bailleur</strong>
+              Le bailleur ne peut pas résilier le bail en cours de procédure judiciaire pour ce motif. Vous êtes protégé par le statut des baux commerciaux et le droit au maintien dans les lieux.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. CALENDRIER -->
+  <div class="section">
+    <div class="section-card">
+      <div class="section-card-header">
+        <span class="section-icon">📅</span>
+        <span class="section-card-title">Calendrier des prochaines échéances</span>
+      </div>
+      <div class="section-card-body">
+        <div class="calendar-list">
+
+          <div class="cal-item">
+            <div class="cal-date">
+              <div class="cal-day">18</div>
+              <div class="cal-month">Avr.</div>
+            </div>
+            <div class="cal-sep"></div>
+            <div class="cal-info">
+              <div class="cal-title">Audience de référé — TJ Paris, 14h00</div>
+              <div class="cal-sub">Plaidoirie · Votre présence n'est pas requise, Me Belkacem vous représente</div>
+            </div>
+            <span class="cal-chip urgent">Clé</span>
+          </div>
+
+          <div class="or-divider"></div>
+
+          <div class="cal-item">
+            <div class="cal-date">
+              <div class="cal-day">30</div>
+              <div class="cal-month">Avr.</div>
+            </div>
+            <div class="cal-sep"></div>
+            <div class="cal-info">
+              <div class="cal-title">Délai de rendu de l'ordonnance (estimation)</div>
+              <div class="cal-sub">Le juge peut rendre sa décision entre J+5 et J+15 après audience</div>
+            </div>
+            <span class="cal-chip info">Estimé</span>
+          </div>
+
+          <div class="or-divider"></div>
+
+          <div class="cal-item">
+            <div class="cal-date">
+              <div class="cal-day">15</div>
+              <div class="cal-month">Mai</div>
+            </div>
+            <div class="cal-sep"></div>
+            <div class="cal-info">
+              <div class="cal-title">Point de situation post-audience</div>
+              <div class="cal-sub">Appel ou réunion de bilan · Décision sur la suite de la procédure</div>
+            </div>
+            <span class="cal-chip ok">Prévu</span>
+          </div>
+
+          <div class="or-divider"></div>
+
+          <div class="cal-item">
+            <div class="cal-date">
+              <div class="cal-day">15</div>
+              <div class="cal-month">Juin</div>
+            </div>
+            <div class="cal-sep"></div>
+            <div class="cal-info">
+              <div class="cal-title">Échéance loyer — Application du résultat</div>
+              <div class="cal-sub">Premier loyer mensuel applicable selon la décision obtenue</div>
+            </div>
+            <span class="cal-chip info">Estimé</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-avocat">
+    <div class="footer-avocat-badge">⚖️</div>
+    <div>
+      <strong>Me Mounia Belkacem</strong>
+      Avocate au Barreau de Paris · Root & Seed Legal
+    </div>
+  </div>
+  <div class="footer-right">
+    Document confidentiel · Mise à jour : avril 2025 · RSL-2025-001
+  </div>
+</footer>
+
+<script>
+// ── GUARD DE SÉCURITÉ ──
+// Vérifie qu'une session valide existe avant d'afficher le contenu
+(function() {
+  const s = sessionStorage.getItem('rsl_session') || localStorage.getItem('rsl_session');
+  if (!s) {
+    window.location.href = 'espace-client.html';
+    return;
+  }
+  try {
+    const sess = JSON.parse(s);
+    if (Date.now() - sess.loginTime > 8 * 3600 * 1000) {
+      sessionStorage.removeItem('rsl_session');
+      localStorage.removeItem('rsl_session');
+      window.location.href = 'espace-client.html';
+    }
+  } catch(e) {
+    window.location.href = 'espace-client.html';
+  }
+})();
+</script>
+
+<script src="https://www.genspark.ai/sandbox_inspect.js"></script></body>
+</html>

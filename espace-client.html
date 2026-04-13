@@ -3,93 +3,715 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Espace Client – Root & Seed Legal</title>
+  <title>Espace Client — Root & Seed Legal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--rouge:#FF3131;--rouge-fonce:#CC1F1F;--noir:#080808;--blanc:#F4F4F4;--gris:#949494;--border:#1E1E1E;}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--noir);color:var(--blanc);font-family:'Montserrat',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;}
-    .back{position:absolute;top:2rem;left:2rem;}
-    .back a{color:var(--gris);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:color 0.3s;}
-    .back a:hover{color:var(--rouge);}
-    .container{text-align:center;max-width:560px;width:100%;}
-    .icon-wrap{width:72px;height:72px;border:1px solid rgba(255,49,49,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 2rem;font-size:1.8rem;}
-    .badge{display:inline-block;background:rgba(255,49,49,0.1);color:var(--rouge);padding:5px 16px;border-radius:20px;font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:1.5rem;}
-    h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;margin-bottom:0.8rem;line-height:1.2;}
-    h1 em{color:var(--rouge);font-style:italic;}
-    .subtitle{font-size:0.87rem;color:var(--gris);line-height:1.8;margin-bottom:3rem;max-width:420px;margin-left:auto;margin-right:auto;}
-    .features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:3rem;text-align:left;}
-    .feature{background:#111;border:1px solid var(--border);padding:1.2rem;border-radius:2px;}
-    .feature-icon{font-size:1.1rem;margin-bottom:0.5rem;display:block;}
-    .feature h3{font-size:0.85rem;color:var(--blanc);margin-bottom:0.3rem;font-family:'Cormorant Garamond',serif;font-size:1rem;}
-    .feature p{font-size:0.75rem;color:var(--gris);line-height:1.6;}
-    .cta-group{display:flex;flex-direction:column;gap:1rem;align-items:center;}
-    /* Le lien principal — à remplacer par votre URL de connexion */
-    .btn-login{
-      display:inline-block;width:100%;max-width:360px;
-      background:var(--rouge);color:var(--blanc);
-      padding:16px 32px;border-radius:2px;
-      font-family:'Montserrat',sans-serif;font-size:0.8rem;
-      font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
-      text-decoration:none;transition:all 0.3s;
-      box-shadow:0 4px 24px rgba(255,49,49,0.3);
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --noir: #080808;
+      --noir-card: #0f0f0f;
+      --noir-border: #1c1c1c;
+      --blanc: #f0f0f0;
+      --blanc-soft: #c0c0c0;
+      --gris: #666;
+      --or: #b8972a;
+      --or-soft: #d4b24a;
+      --or-light: #ead98a;
+      --rouge: #c0392b;
     }
-    .btn-login:hover{background:var(--rouge-fonce);transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,49,49,0.5);}
-    .note{font-size:0.72rem;color:#555;line-height:1.6;}
-    .note a{color:var(--gris);text-decoration:underline;}
-    .divider{width:40px;height:1px;background:var(--rouge);margin:2rem auto;}
-    @media(max-width:480px){.features{grid-template-columns:1fr;}}
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--noir);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--blanc);
+    }
+
+    /* ── BACKGROUND ── */
+    .login-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 40%, rgba(184,151,42,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 70% at 80% 20%, rgba(26,58,92,0.08) 0%, transparent 55%),
+        linear-gradient(160deg, #080808 0%, #0c0c10 50%, #080808 100%);
+    }
+
+    .login-bg::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,151,42,0.3), transparent);
+    }
+
+    /* ── GRID ── */
+    .login-grid {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ── PANNEAU GAUCHE ── */
+    .login-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem 3rem;
+      border-right: 1px solid rgba(184,151,42,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-left::before {
+      content: '';
+      position: absolute;
+      top: 25%; right: -1px;
+      width: 1px; height: 35%;
+      background: linear-gradient(180deg, transparent, rgba(184,151,42,0.4), transparent);
+    }
+
+    .firm-mark {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .firm-mark-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gris);
+      font-weight: 500;
+    }
+
+    .firm-mark-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--blanc);
+      line-height: 1.2;
+    }
+
+    .firm-mark-name em {
+      color: var(--or);
+      font-style: italic;
+    }
+
+    .firm-mark-sub {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-top: 0.15rem;
+    }
+
+    /* ── CITATION ── */
+    .login-left-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.5rem 0;
+    }
+
+    .login-citation {
+      border-left: 2px solid var(--or);
+      padding-left: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .login-citation blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--blanc-soft);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+
+    .login-citation cite {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--or-soft);
+    }
+
+    .login-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .login-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+
+    .login-feature-icon {
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(184,151,42,0.25);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      background: rgba(184,151,42,0.05);
+      margin-top: 0.1rem;
+    }
+
+    .login-feature-text strong {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--blanc-soft);
+      margin-bottom: 0.1rem;
+      letter-spacing: 0.03em;
+    }
+
+    .login-feature-text span {
+      font-size: 0.65rem;
+      color: var(--gris);
+      line-height: 1.5;
+    }
+
+    /* ── FOOTER GAUCHE ── */
+    .login-left-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .login-secure-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    .login-secure-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #2ecc71;
+      box-shadow: 0 0 6px #2ecc71;
+      flex-shrink: 0;
+    }
+
+    .login-compliance {
+      font-size: 0.56rem;
+      color: rgba(102,102,102,0.6);
+      line-height: 1.6;
+    }
+
+    /* ── PANNEAU DROIT ── */
+    .login-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-card-header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .login-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(184,151,42,0.08);
+      border: 1px solid rgba(184,151,42,0.18);
+      padding: 0.3rem 0.9rem;
+      border-radius: 2px;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--or-soft);
+      margin-bottom: 1.2rem;
+    }
+
+    .login-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--blanc);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .login-card-sub {
+      font-size: 0.7rem;
+      color: var(--gris);
+      line-height: 1.6;
+    }
+
+    /* ── FORMULAIRE ── */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .login-error {
+      display: none;
+      background: rgba(192,57,43,0.12);
+      border: 1px solid rgba(192,57,43,0.25);
+      border-radius: 3px;
+      padding: 0.7rem 1rem;
+      font-size: 0.7rem;
+      color: #e74c3c;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .login-error.visible { display: block; }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gris);
+      font-weight: 500;
+    }
+
+    .form-input-wrap {
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--noir-border);
+      border-radius: 3px;
+      padding: 0.85rem 0.95rem 0.85rem 2.7rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      color: var(--blanc);
+      transition: all 0.25s ease;
+      outline: none;
+      font-size: 16px; /* Prevent iPhone zoom */
+    }
+
+    .form-input:focus {
+      border-color: rgba(184,151,42,0.35);
+      background: rgba(184,151,42,0.04);
+      box-shadow: 0 0 0 3px rgba(184,151,42,0.06);
+    }
+
+    .form-input::placeholder {
+      color: rgba(102,102,102,0.5);
+    }
+
+    .form-input-icon {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .form-toggle-password {
+      position: absolute;
+      right: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--gris);
+      cursor: pointer;
+      font-size: 0.8rem;
+      padding: 0.2rem;
+      transition: all 0.25s ease;
+    }
+
+    .form-toggle-password:hover { color: var(--blanc-soft); }
+
+    /* ── OPTION MÉMORISER ── */
+    .form-row-check {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.2rem;
+    }
+
+    .form-check {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      cursor: pointer;
+    }
+
+    .form-check input {
+      appearance: none;
+      width: 13px;
+      height: 13px;
+      border: 1px solid var(--noir-border);
+      border-radius: 2px;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .form-check input:checked {
+      background: var(--or);
+      border-color: var(--or);
+    }
+
+    .form-check input:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 0.6rem;
+      color: #000;
+    }
+
+    .form-check-label {
+      font-size: 0.65rem;
+      color: var(--gris);
+    }
+
+    .form-link {
+      font-size: 0.65rem;
+      color: var(--or-soft);
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .form-link:hover { color: var(--or-light); }
+
+    /* ── BOUTON CONNEXION ── */
+    .btn-login {
+      width: 100%;
+      padding: 0.95rem;
+      background: linear-gradient(135deg, #8b6914 0%, #b8972a 50%, #c8a840 100%);
+      border: none;
+      border-radius: 3px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #080808;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+
+    .btn-login::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #c8a840, #e8cc78);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn-login:hover::before { opacity: 1; }
+
+    .btn-login span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-login:active { transform: scale(0.99); }
+
+    .btn-login.loading {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .btn-login.loading span::after {
+      content: ' …';
+      animation: dots 1s steps(3, end) infinite;
+    }
+
+    @keyframes dots {
+      0%, 20% { content: ' .'; }
+      40% { content: ' ..'; }
+      60%, 100% { content: ' ...'; }
+    }
+
+    /* ── FOOTER CARD ── */
+    .login-card-footer {
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    .login-card-footer p {
+      font-size: 0.6rem;
+      color: var(--gris);
+      line-height: 1.7;
+    }
+
+    .login-card-footer a {
+      color: var(--or-soft);
+      text-decoration: none;
+    }
+
+    .login-card-footer a:hover { color: var(--or-light); }
+
+    /* ── ORNEMENT COIN ── */
+    .corner-ornament {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .corner-ornament.tl { top: 0; left: 0; width: 110px; height: 110px; border-top: 1px solid rgba(184,151,42,0.12); border-left: 1px solid rgba(184,151,42,0.12); }
+    .corner-ornament.br { bottom: 0; right: 0; width: 110px; height: 110px; border-bottom: 1px solid rgba(184,151,42,0.12); border-right: 1px solid rgba(184,151,42,0.12); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .login-grid { grid-template-columns: 1fr; }
+      .login-left { display: none; }
+      html, body { overflow: auto; }
+      .login-right { min-height: 100vh; padding: 2rem 1.5rem; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="back"><a href="index.html">← Retour au site</a></div>
+<div class="login-bg"></div>
+<div class="corner-ornament tl"></div>
+<div class="corner-ornament br"></div>
 
-  <div class="container">
-    <div class="icon-wrap">🔐</div>
-    <span class="badge">Accès sécurisé</span>
-    <h1>Espace <em>Client</em></h1>
-    <p class="subtitle">
-      Accédez à votre espace privatif pour consulter l'état de votre dossier, 
-      son avancement, les étapes clés, la stratégie et le contexte en toute confidentialité.
-    </p>
+<div class="login-grid">
 
-    <div class="features">
-      <div class="feature">
-        <span class="feature-icon">📋</span>
-        <h3>Suivi de dossier</h3>
-        <p>Consultez l'avancement de votre affaire en temps réel</p>
+  <!-- ── PANNEAU GAUCHE ── -->
+  <div class="login-left">
+    <div class="firm-mark">
+      <span class="firm-mark-label">Cabinet d'avocats</span>
+      <div class="firm-mark-name">Root <em>&</em> Seed Legal</div>
+      <span class="firm-mark-sub">Me Mounia Belkacem · Barreau de Paris</span>
+    </div>
+
+    <div class="login-left-center">
+      <div class="login-citation">
+        <blockquote>« Votre droit est notre engagement. Suivez l'évolution de votre dossier en temps réel. »</blockquote>
+        <cite>— Me Mounia Belkacem</cite>
       </div>
-      <div class="feature">
-        <span class="feature-icon">🗺️</span>
-        <h3>Étapes & jalons</h3>
-        <p>Visualisez les prochaines étapes et les délais importants</p>
-      </div>
-      <div class="feature">
-        <span class="feature-icon">🎯</span>
-        <h3>Stratégie juridique</h3>
-        <p>Comprenez la stratégie adoptée pour votre dossier</p>
-      </div>
-      <div class="feature">
-        <span class="feature-icon">🔒</span>
-        <h3>Confidentialité absolue</h3>
-        <p>Accès protégé, données chiffrées, secret professionnel</p>
+
+      <div class="login-features">
+        <div class="login-feature">
+          <div class="login-feature-icon">⚖️</div>
+          <div class="login-feature-text">
+            <strong>Suivi en temps réel</strong>
+            <span>Visualisez l'avancement de votre dossier juridique, les étapes franchies et à venir.</span>
+          </div>
+        </div>
+        <div class="login-feature">
+          <div class="login-feature-icon">📊</div>
+          <div class="login-feature-text">
+            <strong>Stratégie détaillée</strong>
+            <span>Accédez à la qualification juridique, la stratégie adoptée et l'analyse des risques.</span>
+          </div>
+        </div>
+        <div class="login-feature">
+          <div class="login-feature-icon">📅</div>
+          <div class="login-feature-text">
+            <strong>Calendrier & échéances</strong>
+            <span>Consultez les dates clés de votre procédure et les prochaines étapes.</span>
+          </div>
+        </div>
+        <div class="login-feature">
+          <div class="login-feature-icon">🔒</div>
+          <div class="login-feature-text">
+            <strong>Confidentialité garantie</strong>
+            <span>Accès protégé par mot de passe. Secret professionnel préservé.</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="cta-group">
-      <!-- ✏️ MODIFIEZ href="..." avec votre URL de connexion réelle -->
-      <a href="#" class="btn-login">Se connecter à mon espace →</a>
-      <p class="note">
-        Vous n'avez pas encore accès ? <a href="index.html#contact">Contactez le cabinet</a><br>
-        pour recevoir vos identifiants de connexion.
-      </p>
+    <div class="login-left-footer">
+      <div class="login-secure-badge">Connexion sécurisée · Confidentiel</div>
+      <p class="login-compliance">Données hébergées en France · RGPD conforme</p>
     </div>
-
-    <div class="divider"></div>
-    <p class="note">Root & Seed Legal · Me Mounia Belkacem · <a href="index.html">Retour au site</a></p>
   </div>
 
-</body>
+  <!-- ── PANNEAU DROIT ── -->
+  <div class="login-right">
+    <div class="login-card">
+      <div class="login-card-header">
+        <div class="login-card-badge">🔐 Espace Client</div>
+        <h1 class="login-card-title">Accès Sécurisé</h1>
+        <p class="login-card-sub">Connectez-vous avec l'adresse e-mail communiquée au cabinet<br>et le mot de passe temporaire reçu.</p>
+      </div>
+
+      <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+        <div class="login-error" id="loginError">
+          Identifiants incorrects. Veuillez vérifier votre e-mail et mot de passe, ou contactez le cabinet.
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Adresse e-mail</label>
+          <div class="form-input-wrap">
+            <span class="form-input-icon">✉</span>
+            <input class="form-input" type="email" id="email" name="email"
+              placeholder="votre@email.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Mot de passe</label>
+          <div class="form-input-wrap">
+            <span class="form-input-icon">🔑</span>
+            <input class="form-input" type="password" id="password" name="password"
+              placeholder="••••••••••" required autocomplete="current-password">
+            <button type="button" class="form-toggle-password" onclick="togglePassword()">👁</button>
+          </div>
+        </div>
+
+        <div class="form-row-check">
+          <label class="form-check">
+            <input type="checkbox" id="remember">
+            <span class="form-check-label">Mémoriser la session</span>
+          </label>
+          <a href="/cdn-cgi/l/email-protection#1360767061766772617a726753617c7c67607676777f7674727f3d707c7e2c606671797670672e5e7c67337776336372606076337c66717f7ad0ba" class="form-link">Mot de passe oublié ?</a>
+        </div>
+
+        <button type="submit" class="btn-login" id="btnLogin">
+          <span>Accéder à mon dossier</span>
+        </button>
+      </form>
+
+      <div class="login-card-footer">
+        <p>
+          Pas encore d'accès à votre espace client ?<br>
+          <a href="/cdn-cgi/l/email-protection#f380969081968792819a9287b3819c9c87809696979f9694929fdd909c9ecc80869199969087ceb7969e929d9796d3929090305b80d3968083929096d3909f9a969d87">Contacter le cabinet</a>
+          · <a href="https://rootseedlegal.com">Retour au site</a>
+        </p>
+        <p style="margin-top:0.7rem; font-size:0.56rem; color:rgba(102,102,102,0.4);">
+          Accès strictement réservé · Confidentiel
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── AUTHENTIFICATION ──
+async function handleLogin(e) {
+  e.preventDefault();
+  const btn = document.getElementById('btnLogin');
+  const errEl = document.getElementById('loginError');
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const remember = document.getElementById('remember').checked;
+
+  btn.classList.add('loading');
+  errEl.classList.remove('visible');
+
+  try {
+    // Recherche du client par email
+    const res = await fetch(`tables/clients?search=${encodeURIComponent(email)}&limit=5`);
+    const data = await res.json();
+
+    const user = data.data?.find(u => u.email === email);
+
+    if (!user) {
+      showError();
+      return;
+    }
+
+    // Vérification du mot de passe (base64 simple pour MVP)
+    const encoded = btoa(password);
+    if (user.password_hash !== encoded) {
+      showError();
+      return;
+    }
+
+    if (user.statut !== 'actif') {
+      document.getElementById('loginError').textContent = 'Votre accès est suspendu. Veuillez contacter le cabinet.';
+      errEl.classList.add('visible');
+      return;
+    }
+
+    // Sauvegarde session
+    const sessionData = {
+      id: user.id,
+      email: user.email,
+      nom: user.nom,
+      prenom: user.prenom,
+      dashboard_url: user.dashboard_url || 'dashboard-demo.html',
+      loginTime: Date.now()
+    };
+
+    const storage = remember ? localStorage : sessionStorage;
+    storage.setItem('rsl_session', JSON.stringify(sessionData));
+
+    // Redirection vers le tableau de bord
+    window.location.href = sessionData.dashboard_url;
+
+  } catch(err) {
+    console.error(err);
+    showError();
+  } finally {
+    btn.classList.remove('loading');
+  }
+}
+
+function showError() {
+  document.getElementById('loginError').textContent = 'Identifiants incorrects. Veuillez vérifier votre e-mail et mot de passe, ou contactez le cabinet.';
+  document.getElementById('loginError').classList.add('visible');
+  document.getElementById('password').value = '';
+  document.getElementById('password').focus();
+}
+
+function togglePassword() {
+  const pw = document.getElementById('password');
+  pw.type = pw.type === 'password' ? 'text' : 'password';
+}
+
+// Vérifier si déjà connecté
+(function checkExistingSession() {
+  const s = sessionStorage.getItem('rsl_session') || localStorage.getItem('rsl_session');
+  if (s) {
+    try {
+      const sess = JSON.parse(s);
+      // Session valide 8h
+      if (Date.now() - sess.loginTime < 8 * 3600 * 1000) {
+        window.location.href = sess.dashboard_url || 'dashboard-demo.html';
+      }
+    } catch(e) {}
+  }
+})();
+</script>
+<script src="https://www.genspark.ai/sandbox_inspect.js"></script></body>
 </html>
