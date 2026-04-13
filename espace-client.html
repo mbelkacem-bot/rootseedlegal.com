@@ -603,7 +603,7 @@
             <input type="checkbox" id="remember">
             <span class="form-check-label">Mémoriser la session</span>
           </label>
-          <a href="/cdn-cgi/l/email-protection#1360767061766772617a726753617c7c67607676777f7674727f3d707c7e2c606671797670672e5e7c67337776336372606076337c66717f7ad0ba" class="form-link">Mot de passe oublié ?</a>
+          <a href="/cdn-cgi/l/email-protection#88fbedebfaedfce9fae1e9fcc8fae7e7fcfbededece4edefe9e4a6ebe7e5b7fbfdeae2edebfcb5c5e7fca8eceda8f8e9fbfbeda8e7fdeae4e14b21" class="form-link">Mot de passe oublié ?</a>
         </div>
 
         <button type="submit" class="btn-login" id="btnLogin">
@@ -614,7 +614,7 @@
       <div class="login-card-footer">
         <p>
           Pas encore d'accès à votre espace client ?<br>
-          <a href="/cdn-cgi/l/email-protection#f380969081968792819a9287b3819c9c87809696979f9694929fdd909c9ecc80869199969087ceb7969e929d9796d3929090305b80d3968083929096d3909f9a969d87">Contacter le cabinet</a>
+          <a href="/cdn-cgi/l/email-protection#91e2f4f2e3f4e5f0e3f8f0e5d1e3fefee5e2f4f4f5fdf4f6f0fdbff2fefcaee2e4f3fbf4f2e5acd5f4fcf0fff5f4b1f0f2f25239e2b1f4e2e1f0f2f4b1f2fdf8f4ffe5">Contacter le cabinet</a>
           · <a href="https://rootseedlegal.com">Retour au site</a>
         </p>
         <p style="margin-top:0.7rem; font-size:0.56rem; color:rgba(102,102,102,0.4);">
@@ -626,72 +626,71 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── AUTHENTIFICATION ──
-async function handleLogin(e) {
+// ══════════════════════════════════════════════════════════════════════
+//  RÉPERTOIRE DES CLIENTS — À MAINTENIR À JOUR
+//  Ajouter un client : { email, password, nom, prenom, dashboard }
+//  Le dashboard est le nom du fichier HTML du tableau de bord du client.
+// ══════════════════════════════════════════════════════════════════════
+const CLIENTS = [
+  {
+    email: 'm.belkacem@rootseedlegal.fr',
+    password: 'RSL2025-Belkacem',
+    nom: 'Belkacem',
+    prenom: 'Mounia',
+    dashboard: 'dashboard-belkacem.html'
+  },
+  {
+    email: 'sophie.durand@cliniquelumiere.fr',
+    password: 'RSL2025-Durand',
+    nom: 'Durand',
+    prenom: 'Sophie',
+    dashboard: 'dashboard-demo.html'
+  }
+  // ← Ajouter d'autres clients ici, séparés par des virgules
+];
+// ══════════════════════════════════════════════════════════════════════
+
+function handleLogin(e) {
   e.preventDefault();
-  const btn = document.getElementById('btnLogin');
-  const errEl = document.getElementById('loginError');
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
+  const btn    = document.getElementById('btnLogin');
+  const errEl  = document.getElementById('loginError');
+  const email  = document.getElementById('email').value.trim().toLowerCase();
+  const pwd    = document.getElementById('password').value;
   const remember = document.getElementById('remember').checked;
 
   btn.classList.add('loading');
   errEl.classList.remove('visible');
 
-  try {
-    // Recherche du client par email
-    const res = await fetch(`tables/clients?search=${encodeURIComponent(email)}&limit=5`);
-    const data = await res.json();
-
-    const user = data.data?.find(u => u.email === email);
+  // Simulation d'un léger délai pour l'UX
+  setTimeout(() => {
+    const user = CLIENTS.find(
+      c => c.email.toLowerCase() === email && c.password === pwd
+    );
 
     if (!user) {
-      showError();
-      return;
-    }
-
-    // Vérification du mot de passe (base64 simple pour MVP)
-    const encoded = btoa(password);
-    if (user.password_hash !== encoded) {
-      showError();
-      return;
-    }
-
-    if (user.statut !== 'actif') {
-      document.getElementById('loginError').textContent = 'Votre accès est suspendu. Veuillez contacter le cabinet.';
+      errEl.textContent = 'Identifiants incorrects. Veuillez vérifier votre e-mail et mot de passe, ou contactez le cabinet.';
       errEl.classList.add('visible');
+      document.getElementById('password').value = '';
+      document.getElementById('password').focus();
+      btn.classList.remove('loading');
       return;
     }
 
-    // Sauvegarde session
+    // Session valide 8 h
     const sessionData = {
-      id: user.id,
       email: user.email,
       nom: user.nom,
       prenom: user.prenom,
-      dashboard_url: user.dashboard_url || 'dashboard-demo.html',
+      dashboard: user.dashboard,
       loginTime: Date.now()
     };
 
     const storage = remember ? localStorage : sessionStorage;
     storage.setItem('rsl_session', JSON.stringify(sessionData));
 
-    // Redirection vers le tableau de bord
-    window.location.href = sessionData.dashboard_url;
-
-  } catch(err) {
-    console.error(err);
-    showError();
-  } finally {
-    btn.classList.remove('loading');
-  }
-}
-
-function showError() {
-  document.getElementById('loginError').textContent = 'Identifiants incorrects. Veuillez vérifier votre e-mail et mot de passe, ou contactez le cabinet.';
-  document.getElementById('loginError').classList.add('visible');
-  document.getElementById('password').value = '';
-  document.getElementById('password').focus();
+    // Redirection vers le tableau de bord du client
+    window.location.href = user.dashboard;
+  }, 600);
 }
 
 function togglePassword() {
@@ -699,19 +698,18 @@ function togglePassword() {
   pw.type = pw.type === 'password' ? 'text' : 'password';
 }
 
-// Vérifier si déjà connecté
+// Vérifier si déjà connecté (session active de moins de 8 h)
 (function checkExistingSession() {
-  const s = sessionStorage.getItem('rsl_session') || localStorage.getItem('rsl_session');
-  if (s) {
-    try {
-      const sess = JSON.parse(s);
-      // Session valide 8h
-      if (Date.now() - sess.loginTime < 8 * 3600 * 1000) {
-        window.location.href = sess.dashboard_url || 'dashboard-demo.html';
-      }
-    } catch(e) {}
-  }
+  const raw = sessionStorage.getItem('rsl_session') || localStorage.getItem('rsl_session');
+  if (!raw) return;
+  try {
+    const sess = JSON.parse(raw);
+    if (sess.dashboard && Date.now() - sess.loginTime < 8 * 3600 * 1000) {
+      window.location.href = sess.dashboard;
+    }
+  } catch(e) { /* session corrompue → on ignore */ }
 })();
 </script>
-<script src="https://www.genspark.ai/sandbox_inspect.js"></script></body>
+<script src="https://www.genspark.ai/sandbox_inspect.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
 </html>

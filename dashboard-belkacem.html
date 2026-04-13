@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suivi Dossier — Root & Seed Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --noir: #080808;
+      --noir-card: #0f0f0f;
+      --noir-card2: #111318;
+      --noir-border: #1e1e1e;
+      --blanc: #f0f0f0;
+      --blanc-soft: #c0c0c0;
+      --gris: #666;
+      --or: #b8972a;
+      --or-soft: #d4b24a;
+      --or-light: #ead98a;
+      --or-bg: rgba(184,151,42,0.06);
+      --rouge: #c0392b;
+      --vert: #27ae60;
+      --bleu: #2980b9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--noir);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--blanc);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── GUARD — affiché jusqu'à validation session ── */
+    #pageContent { display: none; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--noir); }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--or); }
+
+    /* ══════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════ */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 68px;
+      background: rgba(8,8,8,0.92);
+      border-bottom: 1px solid var(--noir-border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-brand {
+      display: flex; flex-direction: column; gap: 1px;
+    }
+    .nav-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 400; letter-spacing: 0.06em;
+      color: var(--blanc);
+    }
+    .nav-brand-name em { color: var(--or); font-style: italic; }
+    .nav-brand-sub {
+      font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    .nav-meta {
+      display: flex; align-items: center; gap: 1.8rem;
+    }
+    .nav-label {
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gris); border: 1px solid var(--noir-border);
+      padding: 0.25rem 0.7rem; border-radius: 2px;
+    }
+    .nav-ref {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem; color: var(--or-soft); letter-spacing: 0.08em;
+    }
+    .nav-btn-logout {
+      font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gris); background: none; border: 1px solid var(--noir-border);
+      padding: 0.3rem 0.8rem; border-radius: 2px; cursor: pointer;
+      transition: all 0.2s ease; font-family: 'Montserrat', sans-serif;
+    }
+    .nav-btn-logout:hover { border-color: var(--or); color: var(--or-soft); }
+
+    /* ══════════════════════════════════
+       HERO
+    ══════════════════════════════════ */
+    .hero {
+      padding: 3.5rem 2.5rem 2rem;
+      border-bottom: 1px solid var(--noir-border);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,151,42,0.35), transparent);
+    }
+    .hero-eyebrow {
+      font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--or-soft); margin-bottom: 0.8rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400; line-height: 1.2; color: var(--blanc);
+      margin-bottom: 1.2rem; max-width: 700px;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center;
+    }
+    .hero-meta-item {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-size: 0.68rem; color: var(--blanc-soft);
+    }
+    .hero-meta-item span:first-child { color: var(--gris); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* ── BARRE PROGRESSION ── */
+    .progress-bar-wrap {
+      margin: 2rem 0 0;
+    }
+    .progress-bar-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .progress-bar-label {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gris);
+    }
+    .progress-bar-pct {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--or-soft);
+    }
+    .progress-bar-track {
+      height: 3px; background: var(--noir-border); border-radius: 2px; overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #8b6914, var(--or), var(--or-light));
+      border-radius: 2px;
+      width: 30%; /* ← à ajuster selon avancement */
+      transition: width 1s ease;
+    }
+
+    /* ══════════════════════════════════
+       LAYOUT PRINCIPAL
+    ══════════════════════════════════ */
+    .main-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2rem;
+      padding: 2.5rem 2.5rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 1100px) {
+      .main-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ══════════════════════════════════
+       COMPOSANTS COMMUNS
+    ══════════════════════════════════ */
+    .section-block {
+      background: var(--noir-card);
+      border: 1px solid var(--noir-border);
+      border-radius: 4px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--noir-border);
+    }
+    .section-icon {
+      width: 32px; height: 32px;
+      border: 1px solid rgba(184,151,42,0.2);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem;
+      background: var(--or-bg);
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 400; color: var(--blanc);
+      letter-spacing: 0.04em;
+    }
+    .section-num {
+      margin-left: auto;
+      font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gris); border: 1px solid var(--noir-border);
+      padding: 0.2rem 0.55rem; border-radius: 2px;
+    }
+
+    /* ── TEXTE BODY ── */
+    .body-text {
+      font-size: 0.8rem; color: var(--blanc-soft); line-height: 1.8;
+    }
+    .body-text p { margin-bottom: 0.8rem; }
+    .body-text p:last-child { margin-bottom: 0; }
+
+    /* ── BADGE STATUT ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.25rem 0.7rem; border-radius: 2px;
+      font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 600;
+    }
+    .badge-or { background: rgba(184,151,42,0.12); border: 1px solid rgba(184,151,42,0.25); color: var(--or-soft); }
+    .badge-vert { background: rgba(39,174,96,0.12); border: 1px solid rgba(39,174,96,0.25); color: #2ecc71; }
+    .badge-rouge { background: rgba(192,57,43,0.12); border: 1px solid rgba(192,57,43,0.25); color: #e74c3c; }
+    .badge-bleu { background: rgba(41,128,185,0.12); border: 1px solid rgba(41,128,185,0.25); color: #5dade2; }
+    .badge-gris { background: rgba(102,102,102,0.12); border: 1px solid rgba(102,102,102,0.25); color: var(--gris); }
+
+    /* ── GRILLE INFO ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .info-cell {
+      background: var(--noir-card2);
+      border: 1px solid var(--noir-border);
+      border-radius: 3px;
+      padding: 1rem;
+    }
+    .info-cell-label {
+      font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gris); margin-bottom: 0.4rem;
+    }
+    .info-cell-val {
+      font-size: 0.8rem; color: var(--blanc-soft); font-weight: 500;
+    }
+    .info-cell-val.accent { color: var(--or-soft); }
+
+    /* ══════════════════════════════════
+       ROAD MAP
+    ══════════════════════════════════ */
+    .roadmap-list {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .roadmap-step {
+      display: flex; gap: 1.2rem; position: relative;
+    }
+    .roadmap-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 16px; top: 36px;
+      width: 1px; height: calc(100% - 4px);
+      background: var(--noir-border);
+    }
+    .step-indicator {
+      width: 33px; height: 33px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700;
+      flex-shrink: 0; position: relative; z-index: 1;
+      margin-top: 0.15rem;
+    }
+    .step-done .step-indicator {
+      background: rgba(39,174,96,0.12);
+      border: 2px solid rgba(39,174,96,0.4);
+      color: #2ecc71;
+    }
+    .step-active .step-indicator {
+      background: rgba(184,151,42,0.12);
+      border: 2px solid var(--or);
+      color: var(--or);
+      box-shadow: 0 0 12px rgba(184,151,42,0.2);
+    }
+    .step-pending .step-indicator {
+      background: transparent;
+      border: 2px solid rgba(102,102,102,0.3);
+      color: var(--gris);
+    }
+    .step-content {
+      padding: 0.15rem 0 1.6rem;
+      flex: 1;
+    }
+    .step-title {
+      font-size: 0.8rem; font-weight: 600; color: var(--blanc-soft);
+      margin-bottom: 0.2rem;
+    }
+    .step-done .step-title { color: rgba(46,204,113,0.7); }
+    .step-active .step-title { color: var(--blanc); }
+    .step-pending .step-title { color: var(--gris); }
+    .step-desc {
+      font-size: 0.68rem; color: var(--gris); line-height: 1.6;
+    }
+    .step-active .step-desc { color: var(--blanc-soft); }
+
+    /* ══════════════════════════════════
+       CHIFFRES CLÉS
+    ══════════════════════════════════ */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 700px) { .kpi-grid { grid-template-columns: 1fr; } }
+    .kpi-card {
+      background: var(--noir-card2);
+      border: 1px solid var(--noir-border);
+      border-radius: 3px;
+      padding: 1.2rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .kpi-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    }
+    .kpi-card.kpi-or::before { background: linear-gradient(90deg, transparent, var(--or), transparent); }
+    .kpi-card.kpi-vert::before { background: linear-gradient(90deg, transparent, #27ae60, transparent); }
+    .kpi-card.kpi-bleu::before { background: linear-gradient(90deg, transparent, #2980b9, transparent); }
+    .kpi-label {
+      font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gris); margin-bottom: 0.5rem;
+    }
+    .kpi-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .kpi-or .kpi-value { color: var(--or-soft); }
+    .kpi-vert .kpi-value { color: #2ecc71; }
+    .kpi-bleu .kpi-value { color: #5dade2; }
+    .kpi-sub {
+      font-size: 0.6rem; color: var(--gris);
+    }
+
+    /* ══════════════════════════════════
+       RISQUES
+    ══════════════════════════════════ */
+    .risk-list {
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+    .risk-item {
+      background: var(--noir-card2);
+      border: 1px solid var(--noir-border);
+      border-radius: 3px;
+      padding: 1rem 1.2rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .risk-level {
+      font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 2px;
+      flex-shrink: 0; margin-top: 0.1rem;
+    }
+    .risk-faible { color: #2ecc71; background: rgba(39,174,96,0.1); border: 1px solid rgba(39,174,96,0.2); }
+    .risk-modere { color: #f39c12; background: rgba(243,156,18,0.1); border: 1px solid rgba(243,156,18,0.2); }
+    .risk-eleve  { color: #e74c3c; background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.2); }
+    .risk-text strong {
+      font-size: 0.75rem; color: var(--blanc-soft); display: block; margin-bottom: 0.2rem;
+    }
+    .risk-text span { font-size: 0.68rem; color: var(--gris); line-height: 1.5; }
+
+    /* ══════════════════════════════════
+       SIDEBAR
+    ══════════════════════════════════ */
+    .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    /* ── CALENDRIER ── */
+    .cal-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .cal-item {
+      display: flex; align-items: flex-start; gap: 0.9rem;
+      padding: 0.9rem;
+      background: var(--noir-card2);
+      border: 1px solid var(--noir-border);
+      border-radius: 3px;
+    }
+    .cal-date {
+      display: flex; flex-direction: column; align-items: center;
+      min-width: 38px;
+    }
+    .cal-day {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; line-height: 1; color: var(--or-soft);
+    }
+    .cal-month {
+      font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gris);
+    }
+    .cal-sep {
+      width: 1px; background: var(--noir-border); align-self: stretch; flex-shrink: 0;
+    }
+    .cal-info { flex: 1; }
+    .cal-label {
+      font-size: 0.7rem; font-weight: 600; color: var(--blanc-soft);
+      margin-bottom: 0.2rem;
+    }
+    .cal-detail { font-size: 0.62rem; color: var(--gris); line-height: 1.4; }
+    .cal-badge {
+      font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.15rem 0.45rem; border-radius: 2px; margin-top: 0.3rem; display: inline-block;
+    }
+    .cal-badge-or { background: rgba(184,151,42,0.1); border: 1px solid rgba(184,151,42,0.2); color: var(--or-soft); }
+    .cal-badge-rouge { background: rgba(192,57,43,0.1); border: 1px solid rgba(192,57,43,0.25); color: #e74c3c; }
+    .cal-badge-bleu { background: rgba(41,128,185,0.1); border: 1px solid rgba(41,128,185,0.25); color: #5dade2; }
+
+    /* ── ENCART CABINET ── */
+    .cabinet-card {
+      background: var(--or-bg);
+      border: 1px solid rgba(184,151,42,0.15);
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+    .cabinet-card-header {
+      display: flex; align-items: center; gap: 0.7rem;
+      margin-bottom: 1rem; padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(184,151,42,0.1);
+    }
+    .cabinet-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, #8b6914, var(--or));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .cabinet-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem; color: var(--blanc);
+    }
+    .cabinet-title {
+      font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gris);
+    }
+    .cabinet-contacts { display: flex; flex-direction: column; gap: 0.6rem; }
+    .cabinet-contact-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.65rem; color: var(--blanc-soft);
+    }
+    .cabinet-contact-item span:first-child { font-size: 0.8rem; width: 18px; text-align: center; }
+    .cabinet-contact-item a { color: var(--or-soft); text-decoration: none; }
+    .cabinet-contact-item a:hover { color: var(--or-light); text-decoration: underline; }
+
+    /* ── NOTE CONFIDENTIALITÉ ── */
+    .confidentiel-note {
+      border: 1px solid rgba(184,151,42,0.12);
+      border-radius: 3px;
+      padding: 1rem;
+      background: rgba(184,151,42,0.03);
+      font-size: 0.62rem;
+      color: var(--gris);
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    .footer {
+      border-top: 1px solid var(--noir-border);
+      padding: 1.5rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.8rem;
+    }
+    .footer-left {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.65rem; color: var(--gris);
+    }
+    .footer-right {
+      font-size: 0.58rem; color: rgba(102,102,102,0.5);
+    }
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+    @media (max-width: 768px) {
+      .nav { padding: 0 1.2rem; }
+      .nav-meta { gap: 0.8rem; }
+      .nav-label, .nav-ref { display: none; }
+      .hero { padding: 2rem 1.5rem 1.5rem; }
+      .main-layout { padding: 1.5rem 1.5rem 3rem; gap: 1.5rem; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+  GUARD : vérifie la session avant d'afficher la page
+  Si non connecté → redirige vers espace-client.html
+══════════════════════════════════════ -->
+<script>
+(function() {
+  const raw = sessionStorage.getItem('rsl_session') || localStorage.getItem('rsl_session');
+  if (!raw) { window.location.href = 'espace-client.html'; return; }
+  try {
+    const sess = JSON.parse(raw);
+    if (!sess.loginTime || Date.now() - sess.loginTime > 8 * 3600 * 1000) {
+      sessionStorage.removeItem('rsl_session');
+      localStorage.removeItem('rsl_session');
+      window.location.href = 'espace-client.html';
+    }
+  } catch(e) { window.location.href = 'espace-client.html'; }
+})();
+</script>
+
+<div id="pageContent">
+
+<!-- ══════ NAVIGATION ══════ -->
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="nav-brand-name">Root <em>&</em> Seed Legal</div>
+    <div class="nav-brand-sub">Me Mounia Belkacem · Barreau de Paris</div>
+  </div>
+  <div class="nav-meta">
+    <span class="nav-label">Suivi de dossier · Confidentiel</span>
+    <span class="nav-ref">RSL-2025-DEMO</span>
+    <button class="nav-btn-logout" onclick="logout()">Déconnexion</button>
+  </div>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<header class="hero">
+  <p class="hero-eyebrow">Tableau de bord — Dossier en cours</p>
+  <h1 class="hero-title">Tableau de bord — Me Mounia Belkacem</h1>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span>Client</span>
+      <span id="clientName">Me Mounia Belkacem</span>
+    </div>
+    <div class="hero-meta-item">
+      <span>Avocat</span>
+      <span>Me Mounia Belkacem</span>
+    </div>
+    <div class="hero-meta-item">
+      <span>Ouverture</span>
+      <span>Avril 2025</span>
+    </div>
+    <div class="hero-meta-item">
+      <span>Statut</span>
+      <span class="badge badge-or">En cours</span>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-header">
+      <span class="progress-bar-label">Avancement global</span>
+      <span class="progress-bar-pct">30 %</span>
+    </div>
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" style="width: 30%"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════ CONTENU PRINCIPAL ══════ -->
+<div class="main-layout">
+
+  <!-- ── COLONNE PRINCIPALE ── -->
+  <main>
+
+    <!-- 1. CONTEXTE -->
+    <section class="section-block">
+      <div class="section-header">
+        <div class="section-icon">📋</div>
+        <h2 class="section-title">Contexte du dossier</h2>
+        <span class="section-num">01</span>
+      </div>
+      <div class="body-text">
+        <p>
+          Ce tableau de bord est un espace de démonstration pour Me Mounia Belkacem, 
+          fondatrice du cabinet Root & Seed Legal. Il illustre le format type de suivi 
+          de dossier mis à disposition de chaque client ayant souscrit à la prestation 
+          de suivi premium.
+        </p>
+        <p>
+          Chaque client accède à une page personnalisée présentant l'état d'avancement 
+          de son dossier : contexte, qualification juridique, stratégie, road map, 
+          estimation de gain, risques et calendrier des échéances.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. QUALIFICATION JURIDIQUE -->
+    <section class="section-block">
+      <div class="section-header">
+        <div class="section-icon">⚖️</div>
+        <h2 class="section-title">Qualification juridique</h2>
+        <span class="section-num">02</span>
+      </div>
+      <div class="body-text">
+        <p>
+          La qualification juridique est l'étape essentielle par laquelle le cabinet 
+          identifie la nature exacte du litige, les fondements légaux applicables et 
+          les voies procédurales disponibles. Elle détermine la stratégie adoptée.
+        </p>
+      </div>
+      <div class="info-grid">
+        <div class="info-cell">
+          <div class="info-cell-label">Branche du droit</div>
+          <div class="info-cell-val accent">À définir</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Fondement légal</div>
+          <div class="info-cell-val">À préciser</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Juridiction</div>
+          <div class="info-cell-val">À définir</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Procédure</div>
+          <div class="info-cell-val">À définir</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. STRATÉGIE -->
+    <section class="section-block">
+      <div class="section-header">
+        <div class="section-icon">🎯</div>
+        <h2 class="section-title">Stratégie adoptée</h2>
+        <span class="section-num">03</span>
+      </div>
+      <div class="body-text">
+        <p>
+          La stratégie sera définie et détaillée ici dès l'ouverture officielle du dossier 
+          client. Elle comprendra les axes de défense ou d'attaque retenus, 
+          la position de négociation, et les alternatives procédurales envisagées.
+        </p>
+      </div>
+      <div style="margin-top: 1.2rem; padding: 1rem 1.2rem; background: var(--noir-card2); border: 1px solid rgba(184,151,42,0.12); border-left: 3px solid var(--or); border-radius: 3px;">
+        <p style="font-size: 0.7rem; color: var(--or-soft); font-weight: 600; margin-bottom: 0.3rem; letter-spacing: 0.05em;">Positionnement stratégique</p>
+        <p style="font-size: 0.72rem; color: var(--blanc-soft); line-height: 1.7;">
+          Ce tableau de bord illustre la structure type. Le contenu sera personnalisé 
+          à chaque dossier client avec la stratégie précise adoptée par le cabinet.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4. ROAD MAP -->
+    <section class="section-block">
+      <div class="section-header">
+        <div class="section-icon">🗺️</div>
+        <h2 class="section-title">Road map — Étapes procédurales</h2>
+        <span class="section-num">04</span>
+      </div>
+      <div class="roadmap-list">
+
+        <div class="roadmap-step step-done">
+          <div class="step-indicator">✓</div>
+          <div class="step-content">
+            <div class="step-title">Prise en charge du dossier</div>
+            <div class="step-desc">Signature de la convention d'honoraires, collecte des pièces, analyse préliminaire des faits.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-step step-active">
+          <div class="step-indicator">→</div>
+          <div class="step-content">
+            <div class="step-title">Analyse juridique & qualification</div>
+            <div class="step-desc">En cours — Étude approfondie des faits, identification des fondements légaux, rédaction de la note d'analyse.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-step step-pending">
+          <div class="step-indicator">3</div>
+          <div class="step-content">
+            <div class="step-title">Définition de la stratégie</div>
+            <div class="step-desc">Présentation des options stratégiques, choix de la voie procédurale, validation client.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-step step-pending">
+          <div class="step-indicator">4</div>
+          <div class="step-content">
+            <div class="step-title">Phase amiable / précontentieuse</div>
+            <div class="step-desc">Mise en demeure, négociation, médiation si applicable.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-step step-pending">
+          <div class="step-indicator">5</div>
+          <div class="step-content">
+            <div class="step-title">Procédure contentieuse</div>
+            <div class="step-desc">Saisine de la juridiction compétente, dépôt des conclusions, audiences.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-step step-pending">
+          <div class="step-indicator">6</div>
+          <div class="step-content">
+            <div class="step-title">Décision & exécution</div>
+            <div class="step-desc">Réception de la décision, mise en œuvre, voies de recours si nécessaire.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. ESTIMATION DE GAIN -->
+    <section class="section-block">
+      <div class="section-header">
+        <div class="section-icon">💰</div>
+        <h2 class="section-title">Estimation de gain</h2>
+        <span class="section-num">05</span>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card kpi-or">
+          <div class="kpi-label">Gain estimé</div>
+          <div class="kpi-value">— €</div>
+          <div class="kpi-sub">À évaluer</div>
+        </div>
+        <div class="kpi-card kpi-vert">
+          <div class="kpi-label">Probabilité de succès</div>
+          <div class="kpi-value">—%</div>
+          <div class="kpi-sub">En cours d'analyse</div>
+        </div>
+        <div class="kpi-card kpi-bleu">
+          <div class="kpi-label">Durée estimée</div>
+          <div class="kpi-value">— mois</div>
+          <div class="kpi-sub">Selon procédure choisie</div>
+        </div>
+      </div>
+      <p style="font-size: 0.62rem; color: var(--gris); margin-top: 1rem; font-style: italic;">
+        * Les estimations seront précisées à l'issue de l'analyse juridique complète.
+      </p>
+    </section>
+
+    <!-- 6. RISQUES -->
+    <section class="section-block">
+      <div class="section-header">
+        <div class="section-icon">⚠️</div>
+        <h2 class="section-title">Analyse des risques</h2>
+        <span class="section-num">06</span>
+      </div>
+      <div class="risk-list">
+        <div class="risk-item">
+          <span class="risk-level risk-faible">Faible</span>
+          <div class="risk-text">
+            <strong>Risque procédural</strong>
+            <span>Maîtrise des délais et formalités — à préciser selon la procédure retenue.</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <span class="risk-level risk-modere">Modéré</span>
+          <div class="risk-text">
+            <strong>Risque factuel</strong>
+            <span>Appréciation des éléments de preuve — dépend des pièces disponibles.</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <span class="risk-level risk-faible">Faible</span>
+          <div class="risk-text">
+            <strong>Risque financier</strong>
+            <span>Coût de la procédure maîtrisé — honoraires convenus, frais à anticiper.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <!-- CALENDRIER -->
+    <div class="section-block" style="margin-bottom: 0;">
+      <div class="section-header">
+        <div class="section-icon">📅</div>
+        <h2 class="section-title" style="font-size: 1rem;">Calendrier</h2>
+      </div>
+      <div class="cal-list">
+
+        <div class="cal-item">
+          <div class="cal-date">
+            <span class="cal-day">—</span>
+            <span class="cal-month">2025</span>
+          </div>
+          <div class="cal-sep"></div>
+          <div class="cal-info">
+            <div class="cal-label">Note d'analyse juridique</div>
+            <div class="cal-detail">Remise au client</div>
+            <span class="cal-badge cal-badge-or">À venir</span>
+          </div>
+        </div>
+
+        <div class="cal-item">
+          <div class="cal-date">
+            <span class="cal-day">—</span>
+            <span class="cal-month">2025</span>
+          </div>
+          <div class="cal-sep"></div>
+          <div class="cal-info">
+            <div class="cal-label">Réunion stratégique</div>
+            <div class="cal-detail">Présentation des options, validation</div>
+            <span class="cal-badge cal-badge-bleu">Planifié</span>
+          </div>
+        </div>
+
+        <div class="cal-item">
+          <div class="cal-date">
+            <span class="cal-day">—</span>
+            <span class="cal-month">2025</span>
+          </div>
+          <div class="cal-sep"></div>
+          <div class="cal-info">
+            <div class="cal-label">Phase amiable</div>
+            <div class="cal-detail">Envoi mise en demeure</div>
+            <span class="cal-badge cal-badge-rouge">Estimé</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CABINET -->
+    <div class="cabinet-card">
+      <div class="cabinet-card-header">
+        <div class="cabinet-avatar">⚖️</div>
+        <div>
+          <div class="cabinet-name">Me Mounia Belkacem</div>
+          <div class="cabinet-title">Avocate au Barreau de Paris</div>
+        </div>
+      </div>
+      <div class="cabinet-contacts">
+        <div class="cabinet-contact-item">
+          <span>✉</span>
+          <span><a href="/cdn-cgi/l/email-protection#4924672b2c2522282a2c24093b26263d3a2c2c2d252c2e2825672f3b"><span class="__cf_email__" data-cfemail="ea87c4888f86818b898f87aa9885859e998f8f8e868f8d8b86c48c98">[email&#160;protected]</span></a></span>
+        </div>
+        <div class="cabinet-contact-item">
+          <span>🌐</span>
+          <span><a href="https://rootseedlegal.com" target="_blank">rootseedlegal.com</a></span>
+        </div>
+        <div class="cabinet-contact-item">
+          <span>📍</span>
+          <span>Paris, France</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONFIDENTIALITÉ -->
+    <div class="confidentiel-note">
+      🔒 Document strictement confidentiel<br>
+      Accès réservé au client désigné<br>
+      <span style="font-size: 0.56rem; color: rgba(102,102,102,0.5); display: block; margin-top: 0.4rem;">
+        Root & Seed Legal · Secret professionnel
+      </span>
+    </div>
+
+  </aside>
+
+</div><!-- /main-layout -->
+
+<!-- ══════ FOOTER ══════ -->
+<footer class="footer">
+  <div class="footer-left">
+    <span>⚖️</span>
+    <span>Me Mounia Belkacem · Avocate au Barreau de Paris · Root & Seed Legal</span>
+  </div>
+  <div class="footer-right">
+    Document confidentiel · Mise à jour : avril 2025 · RSL-2025-DEMO
+  </div>
+</footer>
+
+</div><!-- /pageContent -->
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Afficher le contenu uniquement si la session est valide
+(function() {
+  const raw = sessionStorage.getItem('rsl_session') || localStorage.getItem('rsl_session');
+  if (raw) {
+    try {
+      const sess = JSON.parse(raw);
+      if (sess.loginTime && Date.now() - sess.loginTime < 8 * 3600 * 1000) {
+        document.getElementById('pageContent').style.display = 'block';
+        // Afficher le prénom/nom du client dans le nav
+        if (sess.prenom && sess.nom) {
+          const el = document.getElementById('clientName');
+          if (el) el.textContent = sess.prenom + ' ' + sess.nom;
+        }
+        return;
+      }
+    } catch(e) {}
+  }
+  window.location.href = 'espace-client.html';
+})();
+
+function logout() {
+  sessionStorage.removeItem('rsl_session');
+  localStorage.removeItem('rsl_session');
+  window.location.href = 'espace-client.html';
+}
+</script>
+
+<script src="https://www.genspark.ai/sandbox_inspect.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
