@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suivi Dossier RSL-2026-127 — Root & Seed Legal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --noir: #080808;
+      --noir-card: #0f0f0f;
+      --noir-card2: #111318;
+      --noir-border: #1e1e1e;
+      --blanc: #f0f0f0;
+      --blanc-soft: #c0c0c0;
+      --gris: #666;
+      --or: #b8972a;
+      --or-soft: #d4b24a;
+      --or-light: #ead98a;
+      --or-bg: rgba(184,151,42,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--noir); font-family: 'Montserrat', sans-serif; color: var(--blanc); min-height: 100vh; line-height: 1.6; }
+    #pageContent { display: none; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--noir); }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--or); }
+
+    /* ══ NAV ══ */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 68px;
+      background: rgba(8,8,8,0.95); border-bottom: 1px solid var(--noir-border); backdrop-filter: blur(12px);
+    }
+    .nav-brand { display: flex; flex-direction: column; gap: 1px; }
+    .nav-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 400; letter-spacing: 0.06em; color: var(--blanc); }
+    .nav-brand-name em { color: var(--or); font-style: italic; }
+    .nav-brand-sub { font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); }
+    .nav-meta { display: flex; align-items: center; gap: 1.8rem; }
+    .nav-label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); border: 1px solid var(--noir-border); padding: 0.25rem 0.7rem; border-radius: 2px; }
+    .nav-ref { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--or-soft); letter-spacing: 0.08em; }
+    .nav-btn-logout { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gris); background: none; border: 1px solid var(--noir-border); padding: 0.3rem 0.8rem; border-radius: 2px; cursor: pointer; transition: all 0.2s ease; font-family: 'Montserrat', sans-serif; }
+    .nav-btn-logout:hover { border-color: var(--or); color: var(--or-soft); }
+
+    /* ══ HERO ══ */
+    .hero { padding: 3.5rem 2.5rem 2rem; border-bottom: 1px solid var(--noir-border); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(184,151,42,0.4), transparent); }
+    .hero-eyebrow { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--or-soft); margin-bottom: 0.8rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 400; line-height: 1.2; color: var(--blanc); margin-bottom: 1.2rem; max-width: 800px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; }
+    .hero-meta-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.68rem; color: var(--blanc-soft); }
+    .hero-meta-item span:first-child { color: var(--gris); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .progress-bar-wrap { margin: 2rem 0 0; }
+    .progress-bar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+    .progress-bar-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gris); }
+    .progress-bar-pct { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--or-soft); }
+    .progress-bar-track { height: 3px; background: var(--noir-border); border-radius: 2px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #8b6914, var(--or), var(--or-light)); border-radius: 2px; transition: width 1.2s ease; }
+
+    /* ══ LAYOUT ══ */
+    .main-layout { display: grid; grid-template-columns: 1fr 340px; gap: 2rem; padding: 2.5rem 2.5rem 4rem; max-width: 1400px; margin: 0 auto; }
+    @media (max-width: 1100px) { .main-layout { grid-template-columns: 1fr; } }
+
+    /* ══ COMPOSANTS ══ */
+    .section-block { background: var(--noir-card); border: 1px solid var(--noir-border); border-radius: 4px; padding: 2rem; margin-bottom: 1.5rem; }
+    .section-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--noir-border); }
+    .section-icon { width: 32px; height: 32px; border: 1px solid rgba(184,151,42,0.2); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; background: var(--or-bg); flex-shrink: 0; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--blanc); letter-spacing: 0.04em; }
+    .section-num { margin-left: auto; font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gris); border: 1px solid var(--noir-border); padding: 0.2rem 0.55rem; border-radius: 2px; }
+
+    .body-text { font-size: 0.8rem; color: var(--blanc-soft); line-height: 1.85; }
+    .body-text p { margin-bottom: 0.9rem; }
+    .body-text p:last-child { margin-bottom: 0; }
+
+    .badge { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.7rem; border-radius: 2px; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; }
+    .badge-or { background: rgba(184,151,42,0.12); border: 1px solid rgba(184,151,42,0.25); color: var(--or-soft); }
+    .badge-vert { background: rgba(39,174,96,0.12); border: 1px solid rgba(39,174,96,0.25); color: #2ecc71; }
+    .badge-rouge { background: rgba(192,57,43,0.12); border: 1px solid rgba(192,57,43,0.25); color: #e74c3c; }
+    .badge-bleu { background: rgba(41,128,185,0.12); border: 1px solid rgba(41,128,185,0.25); color: #5dade2; }
+
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; margin-top: 1.2rem; }
+    .info-cell { background: var(--noir-card2); border: 1px solid var(--noir-border); border-radius: 3px; padding: 1rem; }
+    .info-cell-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); margin-bottom: 0.4rem; }
+    .info-cell-val { font-size: 0.78rem; color: var(--blanc-soft); font-weight: 500; line-height: 1.4; }
+    .info-cell-val.accent { color: var(--or-soft); }
+
+    /* ══ ALERTE URGENCE ══ */
+    .alerte-urgence {
+      background: rgba(184,151,42,0.05);
+      border: 1px solid rgba(184,151,42,0.3);
+      border-left: 4px solid var(--or);
+      border-radius: 4px; padding: 1.3rem 1.5rem; margin-bottom: 1.5rem;
+    }
+    .alerte-urgence-top { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.7rem; }
+    .alerte-urgence-badge { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: var(--or); background: rgba(184,151,42,0.12); border: 1px solid rgba(184,151,42,0.3); padding: 0.2rem 0.6rem; border-radius: 2px; }
+    .alerte-urgence-date { font-size: 0.65rem; color: var(--or-soft); font-weight: 600; }
+    .alerte-urgence-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--blanc); margin-bottom: 0.4rem; }
+    .alerte-urgence-text { font-size: 0.73rem; color: var(--blanc-soft); line-height: 1.7; }
+
+    /* ══ TIMELINE ══ */
+    .timeline { display: flex; flex-direction: column; }
+    .timeline-item { display: flex; gap: 1.2rem; position: relative; }
+    .timeline-item:not(:last-child)::after { content: ''; position: absolute; left: 16px; top: 34px; width: 1px; height: calc(100% - 4px); background: var(--noir-border); }
+    .tl-dot { width: 33px; height: 33px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; flex-shrink: 0; position: relative; z-index: 1; margin-top: 0.1rem; }
+    .tl-or { background: rgba(184,151,42,0.1); border: 2px solid rgba(184,151,42,0.4); color: var(--or-soft); }
+    .tl-rouge { background: rgba(192,57,43,0.1); border: 2px solid rgba(192,57,43,0.4); color: #e74c3c; }
+    .tl-vert { background: rgba(39,174,96,0.1); border: 2px solid rgba(39,174,96,0.4); color: #2ecc71; }
+    .tl-content { padding: 0.1rem 0 1.5rem; flex: 1; }
+    .tl-date { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--or-soft); margin-bottom: 0.2rem; }
+    .tl-title { font-size: 0.78rem; font-weight: 600; color: var(--blanc-soft); margin-bottom: 0.25rem; }
+    .tl-desc { font-size: 0.68rem; color: var(--gris); line-height: 1.6; }
+
+    /* ══ AXES STRATÉGIQUES ══ */
+    .axes-list { display: flex; flex-direction: column; gap: 1rem; }
+    .axe-item { background: var(--noir-card2); border: 1px solid var(--noir-border); border-radius: 3px; padding: 1.2rem 1.4rem; border-left: 3px solid var(--or); }
+    .axe-item.axe-secondaire { border-left-color: #2980b9; opacity: 0.85; }
+    .axe-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; }
+    .axe-num { width: 24px; height: 24px; border-radius: 50%; background: rgba(184,151,42,0.1); border: 1px solid rgba(184,151,42,0.3); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: var(--or-soft); flex-shrink: 0; }
+    .axe-num.bleu { background: rgba(41,128,185,0.1); border-color: rgba(41,128,185,0.3); color: #5dade2; }
+    .axe-title { font-size: 0.8rem; font-weight: 700; color: var(--blanc); letter-spacing: 0.02em; }
+    .axe-law { font-size: 0.6rem; color: var(--or-soft); margin-bottom: 0.5rem; font-style: italic; }
+    .axe-item.axe-secondaire .axe-law { color: #5dade2; }
+    .axe-desc { font-size: 0.72rem; color: var(--blanc-soft); line-height: 1.7; }
+
+    /* ══ ROAD MAP ══ */
+    .roadmap-list { display: flex; flex-direction: column; }
+    .roadmap-step { display: flex; gap: 1.2rem; position: relative; }
+    .roadmap-step:not(:last-child)::after { content: ''; position: absolute; left: 16px; top: 36px; width: 1px; height: calc(100% - 4px); background: var(--noir-border); }
+    .step-indicator { width: 33px; height: 33px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; position: relative; z-index: 1; margin-top: 0.15rem; }
+    .step-done .step-indicator { background: rgba(39,174,96,0.12); border: 2px solid rgba(39,174,96,0.4); color: #2ecc71; }
+    .step-active .step-indicator { background: rgba(184,151,42,0.12); border: 2px solid var(--or); color: var(--or); box-shadow: 0 0 12px rgba(184,151,42,0.2); }
+    .step-pending .step-indicator { background: transparent; border: 2px solid rgba(102,102,102,0.3); color: var(--gris); }
+    .step-content { padding: 0.15rem 0 1.6rem; flex: 1; }
+    .step-tag { font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gris); margin-bottom: 0.2rem; }
+    .step-active .step-tag { color: var(--or-soft); }
+    .step-title { font-size: 0.8rem; font-weight: 600; color: var(--blanc-soft); margin-bottom: 0.2rem; }
+    .step-done .step-title { color: rgba(46,204,113,0.7); }
+    .step-active .step-title { color: var(--blanc); }
+    .step-pending .step-title { color: var(--gris); }
+    .step-desc { font-size: 0.68rem; color: var(--gris); line-height: 1.6; }
+    .step-active .step-desc { color: var(--blanc-soft); }
+
+    /* ══ KPI ══ */
+    .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    @media (max-width: 700px) { .kpi-grid { grid-template-columns: 1fr; } }
+    .kpi-card { background: var(--noir-card2); border: 1px solid var(--noir-border); border-radius: 3px; padding: 1.2rem; text-align: center; position: relative; overflow: hidden; }
+    .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+    .kpi-or::before { background: linear-gradient(90deg, transparent, var(--or), transparent); }
+    .kpi-vert::before { background: linear-gradient(90deg, transparent, #27ae60, transparent); }
+    .kpi-bleu::before { background: linear-gradient(90deg, transparent, #2980b9, transparent); }
+    .kpi-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); margin-bottom: 0.5rem; }
+    .kpi-value { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; line-height: 1; margin-bottom: 0.3rem; }
+    .kpi-or .kpi-value { color: var(--or-soft); }
+    .kpi-vert .kpi-value { color: #2ecc71; }
+    .kpi-bleu .kpi-value { color: #5dade2; }
+    .kpi-sub { font-size: 0.6rem; color: var(--gris); line-height: 1.4; }
+
+    /* ══ RISQUES ══ */
+    .risk-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .risk-item { background: var(--noir-card2); border: 1px solid var(--noir-border); border-radius: 3px; padding: 1rem 1.2rem; display: flex; align-items: flex-start; gap: 1rem; }
+    .risk-level { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 2px; flex-shrink: 0; margin-top: 0.1rem; }
+    .risk-faible { color: #2ecc71; background: rgba(39,174,96,0.1); border: 1px solid rgba(39,174,96,0.2); }
+    .risk-modere { color: #f39c12; background: rgba(243,156,18,0.1); border: 1px solid rgba(243,156,18,0.2); }
+    .risk-eleve  { color: #e74c3c; background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.2); }
+    .risk-text strong { font-size: 0.75rem; color: var(--blanc-soft); display: block; margin-bottom: 0.2rem; }
+    .risk-text span { font-size: 0.68rem; color: var(--gris); line-height: 1.5; }
+
+    /* ══ SIDEBAR ══ */
+    .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+    .cal-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .cal-item { display: flex; align-items: flex-start; gap: 0.9rem; padding: 0.9rem; background: var(--noir-card2); border: 1px solid var(--noir-border); border-radius: 3px; }
+    .cal-item.urgent { border-color: rgba(184,151,42,0.35); background: rgba(184,151,42,0.04); }
+    .cal-date { display: flex; flex-direction: column; align-items: center; min-width: 38px; }
+    .cal-day { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; line-height: 1; color: var(--or-soft); }
+    .cal-month { font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); }
+    .cal-sep { width: 1px; background: var(--noir-border); align-self: stretch; flex-shrink: 0; }
+    .cal-info { flex: 1; }
+    .cal-label { font-size: 0.7rem; font-weight: 600; color: var(--blanc-soft); margin-bottom: 0.2rem; }
+    .cal-detail { font-size: 0.62rem; color: var(--gris); line-height: 1.4; }
+    .cal-badge { font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.15rem 0.45rem; border-radius: 2px; margin-top: 0.3rem; display: inline-block; }
+    .cal-or { background: rgba(184,151,42,0.1); border: 1px solid rgba(184,151,42,0.2); color: var(--or-soft); }
+    .cal-rouge { background: rgba(192,57,43,0.1); border: 1px solid rgba(192,57,43,0.25); color: #e74c3c; }
+    .cal-bleu { background: rgba(41,128,185,0.1); border: 1px solid rgba(41,128,185,0.25); color: #5dade2; }
+    .cal-vert { background: rgba(39,174,96,0.1); border: 1px solid rgba(39,174,96,0.25); color: #2ecc71; }
+
+    .cabinet-card { background: var(--or-bg); border: 1px solid rgba(184,151,42,0.15); border-radius: 4px; padding: 1.5rem; }
+    .cabinet-card-header { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(184,151,42,0.1); }
+    .cabinet-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #8b6914, var(--or)); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .cabinet-name { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--blanc); }
+    .cabinet-title { font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris); }
+    .cabinet-contacts { display: flex; flex-direction: column; gap: 0.6rem; }
+    .cabinet-contact-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.65rem; color: var(--blanc-soft); }
+    .cabinet-contact-item span:first-child { font-size: 0.8rem; width: 18px; text-align: center; }
+    .cabinet-contact-item a { color: var(--or-soft); text-decoration: none; }
+    .cabinet-contact-item a:hover { color: var(--or-light); text-decoration: underline; }
+    .confidentiel-note { border: 1px solid rgba(184,151,42,0.12); border-radius: 3px; padding: 1rem; background: rgba(184,151,42,0.03); font-size: 0.62rem; color: var(--gris); line-height: 1.6; text-align: center; }
+
+    /* ══ FOOTER ══ */
+    .footer { border-top: 1px solid var(--noir-border); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; }
+    .footer-left { display: flex; align-items: center; gap: 0.6rem; font-size: 0.65rem; color: var(--gris); }
+    .footer-right { font-size: 0.58rem; color: rgba(102,102,102,0.5); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 1.2rem; }
+      .nav-label, .nav-ref { display: none; }
+      .hero { padding: 2rem 1.5rem 1.5rem; }
+      .main-layout { padding: 1.5rem 1.5rem 3rem; gap: 1.5rem; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+(function() {
+  const raw = sessionStorage.getItem('rsl_session') || localStorage.getItem('rsl_session');
+  if (!raw) { window.location.href = 'espace-client.html'; return; }
+  try {
+    const sess = JSON.parse(raw);
+    if (!sess.loginTime || Date.now() - sess.loginTime > 8 * 3600 * 1000) {
+      sessionStorage.removeItem('rsl_session'); localStorage.removeItem('rsl_session');
+      window.location.href = 'espace-client.html';
+    }
+  } catch(e) { window.location.href = 'espace-client.html'; }
+})();
+</script>
+
+<div id="pageContent">
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="nav-brand-name">Root <em>&</em> Seed Legal</div>
+    <div class="nav-brand-sub">Me Mounia Belkacem · Barreau de Paris</div>
+  </div>
+  <div class="nav-meta">
+    <span class="nav-label">Suivi de dossier · Confidentiel</span>
+    <span class="nav-ref">RSL-2026-127</span>
+    <button class="nav-btn-logout" onclick="logout()">Déconnexion</button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <p class="hero-eyebrow">Tableau de bord interactif</p>
+  <h1 class="hero-title">SPVE c/ TURTSCHI — Défense dans la contestation de saisie-attribution</h1>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span>Dossier</span><span>RSL-2026-127</span></div>
+    <div class="hero-meta-item"><span>Juridiction</span><span>JEX — TJ de Privas</span></div>
+    <div class="hero-meta-item"><span>Ouverture</span><span>20 avril 2026</span></div>
+    <div class="hero-meta-item"><span>Statut</span><span class="badge badge-or">⚡ Actif — Urgence</span></div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-header">
+      <span class="progress-bar-label">Avancement de la procédure</span>
+      <span class="progress-bar-pct">10 %</span>
+    </div>
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" style="width: 10%"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ CONTENU ══ -->
+<div class="main-layout">
+<main>
+
+  <!-- ALERTE MÉDIATION -->
+  <div class="alerte-urgence">
+    <div class="alerte-urgence-top">
+      <span class="alerte-urgence-badge">⚡ Échéance proche</span>
+      <span class="alerte-urgence-date">Lundi 4 mai 2026 · 08h30 · Salle de réunion 1er étage — TJ Privas</span>
+    </div>
+    <div class="alerte-urgence-title">Audience de Règlement Amiable (ARA) — Renvoi en cours de sollicitation</div>
+    <div class="alerte-urgence-text">
+      Une <strong>Audience de Règlement Amiable (ARA)</strong> est fixée le <strong>lundi 4 mai 2026 à 08h30</strong> (salle de réunion, 1er étage, TJ de Privas · RG 25/02248). Le cabinet vient d'être saisi le 20 avril 2026 et sollicite un <strong>renvoi de cette audience</strong> afin de disposer du temps nécessaire à l'analyse complète du dossier et à la préparation de la défense.
+    </div>
+  </div>
+
+  <!-- 1. CONTEXTE -->
+  <section class="section-block">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <h2 class="section-title">Contexte du dossier</h2>
+      <span class="section-num">01</span>
+    </div>
+    <div class="body-text">
+      <p>
+        M. Laurent Turtschi a obtenu en 2021 un <strong>jugement favorable</strong> du Tribunal Judiciaire de Privas contre la société BATISUN dans le cadre d'un litige relatif à une installation photovoltaïque défaillante. Un protocole transactionnel a ensuite été conclu en <strong>octobre 2023</strong> avec la SAS SPVE (ayant repris les droits de BATISUN), prévoyant des paiements et la finalisation de l'installation.
+      </p>
+      <p>
+        Ce protocole n'a jamais été correctement exécuté par SPVE, ainsi que le constate le <strong>procès-verbal d'huissier du 6 novembre 2024</strong> (Me Bastien Alenda, SAS LEX 26) : onduleur non fonctionnel, zéro production électrique, panneaux mal alignés.
+      </p>
+      <p>
+        L'ancien conseil de M. Turtschi (Me Pollard) a pratiqué une <strong>saisie-attribution de 47 006,28 €</strong> le 7 juin 2025 sur les fonds de SPVE. <strong>C'est SPVE qui a initié la contestation de cette saisie</strong> devant le juge de l'exécution (JEX) du TJ de Privas, réclamant la restitution des fonds et des dommages-intérêts.
+      </p>
+      <p>
+        Le cabinet Root & Seed Legal a été mandaté en avril 2026 pour <strong>défendre M. Turtschi dans le cadre de cette contestation</strong> et préserver les sommes saisies. Les honoraires ont été intégralement réglés.
+      </p>
+    </div>
+    <div class="info-grid">
+      <div class="info-cell">
+        <div class="info-cell-label">Partie demanderesse</div>
+        <div class="info-cell-val accent">SAS SPVE (contestant la saisie)</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Notre client (défendeur)</div>
+        <div class="info-cell-val">M. Laurent Turtschi</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Juridiction</div>
+        <div class="info-cell-val">JEX — TJ de Privas</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">N° RG / Portalis</div>
+        <div class="info-cell-val accent">RG 25/02248 · DBWS-W-B7J-ENIW</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Montant de la saisie</div>
+        <div class="info-cell-val accent">47 006,28 €</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Demandes de SPVE</div>
+        <div class="info-cell-val">Restitution + 5 000 € DI + 2 000 € art. 700 CPC</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Avocat adverse (SPVE)</div>
+        <div class="info-cell-val">Me Nathalie DE ROECK · Barreau Ardèche</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Ancien conseil client</div>
+        <div class="info-cell-val">Me Carole MUZI · Barreau Ardèche</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Honoraires</div>
+        <div class="info-cell-val accent">✓ Intégralement réglés</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. CHRONOLOGIE -->
+  <section class="section-block">
+    <div class="section-header">
+      <div class="section-icon">🕐</div>
+      <h2 class="section-title">Chronologie des faits</h2>
+      <span class="section-num">02</span>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="tl-dot tl-or">2019</div>
+        <div class="tl-content">
+          <div class="tl-date">2019</div>
+          <div class="tl-title">Contrat d'installation photovoltaïque avec BATISUN</div>
+          <div class="tl-desc">Non-exécution des obligations contractuelles par BATISUN. Litige engagé devant le TJ de Privas.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot tl-vert">2021</div>
+        <div class="tl-content">
+          <div class="tl-date">2 avril 2021</div>
+          <div class="tl-title">Jugement favorable TJ de Privas — N° RG 19/01286</div>
+          <div class="tl-desc">Décision rendue en faveur de M. Turtschi contre BATISUN et la Caisse de Crédit Mutuel. Jugement réputé contradictoire, première instance.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot tl-or">Oct 23</div>
+        <div class="tl-content">
+          <div class="tl-date">16 octobre 2023</div>
+          <div class="tl-title">Protocole transactionnel avec SPVE</div>
+          <div class="tl-desc">Conclusion d'un protocole d'accord avec la SAS SPVE. Paiement partiel de 6 000 € versé à M. Turtschi. Attestation de sécurité signée le 5 octobre 2023. Mise en service ENEDIS le 12 février 2024.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot tl-rouge">Nov 24</div>
+        <div class="tl-content">
+          <div class="tl-date">6 novembre 2024</div>
+          <div class="tl-title">1er PV de constat huissier (MD20226) — Inexécution du protocole établie</div>
+          <div class="tl-desc">Me Bastien Alenda (SAS LEX 26, Pierrelatte) constate officiellement : onduleur non fonctionnel, zéro production électrique, panneaux mal alignés. Document clé de notre défense.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot tl-or">Avr 25</div>
+        <div class="tl-content">
+          <div class="tl-date">14 avril 2025</div>
+          <div class="tl-title">Signification du jugement du 2 avril 2021 à SPVE — SCP MAZIERE–SAN MARTINO</div>
+          <div class="tl-desc">À la demande de M. Turtschi, la SCP MAZIERE – SAN MARTINO (Commissaires de Justice, Carpentras) signifie officiellement à la SARL SPVE (106 Allée des Alpilles, Pernes-les-Fontaines) le jugement réputé contradictoire rendu par le TJ de Privas. Acte indispensable pour rendre le jugement exécutoire et faire courir le délai d'appel. C'est le fondement direct de la saisie-attribution pratiquée ensuite.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot tl-rouge">Juin 25</div>
+        <div class="tl-content">
+          <div class="tl-date">7 juin 2025</div>
+          <div class="tl-title">Saisie-attribution de 47 006,28 € — Sur les fonds de SPVE</div>
+          <div class="tl-desc">Saisie pratiquée par Me Pollard (ancien conseil de M. Turtschi) sur les fonds de SPVE, sur le fondement du jugement du 2 avril 2021 signifié le 14 avril 2025. Le protocole transactionnel n'avait pas été judiciairement résolu au préalable — argument central de SPVE dans sa contestation.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot tl-rouge">Juil 25</div>
+        <div class="tl-content">
+          <div class="tl-date">2025 (RG 25/02248)</div>
+          <div class="tl-title">SPVE conteste la saisie devant le JEX — Assignation déposée</div>
+          <div class="tl-desc">La SAS SPVE (représentée par Me Nathalie DE ROECK, Barreau Ardèche) saisit le juge de l'exécution du TJ de Privas pour contester la saisie-attribution et réclamer la restitution de 47 006,28 € + 5 000 € DI + 2 000 € art. 700 CPC. M. Turtschi était alors représenté par Me Carole MUZI (Barreau Ardèche).</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot tl-rouge">Nov 25</div>
+        <div class="tl-content">
+          <div class="tl-date">14 novembre 2025</div>
+          <div class="tl-title">2e PV de constat huissier (MD22563) — Persistance des manquements</div>
+          <div class="tl-desc">Second procès-verbal d'huissier confirmant la persistance des défaillances de l'installation photovoltaïque. Renforce considérablement la position défensive de M. Turtschi devant le JEX.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot tl-or">Sep–Feb 26</div>
+        <div class="tl-content">
+          <div class="tl-date">Sept 2025 — Fév 2026</div>
+          <div class="tl-title">Avis de renvoi successifs à la mise en état</div>
+          <div class="tl-desc">Plusieurs renvois ordonnés par le tribunal : 18/09/2025, 24/11/2025, 15/01/2026, 20/02/2026. Échanges de conclusions entre Me MUZI (défense Turtschi) et Me DE ROECK (SPVE). Audience de Règlement Amiable convoquée pour le 4 mai 2026.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot tl-vert">Avr 26</div>
+        <div class="tl-content">
+          <div class="tl-date">20 avril 2026</div>
+          <div class="tl-title">✅ Mandat confié à Me Belkacem — Root & Seed Legal</div>
+          <div class="tl-desc">Substitution de Me MUZI par Me Belkacem (Root & Seed Legal). Honoraires intégralement réglés. ARA fixée au 4 mai 2026 à 08h30 — renvoi sollicité en urgence.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. QUALIFICATION JURIDIQUE -->
+  <section class="section-block">
+    <div class="section-header">
+      <div class="section-icon">⚖️</div>
+      <h2 class="section-title">Qualification juridique</h2>
+      <span class="section-num">03</span>
+    </div>
+    <div class="body-text">
+      <p>
+        M. Turtschi se trouve <strong>en défense</strong> dans une procédure initiée par SPVE devant le <strong>juge de l'exécution (JEX)</strong> du Tribunal Judiciaire de Privas. Cette procédure comporte <strong>deux volets distincts mais traités sous le même RG 25/02248</strong> :
+      </p>
+      <p>
+        <strong>① Procédure JEX (contestation de la saisie-attribution)</strong> — SPVE conteste la validité de la saisie-attribution de 47 006,28 € pratiquée le 7 juin 2025. L'enjeu est de démontrer que la saisie reposait sur un <strong>titre exécutoire valide</strong> : le jugement du 2 avril 2021 (RG 19/01286), <strong>signifié à SPVE le 14 avril 2025</strong> par la SCP MAZIERE–SAN MARTINO. Cette signification est l'acte fondateur : elle a rendu le jugement opposable et a fait courir le délai d'appel, avant de permettre la saisie.
+      </p>
+      <p>
+        <strong>② Procédure au fond (restitution des sommes)</strong> — SPVE demande également la restitution des 47 006,28 € saisis, plus 5 000 € de dommages-intérêts et 2 000 € au titre de l'art. 700 CPC. Le JEX est compétent pour trancher cette demande au fond conjointement à la contestation.
+      </p>
+      <p>
+        L'angle stratégique complémentaire est de solliciter la <strong>résolution judiciaire du protocole transactionnel</strong> du 16 octobre 2023 pour inexécution par SPVE (art. 1224 C. civ.), ce qui priverait SPVE de tout fondement pour réclamer la restitution et consoliderait définitivement la position de M. Turtschi.
+      </p>
+    </div>
+    <div class="info-grid">
+      <div class="info-cell">
+        <div class="info-cell-label">Branche du droit</div>
+        <div class="info-cell-val accent">Procédures civiles d'exécution</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Procédure 1 — JEX</div>
+        <div class="info-cell-val">Contestation saisie-attribution · RG 25/02248 · Art. L.211-1 CPCE</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Procédure 2 — Fond</div>
+        <div class="info-cell-val">Demande au fond (restitution 47 006 €) · Même RG · JEX compétent</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Juge compétent</div>
+        <div class="info-cell-val">Juge de l'exécution (JEX) — TJ de Privas</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Titre exécutoire fondateur</div>
+        <div class="info-cell-val">Jugement TJ Privas 02/04/2021 · RG 19/01286<br><span style="font-size:0.65rem;color:var(--or-soft)">Signifié à SPVE le 14 avril 2025</span></div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-label">Angle complémentaire</div>
+        <div class="info-cell-val">Art. 1224 C. civ. — Résolution protocole pour inexécution</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. STRATÉGIE -->
+  <section class="section-block">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <h2 class="section-title">Stratégie de défense</h2>
+      <span class="section-num">04</span>
+    </div>
+    <div class="axes-list">
+
+      <div class="axe-item">
+        <div class="axe-header">
+          <div class="axe-num">1</div>
+          <div class="axe-title">Obtenir le renvoi de l'ARA du 4 mai 2026</div>
+        </div>
+        <div class="axe-law">Action immédiate — Priorité absolue · Audience de Règlement Amiable (RG 25/02248)</div>
+        <div class="axe-desc">
+          Le cabinet a été mandaté le 20 avril 2026, soit seulement 14 jours avant l'ARA fixée au 4 mai 2026 à 08h30. Il est légitime et de bonne pratique de solliciter un renvoi de cette audience afin de disposer du temps nécessaire à l'analyse complète du dossier (conclusions adverses Me DE ROECK, dossier Me MUZI, état RPVA) et à la préparation d'une position défensive cohérente. Cette demande sera présentée à la juridiction sans délai.
+        </div>
+      </div>
+
+      <div class="axe-item">
+        <div class="axe-header">
+          <div class="axe-num">2</div>
+          <div class="axe-title">Défendre la validité de la saisie-attribution devant le JEX</div>
+        </div>
+        <div class="axe-law">Fondement : Jugement TJ Privas du 2 avril 2021 — Titre exécutoire valide</div>
+        <div class="axe-desc">
+          La saisie-attribution a été pratiquée sur le fondement du jugement du 2 avril 2021, qui constitue un titre exécutoire valide et définitif. Nous démontrerons que les sommes saisies correspondent à des créances légitimement dues à M. Turtschi, indépendamment des conditions dans lesquelles la saisie a été exécutée par Me Pollard.
+        </div>
+      </div>
+
+      <div class="axe-item">
+        <div class="axe-header">
+          <div class="axe-num">3</div>
+          <div class="axe-title">Opposer l'inexécution du protocole par SPVE</div>
+        </div>
+        <div class="axe-law">Fondement : PV huissier MD20226 (06/11/2024) + MD22563 (14/11/2025) — Art. 1217 & 1219 C. civ.</div>
+        <div class="axe-desc">
+          SPVE ne peut valablement contester la saisie et réclamer la restitution de fonds alors qu'elle n'a pas elle-même exécuté ses obligations issues du protocole transactionnel. <strong>Deux procès-verbaux d'huissier</strong> (6 novembre 2024 et 14 novembre 2025) établissent de manière indépendante et contradictoire la persistance des manquements de SPVE. L'exception d'inexécution (art. 1219 C. civ.) sera invoquée.
+        </div>
+      </div>
+
+      <div class="axe-item">
+        <div class="axe-header">
+          <div class="axe-num">4</div>
+          <div class="axe-title">Demander la résolution judiciaire du protocole transactionnel</div>
+        </div>
+        <div class="axe-law">Fondement : Article 1224 du Code civil — Résolution pour inexécution</div>
+        <div class="axe-desc">
+          En demande reconventionnelle ou par voie de demande séparée, solliciter la résolution judiciaire du protocole du 16 octobre 2023 pour défaut d'exécution par SPVE. La résolution anéantit rétroactivement le protocole : SPVE ne peut plus s'en prévaloir pour contester la saisie. C'est l'angle le plus solide pour consolider la position de M. Turtschi et le sortir de la situation actuelle.
+        </div>
+      </div>
+
+      <div class="axe-item axe-secondaire">
+        <div class="axe-header">
+          <div class="axe-num bleu">5</div>
+          <div class="axe-title">Contexte : fautes de l'ancien conseil (Me Pollard)</div>
+        </div>
+        <div class="axe-law">Élément de contexte — Responsabilité professionnelle de l'avocat</div>
+        <div class="axe-desc">
+          Les manquements de Me Pollard (saisie sans accord du client, absence de stratégie présentée, facturation opaque) constituent un contexte factuel important. Ils ne sont pas l'objet principal de la présente procédure, mais peuvent être invoqués si SPVE cherche à retourner ces circonstances contre M. Turtschi. Une action séparée contre Me Pollard pourra être envisagée à l'issue.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. ROAD MAP -->
+  <section class="section-block">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <h2 class="section-title">Road map — Étapes de la procédure</h2>
+      <span class="section-num">05</span>
+    </div>
+    <div class="roadmap-list">
+
+      <div class="roadmap-step step-done">
+        <div class="step-indicator">✓</div>
+        <div class="step-content">
+          <div class="step-tag">Avril 2026 — Terminé</div>
+          <div class="step-title">Prise en charge du dossier</div>
+          <div class="step-desc">Signature de la convention d'honoraires. Honoraires intégralement réglés. Analyse des pièces disponibles (jugement 2021, protocole, PV huissier, assignation SPVE).</div>
+        </div>
+      </div>
+
+      <div class="roadmap-step step-active">
+        <div class="step-indicator">→</div>
+        <div class="step-content">
+          <div class="step-tag">4 mai 2026 — En cours · ARA</div>
+          <div class="step-title">Demande de renvoi de l'Audience de Règlement Amiable</div>
+          <div class="step-desc">Sollicitation urgente d'un renvoi de l'ARA fixée au 4 mai 2026 à 08h30 (salle de réunion, 1er étage, TJ de Privas). RG 25/02248. Récupération du dossier chez Me Pollard. Consultation RPVA.</div>
+        </div>
+      </div>
+
+      <div class="roadmap-step step-pending">
+        <div class="step-indicator">3</div>
+        <div class="step-content">
+          <div class="step-tag">Mai–Juin 2026</div>
+          <div class="step-title">Analyse complète & définition de la position de défense</div>
+          <div class="step-desc">Étude approfondie de l'assignation de SPVE. Identification précise des moyens de défense. Décision sur l'opportunité de la demande reconventionnelle en résolution du protocole.</div>
+        </div>
+      </div>
+
+      <div class="roadmap-step step-pending">
+        <div class="step-indicator">4</div>
+        <div class="step-content">
+          <div class="step-tag">Juin–Juillet 2026</div>
+          <div class="step-title">Rédaction et dépôt des conclusions de défense</div>
+          <div class="step-desc">Conclusions au fond devant le JEX : validité de la saisie, inexécution du protocole par SPVE, demande reconventionnelle en résolution si retenue. Dépôt via le postulant au Barreau de l'Ardèche.</div>
+        </div>
+      </div>
+
+      <div class="roadmap-step step-pending">
+        <div class="step-indicator">5</div>
+        <div class="step-content">
+          <div class="step-tag">Juillet–Octobre 2026</div>
+          <div class="step-title">Phase contradictoire</div>
+          <div class="step-desc">Échanges de conclusions avec SPVE. Réponses aux moyens adverses. Instruction par le JEX. Expertise judiciaire éventuelle sur l'installation photovoltaïque si ordonnée par le tribunal.</div>
+        </div>
+      </div>
+
+      <div class="roadmap-step step-pending">
+        <div class="step-indicator">6</div>
+        <div class="step-content">
+          <div class="step-tag">Fin 2026 – Début 2027</div>
+          <div class="step-title">Audience, délibéré & décision</div>
+          <div class="step-desc">Clôture de l'instruction. Plaidoirie devant le JEX. Rendu de la décision. Selon l'issue : exécution ou voie d'appel. Éventuelle action séparée contre Me Pollard à envisager.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. ESTIMATION -->
+  <section class="section-block">
+    <div class="section-header">
+      <div class="section-icon">💰</div>
+      <h2 class="section-title">Enjeux financiers</h2>
+      <span class="section-num">06</span>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card kpi-or">
+        <div class="kpi-label">Somme à préserver</div>
+        <div class="kpi-value">47 006 €</div>
+        <div class="kpi-sub">Montant de la saisie-attribution à défendre</div>
+      </div>
+      <div class="kpi-card kpi-bleu">
+        <div class="kpi-label">Demandes de SPVE</div>
+        <div class="kpi-value">~54 000 €</div>
+        <div class="kpi-sub">Restitution + 5 000 € DI + 2 000 € art. 700 CPC</div>
+      </div>
+      <div class="kpi-card kpi-vert">
+        <div class="kpi-label">Honoraires</div>
+        <div class="kpi-value">✓ Réglés</div>
+        <div class="kpi-sub">Convention d'honoraires intégralement exécutée</div>
+      </div>
+    </div>
+    <p style="font-size: 0.62rem; color: var(--gris); margin-top: 1rem; line-height: 1.7; font-style: italic;">
+      * En cas de succès de la défense : M. Turtschi conserve les 47 006,28 € et voit rejeter l'ensemble des demandes de SPVE. En cas de résolution du protocole obtenue reconventionnellement, la position de M. Turtschi est définitivement consolidée.
+    </p>
+  </section>
+
+  <!-- 7. RISQUES -->
+  <section class="section-block">
+    <div class="section-header">
+      <div class="section-icon">⚠️</div>
+      <h2 class="section-title">Évaluation des risques</h2>
+      <span class="section-num">07</span>
+    </div>
+    <div class="risk-list">
+
+      <div class="risk-item">
+        <span class="risk-level risk-eleve">Élevé</span>
+        <div class="risk-text">
+          <strong>Absence de résolution judiciaire du protocole avant la saisie</strong>
+          <span>Le JEX pourrait estimer que le protocole transactionnel du 16/10/2023 suspendait l'effet du jugement de 2021, rendant la saisie prématurée. C'est le principal argument de SPVE. La demande de résolution reconventionnelle vise à neutraliser ce risque.</span>
+        </div>
+      </div>
+
+      <div class="risk-item">
+        <span class="risk-level risk-modere">Modéré</span>
+        <div class="risk-text">
+          <strong>Attestation de sécurité signée le 5 octobre 2023</strong>
+          <span>SPVE pourrait s'appuyer sur cette attestation pour soutenir que l'installation était conforme à la date de signature. Cet argument est contré par le PV huissier du 6 novembre 2024 qui constate postérieurement le dysfonctionnement réel de l'installation.</span>
+        </div>
+      </div>
+
+      <div class="risk-item">
+        <span class="risk-level risk-modere">Modéré</span>
+        <div class="risk-text">
+          <strong>Délais procéduraux à sécuriser en urgence</strong>
+          <span>La récupération du dossier chez Me Pollard et la consultation RPVA sont prioritaires. Tout délai de procédure non respecté devant le JEX pourrait créer un incident préjudiciable. La demande de renvoi de la médiation est la première sécurité à obtenir.</span>
+        </div>
+      </div>
+
+      <div class="risk-item">
+        <span class="risk-level risk-faible">Faible</span>
+        <div class="risk-text">
+          <strong>Solidité du PV de constat huissier</strong>
+          <span>Le procès-verbal dressé par Me Alenda le 6 novembre 2024 est un acte authentique établissant de manière contradictoire les manquements de SPVE. SPVE pourrait en contester l'interprétation mais difficilement sa teneur. C'est la pièce maîtresse de notre dossier.</span>
+        </div>
+      </div>
+
+      <div class="risk-item">
+        <span class="risk-level risk-faible">Faible</span>
+        <div class="risk-text">
+          <strong>Risque financier pour le client</strong>
+          <span>Les honoraires sont intégralement réglés. Les frais complémentaires (postulant au Barreau de l'Ardèche, éventuelle expertise) seront anticipés et communiqués avant tout engagement.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ══ SIDEBAR ══ -->
+<aside class="sidebar">
+
+  <!-- CALENDRIER -->
+  <div class="section-block" style="margin-bottom: 0;">
+    <div class="section-header">
+      <div class="section-icon">📅</div>
+      <h2 class="section-title" style="font-size: 1rem;">Calendrier</h2>
+    </div>
+    <div class="cal-list">
+
+      <div class="cal-item urgent">
+        <div class="cal-date">
+          <span class="cal-day">04</span>
+          <span class="cal-month">Mai 26</span>
+        </div>
+        <div class="cal-sep"></div>
+        <div class="cal-info">
+          <div class="cal-label">ARA — Renvoi sollicité · 08h30</div>
+          <div class="cal-detail">Audience de Règlement Amiable · Salle réunion 1er ét. · TJ Privas · RG 25/02248</div>
+          <span class="cal-badge cal-or">⚡ Priorité</span>
+        </div>
+      </div>
+
+      <div class="cal-item">
+        <div class="cal-date">
+          <span class="cal-day">Mai</span>
+          <span class="cal-month">2026</span>
+        </div>
+        <div class="cal-sep"></div>
+        <div class="cal-info">
+          <div class="cal-label">Récupération dossier Pollard</div>
+          <div class="cal-detail">+ Consultation RPVA état procédure</div>
+          <span class="cal-badge cal-or">En cours</span>
+        </div>
+      </div>
+
+      <div class="cal-item">
+        <div class="cal-date">
+          <span class="cal-day">Juin</span>
+          <span class="cal-month">2026</span>
+        </div>
+        <div class="cal-sep"></div>
+        <div class="cal-info">
+          <div class="cal-label">Dépôt conclusions de défense</div>
+          <div class="cal-detail">JEX — TJ de Privas</div>
+          <span class="cal-badge cal-bleu">Planifié</span>
+        </div>
+      </div>
+
+      <div class="cal-item">
+        <div class="cal-date">
+          <span class="cal-day">Oct</span>
+          <span class="cal-month">2026</span>
+        </div>
+        <div class="cal-sep"></div>
+        <div class="cal-info">
+          <div class="cal-label">Clôture instruction</div>
+          <div class="cal-detail">Fin des échanges de mémoires</div>
+          <span class="cal-badge cal-bleu">Estimé</span>
+        </div>
+      </div>
+
+      <div class="cal-item">
+        <div class="cal-date">
+          <span class="cal-day">T1</span>
+          <span class="cal-month">2027</span>
+        </div>
+        <div class="cal-sep"></div>
+        <div class="cal-info">
+          <div class="cal-label">Audience & délibéré</div>
+          <div class="cal-detail">Plaidoirie devant le JEX · Décision</div>
+          <span class="cal-badge cal-rouge">Estimé</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ACTIONS IMMÉDIATES -->
+  <div class="section-block" style="margin-bottom: 0;">
+    <div class="section-header">
+      <div class="section-icon">✅</div>
+      <h2 class="section-title" style="font-size: 1rem;">Actions immédiates</h2>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+      <div style="display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.7rem; color: var(--blanc-soft);">
+        <span style="color: #2ecc71; flex-shrink:0;">✓</span>
+        <span>Convention d'honoraires signée & réglée</span>
+      </div>
+      <div style="display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.7rem; color: var(--or-soft); font-weight: 600;">
+        <span style="flex-shrink:0;">→</span>
+        <span>Demande de renvoi ARA du 4 mai — 08h30 · TJ Privas</span>
+      </div>
+      <div style="display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.7rem; color: var(--gris);">
+        <span style="flex-shrink:0;">◦</span>
+        <span>Désignation avocat postulant (Barreau Ardèche)</span>
+      </div>
+      <div style="display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.7rem; color: var(--gris);">
+        <span style="flex-shrink:0;">◦</span>
+        <span>Récupération dossier chez Me Pollard</span>
+      </div>
+      <div style="display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.7rem; color: var(--gris);">
+        <span style="flex-shrink:0;">◦</span>
+        <span>Consultation RPVA — État procédure JEX</span>
+      </div>
+      <div style="display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.7rem; color: var(--gris);">
+        <span style="flex-shrink:0;">◦</span>
+        <span>Analyse assignation SPVE & délais impartis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CABINET -->
+  <div class="cabinet-card">
+    <div class="cabinet-card-header">
+      <div class="cabinet-avatar">⚖️</div>
+      <div>
+        <div class="cabinet-name">Me Mounia Belkacem</div>
+        <div class="cabinet-title">Avocate au Barreau de Paris</div>
+      </div>
+    </div>
+    <div class="cabinet-contacts">
+      <div class="cabinet-contact-item">
+        <span>✉</span>
+        <span><a href="/cdn-cgi/l/email-protection#55387b3730393e3436303815273a3a212630303139303234397b3327"><span class="__cf_email__" data-cfemail="cfa2e1adaaa3a4aeacaaa28fbda0a0bbbcaaaaaba3aaa8aea3e1a9bd">[email&#160;protected]</span></a></span>
+      </div>
+      <div class="cabinet-contact-item">
+        <span>🌐</span>
+        <span><a href="https://rootseedlegal.com" target="_blank">rootseedlegal.com</a></span>
+      </div>
+      <div class="cabinet-contact-item">
+        <span>📍</span>
+        <span>Paris, France</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="confidentiel-note">
+    🔒 Document strictement confidentiel<br>
+    Accès réservé à M. Laurent Turtschi<br>
+    <span style="font-size: 0.56rem; color: rgba(102,102,102,0.5); display: block; margin-top: 0.4rem;">
+      Root & Seed Legal · Secret professionnel · RSL-2026-127
+    </span>
+  </div>
+
+</aside>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-left">
+    <span>⚖️</span>
+    <span>Me Mounia Belkacem · Avocate au Barreau de Paris · Root & Seed Legal</span>
+  </div>
+  <div class="footer-right">
+    Document confidentiel · Mise à jour : 21 avril 2026 · RSL-2026-127
+  </div>
+</footer>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function() {
+  const raw = sessionStorage.getItem('rsl_session') || localStorage.getItem('rsl_session');
+  if (raw) {
+    try {
+      const sess = JSON.parse(raw);
+      if (sess.loginTime && Date.now() - sess.loginTime < 8 * 3600 * 1000) {
+        document.getElementById('pageContent').style.display = 'block';
+        return;
+      }
+    } catch(e) {}
+  }
+  window.location.href = 'espace-client.html';
+})();
+
+function logout() {
+  sessionStorage.removeItem('rsl_session');
+  localStorage.removeItem('rsl_session');
+  window.location.href = 'espace-client.html';
+}
+</script>
+<script src="https://www.genspark.ai/sandbox_inspect.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
