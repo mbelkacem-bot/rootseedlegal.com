@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avocat Fiduciaire — Fiducie & Ingénierie Patrimoniale | Root &amp; Seed Legal</title>
+  <meta name="description" content="Maître Mounia Belkacem, avocat fiduciaire inscrit au Barreau de Paris. Fiducie de gestion, fiducie de sûreté, ingénierie patrimoniale UHNWI, restructurations. Fondements juridiques vérifiés.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════════════
+       VARIABLES & RESET
+    ══════════════════════════════════════════════════ */
+    :root {
+      --vert-fonce:    #1A3C2E;
+      --vert-moyen:   #2D6A4F;
+      --vert-clair:   #52B788;
+      --vert-pastel:  #B7E4C7;
+      --vert-leger:   #D8F3DC;
+      --vert-pale:    #F0FAF3;
+      --blanc:        #FFFFFF;
+      --blanc-off:    #FAFCFA;
+      --gris-fonce:   #1E1E1E;
+      --gris-moyen:   #4A4A4A;
+      --gris:         #6B7280;
+      --gris-clair:   #E5EDE7;
+      --or:           #C9A84C;
+      --or-light:     #F0DFA0;
+      --transition:   all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm:    0 2px 10px rgba(29, 60, 46, 0.07);
+      --shadow-md:    0 6px 24px rgba(29, 60, 46, 0.12);
+      --shadow-lg:    0 16px 48px rgba(29, 60, 46, 0.16);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--gris-fonce); background: var(--blanc);
+      line-height: 1.7; overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; transition: var(--transition); }
+    img { max-width: 100%; display: block; }
+
+    /* ══════════════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════════════ */
+    .fid-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px; padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gris-clair);
+      box-shadow: var(--shadow-sm);
+    }
+    .fid-nav-back {
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gris); display: flex; align-items: center; gap: 0.4rem;
+      font-weight: 500;
+    }
+    .fid-nav-back:hover { color: var(--vert-moyen); }
+    .fid-nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 500; letter-spacing: 0.1em;
+      color: var(--vert-fonce);
+    }
+    .fid-nav-cta {
+      background: var(--vert-moyen); color: var(--blanc);
+      padding: 9px 18px; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; border-radius: 3px;
+    }
+    .fid-nav-cta:hover { background: var(--vert-fonce); color: var(--blanc); }
+
+    /* ══════════════════════════════════════════════════
+       UTILITAIRES
+    ══════════════════════════════════════════════════ */
+    .fid-container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+    .fid-label {
+      display: inline-block; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--vert-moyen); background: var(--vert-leger);
+      border: 1px solid var(--vert-pastel);
+      padding: 0.3rem 0.9rem; border-radius: 100px; margin-bottom: 1rem;
+    }
+    .fid-label.center { display: block; width: fit-content; margin: 0 auto 1.2rem; }
+    .fid-label.or { color: var(--or); background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); }
+    .fid-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 500; color: var(--vert-fonce); line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .fid-section-title.center { text-align: center; }
+    .fid-section-sub {
+      font-size: 1rem; color: var(--gris); max-width: 680px; margin: 0 auto;
+      line-height: 1.75;
+    }
+    .fid-section-sub.center { text-align: center; }
+
+    /* ══════════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════════ */
+    .fid-hero {
+      padding: 130px 5% 90px;
+      background: linear-gradient(150deg, var(--vert-fonce) 0%, #1f4a36 50%, var(--vert-moyen) 100%);
+      position: relative; overflow: hidden;
+    }
+    .fid-hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(82,183,136,0.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .fid-hero::after {
+      content: '';
+      position: absolute; bottom: -100px; left: -100px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .fid-hero-inner {
+      max-width: 900px; position: relative; z-index: 2;
+    }
+    .fid-hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: var(--vert-pastel); font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; font-weight: 600;
+      padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2rem;
+    }
+    .fid-hero-tag::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--vert-clair); flex-shrink: 0;
+    }
+    .fid-hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300; color: var(--blanc); line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .fid-hero-title em { color: var(--vert-clair); font-style: italic; }
+    .fid-hero-title strong { font-weight: 600; }
+    .fid-hero-subtitle {
+      font-size: 1.05rem; color: rgba(255,255,255,0.72); line-height: 1.8;
+      margin-bottom: 2.5rem; max-width: 720px;
+    }
+    .fid-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-fid-primary {
+      background: var(--vert-clair); color: var(--blanc);
+      padding: 14px 28px; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; border-radius: 3px;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(82,183,136,0.35);
+    }
+    .btn-fid-primary:hover { background: var(--blanc); color: var(--vert-fonce); }
+    .btn-fid-outline {
+      background: transparent; color: var(--blanc);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      padding: 14px 28px; font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase; border-radius: 3px;
+      transition: var(--transition);
+    }
+    .btn-fid-outline:hover { border-color: var(--blanc); background: rgba(255,255,255,0.08); }
+    .fid-hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem; flex-wrap: wrap;
+      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .fid-hero-stat strong {
+      display: block; font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 600; color: var(--vert-clair);
+    }
+    .fid-hero-stat span { font-size: 0.78rem; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* ══════════════════════════════════════════════════
+       DÉFINITION — QU'EST-CE QU'UN AVOCAT FIDUCIAIRE ?
+    ══════════════════════════════════════════════════ */
+    .fid-definition { padding: 90px 5%; background: var(--blanc); }
+    .fid-def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .fid-def-text p { font-size: 1rem; color: var(--gris-moyen); line-height: 1.8; margin-bottom: 1.2rem; }
+    .fid-def-text strong { color: var(--vert-fonce); font-weight: 600; }
+    .fid-def-ref {
+      background: var(--vert-pale); border-left: 4px solid var(--vert-clair);
+      border-radius: 0 6px 6px 0; padding: 1.2rem 1.5rem; margin-top: 1.5rem;
+    }
+    .fid-def-ref p { font-size: 0.88rem; color: var(--vert-fonce); margin: 0; line-height: 1.7; }
+    .fid-def-ref strong { color: var(--vert-moyen); }
+    .fid-def-card {
+      background: var(--vert-pale); border: 1px solid var(--vert-pastel);
+      border-radius: 12px; padding: 2.5rem; position: relative;
+    }
+    .fid-def-card::before {
+      content: '§';
+      font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300;
+      color: var(--vert-pastel); position: absolute; top: 1rem; right: 1.5rem; line-height: 1;
+    }
+    .fid-def-card h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+      color: var(--vert-fonce); margin-bottom: 1.2rem; font-weight: 600;
+    }
+    .fid-def-list { list-style: none; }
+    .fid-def-list li {
+      padding: 0.6rem 0 0.6rem 1.4rem; position: relative;
+      font-size: 0.9rem; color: var(--gris-moyen); border-bottom: 1px solid var(--vert-pastel);
+      line-height: 1.6;
+    }
+    .fid-def-list li:last-child { border-bottom: none; }
+    .fid-def-list li::before { content: '▸'; position: absolute; left: 0; color: var(--vert-clair); font-weight: bold; }
+    .fid-def-list strong { color: var(--vert-fonce); font-weight: 600; }
+
+    /* ══════════════════════════════════════════════════
+       OBLIGATIONS RÉGLEMENTAIRES
+    ══════════════════════════════════════════════════ */
+    .fid-oblig { padding: 90px 5%; background: var(--blanc-off); }
+    .fid-oblig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .fid-oblig-card {
+      background: var(--blanc); border: 1px solid var(--gris-clair);
+      border-radius: 8px; padding: 2rem 1.8rem;
+      border-top: 3px solid var(--vert-clair);
+      transition: var(--transition);
+    }
+    .fid-oblig-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .fid-oblig-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+    .fid-oblig-card h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+      color: var(--vert-fonce); margin-bottom: 0.8rem; font-weight: 600;
+    }
+    .fid-oblig-card ul { list-style: none; }
+    .fid-oblig-card li {
+      padding: 0.45rem 0 0.45rem 1.3rem; position: relative;
+      font-size: 0.86rem; color: var(--gris-moyen); line-height: 1.6;
+    }
+    .fid-oblig-card li::before { content: '✓'; position: absolute; left: 0; color: var(--vert-clair); font-weight: 700; }
+    .fid-oblig-ref {
+      margin-top: 0.8rem; padding-top: 0.8rem;
+      border-top: 1px dashed var(--gris-clair);
+      font-size: 0.75rem; color: var(--gris); font-style: italic;
+    }
+
+    /* ══════════════════════════════════════════════════
+       HONORAIRES
+    ══════════════════════════════════════════════════ */
+    .fid-honoraires { padding: 90px 5%; background: var(--blanc); }
+    .fid-hon-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+    .fid-hon-main p { font-size: 0.95rem; color: var(--gris-moyen); line-height: 1.8; margin-bottom: 1rem; }
+    .fid-hon-main strong { color: var(--vert-fonce); }
+    .fid-hon-types { margin-top: 1.5rem; }
+    .fid-hon-type {
+      padding: 1.2rem 1.5rem; border-left: 3px solid var(--vert-clair);
+      background: var(--vert-pale); border-radius: 0 6px 6px 0;
+      margin-bottom: 1rem; transition: var(--transition);
+    }
+    .fid-hon-type:hover { background: var(--vert-leger); }
+    .fid-hon-type h4 { font-size: 0.92rem; color: var(--vert-fonce); font-weight: 700; margin-bottom: 0.3rem; }
+    .fid-hon-type p { font-size: 0.84rem; color: var(--gris-moyen); margin: 0; }
+    .fid-hon-box {
+      background: var(--vert-fonce); color: var(--blanc);
+      border-radius: 10px; padding: 2rem;
+      position: sticky; top: 90px;
+    }
+    .fid-hon-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--vert-pastel); margin-bottom: 1.2rem; }
+    .fid-hon-box p { font-size: 0.88rem; color: rgba(255,255,255,0.72); line-height: 1.75; margin-bottom: 0.8rem; }
+    .fid-hon-box .fid-ref-text { font-size: 0.75rem; color: var(--vert-clair); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem; font-style: italic; }
+
+    /* ══════════════════════════════════════════════════
+       FICHES FIDUCIE — GESTION & SÛRETÉ
+    ══════════════════════════════════════════════════ */
+    .fid-fiches { padding: 90px 5%; background: var(--vert-pale); }
+    .fid-fiches-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .fid-fiche {
+      background: var(--blanc); border-radius: 12px; overflow: hidden;
+      box-shadow: var(--shadow-md); transition: var(--transition);
+    }
+    .fid-fiche:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .fid-fiche-head {
+      padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, var(--vert-fonce), var(--vert-moyen));
+      color: var(--blanc);
+    }
+    .fid-fiche-head.or {
+      background: linear-gradient(135deg, #7A5A10, #B8860B);
+    }
+    .fid-fiche-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300; color: rgba(255,255,255,0.25);
+      line-height: 1; margin-bottom: 0.2rem;
+    }
+    .fid-fiche-head h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--blanc); margin-bottom: 0.3rem; }
+    .fid-fiche-head .fid-fiche-law { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+    .fid-fiche-body { padding: 2rem 2.5rem; }
+    .fid-fiche-body p { font-size: 0.92rem; color: var(--gris-moyen); line-height: 1.75; margin-bottom: 1rem; }
+    .fid-fiche-body strong { color: var(--vert-fonce); font-weight: 600; }
+    .fid-fiche-articles {
+      background: var(--vert-pale); border-radius: 6px; padding: 1.2rem 1.5rem;
+      margin: 1.2rem 0;
+    }
+    .fid-fiche-articles p { font-size: 0.82rem; margin: 0; color: var(--vert-fonce); }
+    .fid-fiche-articles strong { color: var(--vert-moyen); }
+    .fid-fiche-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
+    .fid-fiche-tag {
+      background: var(--vert-leger); border: 1px solid var(--vert-pastel);
+      color: var(--vert-moyen); font-size: 0.72rem; font-weight: 600;
+      padding: 0.25rem 0.7rem; border-radius: 100px; letter-spacing: 0.08em;
+    }
+
+    /* ══════════════════════════════════════════════════
+       EXPERTISES PATRIMONIALES
+    ══════════════════════════════════════════════════ */
+    .fid-expertises { padding: 90px 5%; background: var(--blanc); }
+    .fid-exp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .fid-exp-card {
+      background: var(--blanc-off); border: 1px solid var(--gris-clair);
+      border-radius: 10px; padding: 2rem;
+      transition: var(--transition); position: relative; overflow: hidden;
+    }
+    .fid-exp-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: linear-gradient(90deg, var(--vert-clair), var(--vert-moyen));
+      transform: scaleX(0); transform-origin: left; transition: var(--transition);
+    }
+    .fid-exp-card:hover { background: var(--blanc); box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--vert-pastel); }
+    .fid-exp-card:hover::after { transform: scaleX(1); }
+    .fid-exp-card.featured {
+      background: linear-gradient(135deg, var(--vert-pale), var(--vert-leger));
+      border-color: var(--vert-pastel); grid-column: span 2;
+    }
+    .fid-exp-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+    .fid-exp-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--vert-fonce); margin-bottom: 0.7rem; font-weight: 600; }
+    .fid-exp-card p { font-size: 0.9rem; color: var(--gris-moyen); line-height: 1.75; }
+    .fid-exp-card strong { color: var(--vert-fonce); font-weight: 600; }
+    .fid-exp-card ul { list-style: none; margin-top: 0.8rem; }
+    .fid-exp-card li { padding: 0.35rem 0 0.35rem 1.3rem; position: relative; font-size: 0.86rem; color: var(--gris-moyen); }
+    .fid-exp-card li::before { content: '→'; position: absolute; left: 0; color: var(--vert-clair); font-weight: 700; }
+
+    /* ══════════════════════════════════════════════════
+       CLIENTS UHNWI — COHÉRENCE
+    ══════════════════════════════════════════════════ */
+    .fid-uhnwi { padding: 90px 5%; background: var(--vert-fonce); color: var(--blanc); }
+    .fid-uhnwi-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .fid-uhnwi h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 300; color: var(--blanc); margin-bottom: 1rem; }
+    .fid-uhnwi h2 em { color: var(--vert-clair); font-style: italic; }
+    .fid-uhnwi > .fid-uhnwi-inner > p { font-size: 1.05rem; color: rgba(255,255,255,0.65); margin-bottom: 3rem; line-height: 1.8; }
+    .fid-uhnwi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; text-align: left; }
+    .fid-uhnwi-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 1.8rem;
+      transition: var(--transition);
+    }
+    .fid-uhnwi-card:hover { background: rgba(255,255,255,0.1); border-color: var(--vert-clair); }
+    .fid-uhnwi-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--vert-pastel); margin-bottom: 0.7rem; font-weight: 600; }
+    .fid-uhnwi-card p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+
+    /* ══════════════════════════════════════════════════
+       CONTACT
+    ══════════════════════════════════════════════════ */
+    .fid-contact { padding: 90px 5%; background: var(--blanc-off); text-align: center; }
+    .fid-contact-box {
+      max-width: 680px; margin: 0 auto;
+      background: var(--blanc); border: 1px solid var(--gris-clair);
+      border-radius: 16px; padding: 3rem;
+      box-shadow: var(--shadow-md);
+    }
+    .fid-contact-box h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--vert-fonce); margin-bottom: 1rem; }
+    .fid-contact-box p { font-size: 0.95rem; color: var(--gris); margin-bottom: 2rem; line-height: 1.75; }
+    .fid-contact-infos { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .fid-contact-info span { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gris); font-weight: 600; display: block; margin-bottom: 0.2rem; }
+    .fid-contact-info a { font-size: 0.92rem; color: var(--vert-fonce); font-weight: 500; }
+    .fid-contact-info a:hover { color: var(--vert-clair); }
+
+    /* ══════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════ */
+    .fid-footer {
+      padding: 1.5rem 5%;
+      background: var(--vert-fonce); color: rgba(255,255,255,0.45);
+      display: flex; flex-direction: column; gap: 0.3rem; text-align: center;
+    }
+    .fid-footer p { font-size: 0.72rem; }
+    .fid-footer a { color: var(--vert-pastel); }
+    .fid-footer a:hover { color: var(--blanc); }
+
+    /* ══ LANG BAR ══ */
+    .fid-lang-bar {
+      position: sticky; top: 68px; z-index: 90;
+      background: var(--blanc); border-bottom: 1px solid var(--gris-clair);
+      padding: 0.55rem 0;
+    }
+    .fid-lang-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 5%;
+      display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem;
+    }
+    .fid-lang-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); font-weight: 600; margin-right: 0.4rem; }
+    .fid-lang-btn {
+      background: transparent; border: 1px solid var(--vert-pastel);
+      color: var(--vert-fonce); padding: 0.28rem 0.8rem; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; border-radius: 100px; cursor: pointer;
+      font-family: 'Inter', sans-serif; transition: var(--transition);
+    }
+    .fid-lang-btn:hover { background: var(--vert-leger); }
+    .fid-lang-btn.active { background: var(--vert-fonce); color: var(--blanc); border-color: var(--vert-fonce); }
+
+    /* ══ MODAL ══ */
+    .fid-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(20,40,30,0.72); backdrop-filter: blur(4px);
+      z-index: 9999; align-items: center; justify-content: center; padding: 2rem;
+    }
+    .fid-modal-overlay.active { display: flex; }
+    .fid-modal {
+      background: var(--blanc); border-radius: 14px;
+      max-width: 560px; width: 100%; max-height: 90vh; overflow-y: auto;
+      position: relative; box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+      animation: fidSlideUp 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    @keyframes fidSlideUp { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .fid-modal-header { padding: 2rem 2.5rem 1rem; border-bottom: 1px solid var(--gris-clair); }
+    .fid-modal-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; color: var(--vert-fonce); margin-bottom: 0.3rem; }
+    .fid-modal-header p { color: var(--gris); font-size: 0.88rem; }
+    .fid-modal-close {
+      position: absolute; top: 1.1rem; right: 1.1rem;
+      background: var(--vert-pale); border: none; width: 34px; height: 34px;
+      border-radius: 50%; cursor: pointer; font-size: 1.1rem; color: var(--vert-fonce);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Inter', sans-serif; transition: var(--transition);
+    }
+    .fid-modal-close:hover { background: var(--vert-moyen); color: var(--blanc); transform: rotate(90deg); }
+    .fid-modal-body { padding: 1.5rem 2.5rem 2rem; }
+    .fid-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .fid-form-group { margin-bottom: 1.1rem; }
+    .fid-form-group label { display: block; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--vert-moyen); margin-bottom: 0.4rem; }
+    .fid-form-group input, .fid-form-group select, .fid-form-group textarea {
+      width: 100%; padding: 0.78rem 1rem; border: 1.5px solid var(--gris-clair);
+      border-radius: 5px; font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      color: var(--gris-fonce); background: var(--blanc-off); transition: var(--transition);
+    }
+    .fid-form-group input:focus, .fid-form-group select:focus, .fid-form-group textarea:focus {
+      outline: none; border-color: var(--vert-moyen);
+      background: var(--blanc); box-shadow: 0 0 0 3px rgba(45,106,79,0.12);
+    }
+    .fid-form-group textarea { min-height: 100px; resize: vertical; }
+    .fid-form-submit {
+      width: 100%; padding: 0.92rem; background: var(--vert-fonce); color: var(--blanc);
+      border: none; border-radius: 5px; font-family: 'Inter', sans-serif;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; transition: var(--transition); margin-top: 0.4rem;
+    }
+    .fid-form-submit:hover { background: var(--vert-moyen); }
+    .fid-form-note { font-size: 0.74rem; color: var(--gris); margin-top: 0.7rem; text-align: center; font-style: italic; }
+
+    /* i18n */
+    [data-flang]:not([data-flang="fr"]) { display: none; }
+
+    /* ══════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .fid-def-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .fid-oblig-grid { grid-template-columns: repeat(2, 1fr); }
+      .fid-hon-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .fid-hon-box { position: static; }
+      .fid-uhnwi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .fid-form-row { grid-template-columns: 1fr; gap: 0; }
+      .fid-modal-body, .fid-modal-header { padding: 1.2rem 1.5rem; }
+      .fid-nav { padding: 0 4%; }
+      .fid-hero { padding: 95px 5% 60px; }
+      .fid-hero-stats { gap: 1.5rem; }
+      .fid-hero-actions { flex-direction: column; }
+      .btn-fid-primary, .btn-fid-outline { text-align: center; }
+      .fid-oblig-grid { grid-template-columns: 1fr; }
+      .fid-fiches-grid { grid-template-columns: 1fr; }
+      .fid-exp-grid { grid-template-columns: 1fr; }
+      .fid-exp-card.featured { grid-column: span 1; }
+      .fid-uhnwi-grid { grid-template-columns: 1fr; }
+      .fid-contact-infos { flex-direction: column; gap: 1.2rem; }
+      .fid-footer { flex-direction: column; }
+      .fid-definition, .fid-oblig, .fid-honoraires, .fid-fiches,
+      .fid-expertises, .fid-uhnwi, .fid-contact { padding: 60px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="fid-nav">
+  <a href="index.html" class="fid-nav-back">← Root &amp; Seed Legal</a>
+  <span class="fid-nav-logo">Fiducie &amp; Patrimoine</span>
+  <a href="#" class="fid-nav-cta" onclick="openFidModal(event)">Consultation</a>
+</nav>
+
+<!-- LANG BAR -->
+<div class="fid-lang-bar">
+  <div class="fid-lang-inner">
+    <span class="fid-lang-label">Langue</span>
+    <button class="fid-lang-btn active" onclick="setLangFid('fr')">FR</button>
+    <button class="fid-lang-btn" onclick="setLangFid('en')">EN</button>
+    <button class="fid-lang-btn" onclick="setLangFid('es')">ES</button>
+  </div>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="fid-hero">
+  <div class="fid-hero-inner">
+    <div class="fid-hero-tag">Expertise exclusive · Barreau de Paris</div>
+    <h1 class="fid-hero-title">
+      <strong>Avocat fiduciaire</strong><br>
+      <em>Fiducie, Patrimoine<br>&amp; Ingénierie Juridique</em>
+    </h1>
+    <p class="fid-hero-subtitle">
+      Maître Mounia Belkacem intervient comme avocat fiduciaire au sens strict de la loi du 19 février 2007 instituant la fiducie en droit français. Une expertise rare, au confluent du droit des affaires, du droit fiscal et de la gestion de patrimoine — au service des UHNWI, des familles fortunées et des groupes structurés.
+    </p>
+    <div class="fid-hero-actions">
+      <a href="#" class="btn-fid-primary" onclick="openFidModal(event)">
+        <span data-flang="fr">Prendre rendez-vous →</span>
+        <span data-flang="en" style="display:none">Book a consultation →</span>
+        <span data-flang="es" style="display:none">Solicitar consulta →</span>
+      </a>
+      <a href="uhnwi.html" class="btn-fid-outline">Espace clients privés</a>
+    </div>
+    <div class="fid-hero-stats">
+      <div class="fid-hero-stat">
+        <strong>2007</strong>
+        <span>Loi instituant la fiducie</span>
+      </div>
+      <div class="fid-hero-stat">
+        <strong>Art. 2011</strong>
+        <span>Code civil — définition</span>
+      </div>
+      <div class="fid-hero-stat">
+        <strong>UHNWI</strong>
+        <span>Clients privés &amp; familles</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DÉFINITION ══ -->
+<section class="fid-definition" id="definition">
+  <div class="fid-container">
+    <div class="fid-def-grid">
+      <div class="fid-def-text">
+        <span class="fid-label">Définition juridique</span>
+        <h2 class="fid-section-title">Qu'est-ce qu'un avocat fiduciaire ?</h2>
+        <p>En droit français, l'<strong>avocat fiduciaire</strong> est l'avocat habilité à exercer la fonction de fiduciaire au sens de l'article 2011 du Code civil, introduit par la <strong>loi n° 2007-211 du 19 février 2007</strong> instituant la fiducie.</p>
+        <p>Le fiduciaire est la personne — ici l'avocat — à qui le constituant (personne physique ou morale) transfère des biens, droits ou sûretés, à charge pour lui de les gérer dans un intérêt déterminé, au profit du constituant ou d'un tiers bénéficiaire, pendant la durée définie au contrat.</p>
+        <p>La loi <strong>n° 2008-776 du 4 août 2008</strong> (LME) a étendu la qualité de fiduciaire aux avocats inscrits à un barreau français, faisant de l'avocat fiduciaire un opérateur de plein droit en matière fiduciaire, soumis aux règles déontologiques de sa profession.</p>
+        <div class="fid-def-ref">
+          <p><strong>Textes de référence :</strong><br>
+          • Loi n° 2007-211 du 19 février 2007 instituant la fiducie<br>
+          • Art. 2011 à 2030 du Code civil (Titre XIV — De la fiducie)<br>
+          • Loi n° 2008-776 du 4 août 2008 — LME (art. 18)<br>
+          • Décret n° 2009-1658 du 28 décembre 2009 (modalités d'exercice)<br>
+          • Art. 26-1 de la loi n° 71-1130 du 31 décembre 1971 (profession d'avocat)</p>
+        </div>
+      </div>
+      <div class="fid-def-card">
+        <h3>Les 3 parties à la fiducie</h3>
+        <ul class="fid-def-list">
+          <li><strong>Le constituant</strong> — personne physique ou morale qui transfère des biens ou droits au fiduciaire (art. 2014 C. civ.).</li>
+          <li><strong>Le fiduciaire</strong> — ici, l'avocat, qui reçoit les biens et les gère dans un patrimoine d'affectation autonome, distinct de son patrimoine propre (art. 2015 C. civ.).</li>
+          <li><strong>Le bénéficiaire</strong> — personne au profit de qui les biens sont gérés ou transférés à l'issue de la fiducie (art. 2016 C. civ.).</li>
+          <li><strong>Le contrat de fiducie</strong> — acte notarié ou sous seing privé, d'une durée maximale de 99 ans (art. 2018-2 C. civ.), enregistré à la recette des impôts dans le délai d'un mois.</li>
+          <li><strong>Patrimoine d'affectation</strong> — les biens fiduciaires forment un patrimoine autonome, à l'abri des créanciers personnels du fiduciaire (art. 2024 C. civ.).</li>
+          <li><strong>Registre national des fiducies</strong> — toute fiducie doit être déclarée (Décret n° 2010-219 du 2 mars 2010).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FICHES FIDUCIE ══ -->
+<section class="fid-fiches" id="fiducie">
+  <div class="fid-container">
+    <div style="text-align:center; margin-bottom:1rem;">
+      <span class="fid-label center">Instruments fiduciaires</span>
+      <h2 class="fid-section-title center">Fiducie de gestion &amp; Fiducie de sûreté</h2>
+      <p class="fid-section-sub center">Deux mécanismes distincts, définis par les articles 2011 à 2030 du Code civil, issus de la loi du 19 février 2007.</p>
+    </div>
+    <div class="fid-fiches-grid">
+
+      <!-- FICHE 1 : FIDUCIE DE GESTION -->
+      <div class="fid-fiche">
+        <div class="fid-fiche-head">
+          <div class="fid-fiche-num">01</div>
+          <h3>Fiducie de gestion</h3>
+          <div class="fid-fiche-law">Loi n° 2007-211 du 19 fév. 2007 · Art. 2011 à 2030 C. civ.</div>
+        </div>
+        <div class="fid-fiche-body">
+          <p><strong>Définition :</strong> La fiducie de gestion est le mécanisme par lequel le constituant transfère des biens ou droits à l'avocat fiduciaire afin que celui-ci les <strong>gère dans l'intérêt du constituant ou d'un bénéficiaire désigné</strong>, pendant une durée déterminée, sans transfert définitif de propriété.</p>
+          <p><strong>Origines du cadre juridique :</strong> La fiducie française s'inspire directement du droit romain (<em>fiducia cum amico</em>), du trust anglo-saxon et des fiducies luxembourgeoise (loi 2003) et québécoise. Le projet de loi français a été porté par le Sénat dès 1992, aboutissant à la loi de 2007 sous l'impulsion du rapport Wicker.</p>
+          <div class="fid-fiche-articles">
+            <p><strong>Textes clés :</strong><br>
+            • <strong>Art. 2011 C. civ.</strong> — Définition générale de la fiducie<br>
+            • <strong>Art. 2018 C. civ.</strong> — Mentions obligatoires du contrat<br>
+            • <strong>Art. 2018-2 C. civ.</strong> — Durée maximale 99 ans<br>
+            • <strong>Art. 2022 C. civ.</strong> — Obligations du fiduciaire<br>
+            • <strong>Art. 238 quater B à N CGI</strong> — Régime fiscal<br>
+            • <strong>Décret n° 2010-219 du 2 mars 2010</strong> — Registre national</p>
+          </div>
+          <p><strong>Usages typiques :</strong> Gestion de portefeuilles d'actifs, transmission anticipée de patrimoine, portage temporaire d'actifs immobiliers ou de participations, restructurations de groupes, isolation d'actifs sensibles.</p>
+          <div class="fid-fiche-tags">
+            <span class="fid-fiche-tag">Patrimoine d'affectation</span>
+            <span class="fid-fiche-tag">Transfert temporaire</span>
+            <span class="fid-fiche-tag">Gestion d'actifs</span>
+            <span class="fid-fiche-tag">99 ans max</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FICHE 2 : FIDUCIE DE SÛRETÉ -->
+      <div class="fid-fiche">
+        <div class="fid-fiche-head or">
+          <div class="fid-fiche-num">02</div>
+          <h3>Fiducie de sûreté</h3>
+          <div class="fid-fiche-law">Art. 2372-1 à 2372-5 &amp; Art. 2488-1 à 2488-5 C. civ.</div>
+        </div>
+        <div class="fid-fiche-body">
+          <p><strong>Définition :</strong> La fiducie de sûreté est le mécanisme par lequel un <strong>débiteur (constituant) transfère des biens à l'avocat fiduciaire en garantie d'une obligation</strong>. Si la dette est honorée, les biens sont restitués ; à défaut, le fiduciaire les réalise au profit du créancier bénéficiaire.</p>
+          <p><strong>Avantage décisif :</strong> Contrairement au gage ou à l'hypothèque, la fiducie de sûreté permet au créancier d'éviter les procédures collectives : les biens fiduciaires sont hors de la masse active du débiteur en cas de redressement ou liquidation judiciaire (art. 2025 C. civ.).</p>
+          <div class="fid-fiche-articles">
+            <p><strong>Textes clés :</strong><br>
+            • <strong>Art. 2372-1 à 2372-5 C. civ.</strong> — Fiducie de sûreté sur biens meubles<br>
+            • <strong>Art. 2488-1 à 2488-5 C. civ.</strong> — Fiducie de sûreté sur immeubles<br>
+            • <strong>Art. 2025 C. civ.</strong> — Protection contre les créanciers du fiduciaire<br>
+            • <strong>Loi n° 2009-526 du 12 mai 2009</strong> — Extension aux personnes physiques<br>
+            • <strong>Ord. n° 2009-112 du 30 janv. 2009</strong> — Fiducie en procédures collectives</p>
+          </div>
+          <p><strong>Usages typiques :</strong> Garantie de financement bancaire, sûreté sur actifs immobiliers ou fonds de commerce, garantie de passif dans les M&amp;A, sécurisation de prêts intra-groupe, restructurations de dette.</p>
+          <div class="fid-fiche-tags">
+            <span class="fid-fiche-tag">Garantie renforcée</span>
+            <span class="fid-fiche-tag">Anti-procédure collective</span>
+            <span class="fid-fiche-tag">M&amp;A · LBO</span>
+            <span class="fid-fiche-tag">Financement structuré</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERTISES PATRIMONIALES ══ -->
+<section class="fid-expertises" id="expertises">
+  <div class="fid-container">
+    <div style="text-align:center; margin-bottom:1rem;">
+      <span class="fid-label center">Domaines d'intervention</span>
+      <h2 class="fid-section-title center">Expertises patrimoniales &amp; restructurations</h2>
+      <p class="fid-section-sub center">Une approche globale, de la constitution des structures à leur optimisation, jusqu'à la transmission.</p>
+    </div>
+    <div class="fid-exp-grid">
+
+      <div class="fid-exp-card featured">
+        <span class="fid-exp-icon">🏦</span>
+        <h3>Gestion de patrimoine &amp; actifs — Qualité de gestionnaire</h3>
+        <p>En sa qualité d'avocat fiduciaire, Maître Belkacem peut exercer des <strong>missions de gestion d'actifs et de patrimoine</strong> dans le cadre strict du contrat de fiducie (art. 2011 C. civ.), sans que cela constitue une activité de conseil en investissement financier (CIF) au sens du CMF — l'avocat agissant ès qualité de fiduciaire et non de prestataire de services d'investissement.</p>
+        <p>Cette qualité permet : administration de portefeuilles d'actifs divers (immobilier, participations, œuvres d'art, liquidités), pilotage de holding patrimonial, coordination avec banquiers privés et family offices, arbitrage d'actifs dans le cadre fiduciaire.</p>
+        <ul>
+          <li>Administration d'actifs immobiliers en fiducie</li>
+          <li>Gestion de participations sociales sous fiducie</li>
+          <li>Coordination multi-juridictionnelle (France, Luxembourg, Suisse)</li>
+          <li>Interface avec banquiers privés, notaires, experts-comptables</li>
+        </ul>
+      </div>
+
+      <div class="fid-exp-card">
+        <span class="fid-exp-icon">🩺</span>
+        <h3>Ingénierie patrimoniale — Professionnels de santé</h3>
+        <p>Expertise pratiquée au quotidien au profit de <strong>médecins, chirurgiens, pharmaciens, dentistes et directeurs de clinique</strong>. Structuration des sociétés d'exercice (SEL, SELARL, SELAS), constitution de holding patrimonial (SPFPL), optimisation IS/IR, transmission entre associés, arbitrage immobilier professionnel.</p>
+        <ul>
+          <li>SEL · SELARL · SELAS · SELAFA</li>
+          <li>SPFPL holding patrimoniale</li>
+          <li>Pacte Dutreil pour les professions libérales</li>
+          <li>Démembrement de propriété sur parts sociales</li>
+        </ul>
+      </div>
+
+      <div class="fid-exp-card">
+        <span class="fid-exp-icon">🔄</span>
+        <h3>Restructurations</h3>
+        <p>Accompagnement des groupes et familles dans leurs opérations de <strong>réorganisation juridique et patrimoniale</strong> : fusion-absorption, scission, apport partiel d'actifs, dissolution sans liquidation. Utilisation de la fiducie comme outil de portage temporaire pendant les restructurations.</p>
+        <ul>
+          <li>Fusion-absorption (TUP · art. 1844-5 C. civ.)</li>
+          <li>Scission partielle ou totale</li>
+          <li>Apport partiel d'actifs sous régime de faveur</li>
+          <li>Fiducie-portage lors de restructurations de groupe</li>
+        </ul>
+      </div>
+
+      <div class="fid-exp-card">
+        <span class="fid-exp-icon">🌍</span>
+        <h3>Ingénierie patrimoniale internationale</h3>
+        <p>Structures transfrontalières pour clients UHNWI résidents multi-pays : <strong>trusts étrangers, fondations, fiducies en droit comparé</strong>. Articulation avec les conventions fiscales bilatérales, CRS/FATCA, résidence fiscale et mobilité internationale des familles fortunées.</p>
+        <ul>
+          <li>Trust anglais · Fondation du Liechtenstein</li>
+          <li>Fiducie luxembourgeoise (loi 2003)</li>
+          <li>Conventions fiscales bilatérales France-X</li>
+          <li>CRS · FATCA · UBO Register</li>
+        </ul>
+      </div>
+
+      <div class="fid-exp-card">
+        <span class="fid-exp-icon">🏗️</span>
+        <h3>Fiducie immobilière</h3>
+        <p>La fiducie de gestion sur actifs immobiliers permet le <strong>portage juridique sécurisé</strong> de biens : promotion immobilière, marchand de biens, gestion locative institutionnelle, sale &amp; lease-back, sécurisation de projets en co-promotion.</p>
+        <ul>
+          <li>Portage d'actifs immobiliers (Art. 2488-1 C. civ.)</li>
+          <li>Sale &amp; lease-back fiduciaire</li>
+          <li>Co-promotion et fiducie de gestion</li>
+          <li>VEFA &amp; garanties fiduciaires</li>
+        </ul>
+      </div>
+
+      <div class="fid-exp-card">
+        <span class="fid-exp-icon">🎯</span>
+        <h3>Transmission &amp; protection du patrimoine</h3>
+        <p>Accompagnement des familles dans la <strong>transmission intergénérationnelle</strong> en minimisant la pression fiscale et en préservant la cohésion des patrimoines. Pacte Dutreil, donation-partage, démembrement, mandat à effet posthume, mandat de protection future.</p>
+        <ul>
+          <li>Pacte Dutreil — exonération 75 % (art. 787 B &amp; C CGI)</li>
+          <li>Donation-partage · démembrement de propriété</li>
+          <li>Mandat à effet posthume (art. 812 C. civ.)</li>
+          <li>Mandat de protection future (art. 477 C. civ.)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CLIENTS UHNWI ══ -->
+<section class="fid-uhnwi" id="uhnwi">
+  <div class="fid-uhnwi-inner">
+    <span class="fid-label center" style="color:var(--vert-clair);background:rgba(82,183,136,0.12);border-color:rgba(82,183,136,0.3)">Clients privés</span>
+    <h2>Une expertise taillée pour les<br><em>clients UHNWI &amp; familles fortunées</em></h2>
+    <p>Ultra High Net Worth Individuals, family offices, grandes familles entrepreneuriales, dirigeants en mobilité internationale — Maître Belkacem intervient en totale confidentialité, avec la rigueur d'une pratique fiduciaire éprouvée.</p>
+    <div class="fid-uhnwi-grid">
+      <div class="fid-uhnwi-card">
+        <h4>Confidentialité absolue</h4>
+        <p>Secret professionnel de l'avocat (art. 66-5 loi 1971) + patrimoine fiduciaire isolé des tiers. Double protection juridique inégalée.</p>
+      </div>
+      <div class="fid-uhnwi-card">
+        <h4>Structure sur-mesure</h4>
+        <p>Chaque contrat de fiducie est rédigé spécifiquement pour votre situation patrimoniale, votre résidence fiscale et vos objectifs de transmission.</p>
+      </div>
+      <div class="fid-uhnwi-card">
+        <h4>Coordination globale</h4>
+        <p>Interface avec votre banquier privé, votre family office, votre notaire et vos conseils étrangers. Vision intégrée, interlocuteur unique.</p>
+      </div>
+      <div class="fid-uhnwi-card">
+        <h4>Protection anti-saisie</h4>
+        <p>Les actifs en fiducie sont à l'abri des créanciers personnels du fiduciaire et, sous conditions, de ceux du constituant en procédure collective (art. 2025 C. civ.).</p>
+      </div>
+      <div class="fid-uhnwi-card">
+        <h4>Fiscalité optimisée</h4>
+        <p>Structuration en conformité avec le régime fiscal de la fiducie (art. 238 quater B à N CGI) pour neutraliser les frictions fiscales au transfert.</p>
+      </div>
+      <div class="fid-uhnwi-card">
+        <h4>Transmission sereine</h4>
+        <p>La fiducie permet d'anticiper la transmission sans dépossession immédiate, avec un contrôle conservé par le constituant jusqu'au terme défini.</p>
+      </div>
+    </div>
+    <div style="margin-top:3rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="uhnwi.html" class="btn-fid-primary">Espace clients privés →</a>
+      <a href="#contact" class="btn-fid-outline">Demander une consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OBLIGATIONS RÉGLEMENTAIRES ══ -->
+<section class="fid-oblig" id="obligations">
+  <div class="fid-container">
+    <div style="text-align:center; margin-bottom:1rem;">
+      <span class="fid-label center">Cadre réglementaire</span>
+      <h2 class="fid-section-title center">Obligations de l'avocat fiduciaire</h2>
+      <p class="fid-section-sub center">L'avocat fiduciaire est soumis à un double régime d'obligations — celles de la fiducie civile et celles de la déontologie du barreau.</p>
+    </div>
+    <div class="fid-oblig-grid">
+
+      <div class="fid-oblig-card">
+        <span class="fid-oblig-icon">⚖️</span>
+        <h3>Obligations légales — Code civil</h3>
+        <ul>
+          <li>Gérer les actifs fiduciaires conformément au contrat (art. 2022 C. civ.)</li>
+          <li>Rendre compte de sa gestion au constituant et, le cas échéant, au bénéficiaire</li>
+          <li>Tenir une comptabilité séparée du patrimoine fiduciaire</li>
+          <li>Restituer les biens à l'issue de la mission (art. 2029 C. civ.)</li>
+          <li>Déclarer la fiducie au registre national des fiducies (Décret 2010-219)</li>
+        </ul>
+        <p class="fid-oblig-ref">Réf. : Art. 2011 à 2030 C. civ. — Loi 2007-211</p>
+      </div>
+
+      <div class="fid-oblig-card">
+        <span class="fid-oblig-icon">🏛️</span>
+        <h3>Obligations déontologiques — Barreau</h3>
+        <ul>
+          <li>Respect du secret professionnel absolu (art. 66-5 loi 1971)</li>
+          <li>Indépendance et absence de conflit d'intérêts</li>
+          <li>Comptes séparés pour les fonds fiduciaires (CARPA)</li>
+          <li>Information loyale du constituant sur les risques et la stratégie</li>
+          <li>Contrôle du CNB et du Bâtonnier de l'Ordre</li>
+        </ul>
+        <p class="fid-oblig-ref">Réf. : Art. 26-1 Loi 71-1130 — RIN (Règlement Intérieur National)</p>
+      </div>
+
+      <div class="fid-oblig-card">
+        <span class="fid-oblig-icon">🔍</span>
+        <h3>Obligations LCB-FT</h3>
+        <ul>
+          <li>Vigilance renforcée en matière de lutte contre le blanchiment (art. L.561-1 CMF)</li>
+          <li>Identification et vérification de l'identité du constituant</li>
+          <li>Déclaration de soupçon à TRACFIN si requis</li>
+          <li>Conservation des pièces 5 ans (art. L.561-12 CMF)</li>
+          <li>Désignation d'un responsable conformité LCB-FT au cabinet</li>
+        </ul>
+        <p class="fid-oblig-ref">Réf. : Ordonnance n° 2009-104 du 30 janv. 2009 — CMF art. L.561-1 s.</p>
+      </div>
+
+      <div class="fid-oblig-card">
+        <span class="fid-oblig-icon">📋</span>
+        <h3>Obligations fiscales</h3>
+        <ul>
+          <li>Enregistrement du contrat de fiducie à la recette des impôts (1 mois, art. 2019 C. civ.)</li>
+          <li>Déclaration IS / IR selon la nature et structure de la fiducie</li>
+          <li>Régime fiscal spécifique : art. 238 quater B à 238 quater N CGI</li>
+          <li>TVA : opérations soumises selon la nature des actifs</li>
+          <li>Rapport annuel au fisc sur les actifs détenus</li>
+        </ul>
+        <p class="fid-oblig-ref">Réf. : Art. 238 quater B à N CGI — BOI-IS-BASE-10-10-10</p>
+      </div>
+
+      <div class="fid-oblig-card">
+        <span class="fid-oblig-icon">📊</span>
+        <h3>Obligations comptables</h3>
+        <ul>
+          <li>Comptes annuels distincts pour chaque patrimoine fiduciaire</li>
+          <li>Attestation d'un commissaire aux comptes si patrimoine significatif</li>
+          <li>Traçabilité de toutes les opérations sur actifs fiduciaires</li>
+          <li>Rapport annuel de gestion au constituant</li>
+          <li>Bilan de liquidation à la clôture de la fiducie</li>
+        </ul>
+        <p class="fid-oblig-ref">Réf. : PCG — Règlement ANC n° 2014-02 relatif aux comptes de fiducie</p>
+      </div>
+
+      <div class="fid-oblig-card">
+        <span class="fid-oblig-icon">🛡️</span>
+        <h3>Responsabilité du fiduciaire</h3>
+        <ul>
+          <li>Responsabilité civile professionnelle spécifique obligatoire</li>
+          <li>Faute de gestion : responsabilité personnelle sur patrimoine propre</li>
+          <li>Obligation de résultat dans la gestion sûreté, de moyens dans la gestion</li>
+          <li>Assurance RCP avocat fiduciaire (obligations renforcées CNB)</li>
+          <li>Engagement personnel en cas de violation du contrat de fiducie</li>
+        </ul>
+        <p class="fid-oblig-ref">Réf. : Art. 2026 C. civ. — Décret 2009-1658</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ HONORAIRES ══ -->
+<section class="fid-honoraires" id="honoraires">
+  <div class="fid-container">
+    <span class="fid-label">Rémunération</span>
+    <h2 class="fid-section-title">Honoraires de l'avocat fiduciaire</h2>
+    <div class="fid-hon-grid">
+      <div class="fid-hon-main">
+        <p>La rémunération de l'avocat fiduciaire est encadrée par les textes professionnels régissant la profession d'avocat. Elle doit être <strong>prévue dans le contrat de fiducie</strong> lui-même et est soumise aux règles du <strong>décret n° 2005-790 du 12 juillet 2005</strong> relatif aux règles de déontologie de la profession d'avocat, ainsi qu'à l'<strong>article 10 de la loi du 31 décembre 1971</strong> modifié.</p>
+        <p>Les honoraires sont librement fixés entre l'avocat et son client (constituant), en tenant compte des critères légaux : temps consacré, complexité, résultats obtenus, situation financière du client, notoriété et expérience de l'avocat.</p>
+        <p>La <strong>convention d'honoraires écrite</strong> est obligatoire lorsque les honoraires prévisibles dépassent un seuil réglementaire, et fortement recommandée en toute hypothèse pour une mission fiduciaire, compte tenu de sa technicité et de sa durée.</p>
+        <div class="fid-hon-types">
+          <div class="fid-hon-type">
+            <h4>Forfait global de mission</h4>
+            <p>Montant défini pour l'ensemble de la mission fiduciaire (constitution + gestion + clôture). Adapté aux fiducies de durée déterminée.</p>
+          </div>
+          <div class="fid-hon-type">
+            <h4>Honoraires au temps passé</h4>
+            <p>Taux horaire fixé dans la convention. Couramment utilisé pour les missions de gestion courante ou de conseil accessoire.</p>
+          </div>
+          <div class="fid-hon-type">
+            <h4>Honoraires de résultat (accessoires)</h4>
+            <p>Autorisés à titre complémentaire — jamais exclusifs — par l'art. 10 al. 4 loi 1971. Exemple : économie fiscale réalisée, actif valorisé.</p>
+          </div>
+          <div class="fid-hon-type">
+            <h4>Commission de gestion annuelle</h4>
+            <p>Pourcentage de la valeur des actifs sous fiducie, courant dans les missions longues de gestion patrimoniale ou immobilière.</p>
+          </div>
+        </div>
+      </div>
+      <div class="fid-hon-box">
+        <h3>Cadre légal des honoraires</h3>
+        <p><strong>Art. 10, loi n° 71-1130 du 31 déc. 1971</strong> — Les honoraires de l'avocat sont fixés en accord avec le client. À défaut de convention, la taxe est fixée par le juge de l'honoraire.</p>
+        <p><strong>Décret n° 2005-790 du 12 juil. 2005</strong>, art. 10 — Critères de fixation : diligences effectuées, résultats, situation du client, notoriété, spécialisation.</p>
+        <p><strong>Arrêté du 27 nov. 2020</strong> (modifiant le RIN) — La convention d'honoraires est obligatoire en matière de garde à vue, de détention provisoire et pour toute mission dépassant 10 000 € HT (recommandation Barreau de Paris).</p>
+        <p><strong>Contrôle du Bâtonnier</strong> — En cas de litige, le client peut saisir le Bâtonnier de l'Ordre dans le délai d'un an (art. 175 décret 91-1197).</p>
+        <div class="fid-ref-text">Réf. : Art. 10 Loi 71-1130 — Décret 2005-790 art. 10 — RIN Barreau de Paris — Art. 174 s. Décret 91-1197 du 27 nov. 1991.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="fid-contact" id="contact" style="padding-top:80px;">
+  <div class="fid-container">
+    <div class="fid-contact-box">
+      <span class="fid-label center">Contact</span>
+      <h2>
+        <span data-flang="fr">Parlons de votre projet fiduciaire</span>
+        <span data-flang="en" style="display:none">Let's discuss your fiduciary project</span>
+        <span data-flang="es" style="display:none">Hablemos de su proyecto fiduciario</span>
+      </h2>
+      <p>
+        <span data-flang="fr">Chaque mission fiduciaire est unique. Maître Belkacem prend le temps d'analyser votre situation patrimoniale avant de proposer la structure la plus adaptée — fiducie de gestion, sûreté ou ingénierie globale.</span>
+        <span data-flang="en" style="display:none">Every fiduciary mission is unique. Maître Belkacem takes the time to analyse your wealth situation before proposing the most suitable structure — management fiducie, security fiducie or full wealth engineering.</span>
+        <span data-flang="es" style="display:none">Cada misión fiduciaria es única. Me Belkacem toma el tiempo de analizar su situación patrimonial antes de proponer la estructura más adecuada — fiducia de gestión, garantía o ingeniería global.</span>
+      </p>
+      <div class="fid-contact-infos">
+        <div class="fid-contact-info">
+          <span>Email</span>
+          <a href="mailto:secretariat@rootseedlegal.fr">secretariat@rootseedlegal.fr</a>
+        </div>
+        <div class="fid-contact-info">
+          <span>Cabinet</span>
+          <a href="index.html#contact">Root &amp; Seed Legal · Paris</a>
+        </div>
+      </div>
+      <a href="#" class="btn-fid-primary" style="display:inline-block" onclick="openFidModal(event)">
+        <span data-flang="fr">Envoyer une demande →</span>
+        <span data-flang="en" style="display:none">Send a request →</span>
+        <span data-flang="es" style="display:none">Enviar una solicitud →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MODAL CONTACT ══ -->
+<div class="fid-modal-overlay" id="fidModal">
+  <div class="fid-modal">
+    <div class="fid-modal-header">
+      <h3>
+        <span data-flang="fr">Demande de consultation</span>
+        <span data-flang="en" style="display:none">Consultation request</span>
+        <span data-flang="es" style="display:none">Solicitud de consulta</span>
+      </h3>
+      <p>
+        <span data-flang="fr">Votre message ouvrira votre client mail pré-rempli. Réponse sous 24h en toute confidentialité.</span>
+        <span data-flang="en" style="display:none">Your message will open your email client pre-filled. Response within 24h in strict confidentiality.</span>
+        <span data-flang="es" style="display:none">Su mensaje abrirá su cliente de correo predefinido. Respuesta en 24h con total confidencialidad.</span>
+      </p>
+      <button class="fid-modal-close" onclick="closeFidModal()">&#x2715;</button>
+    </div>
+    <div class="fid-modal-body">
+      <form id="fidContactForm" onsubmit="submitFidForm(event)">
+        <div class="fid-form-row">
+          <div class="fid-form-group">
+            <label data-flang="fr">Prénom</label>
+            <label data-flang="en" style="display:none">First name</label>
+            <label data-flang="es" style="display:none">Nombre</label>
+            <input type="text" id="fidPrenom" placeholder="Votre prénom" required>
+          </div>
+          <div class="fid-form-group">
+            <label data-flang="fr">Nom</label>
+            <label data-flang="en" style="display:none">Last name</label>
+            <label data-flang="es" style="display:none">Apellido</label>
+            <input type="text" id="fidNom" placeholder="Votre nom" required>
+          </div>
+        </div>
+        <div class="fid-form-group">
+          <label>Email</label>
+          <input type="email" id="fidEmail" placeholder="votre@email.com" required>
+        </div>
+        <div class="fid-form-group">
+          <label data-flang="fr">Vous êtes</label>
+          <label data-flang="en" style="display:none">You are</label>
+          <label data-flang="es" style="display:none">Usted es</label>
+          <select id="fidProfil">
+            <option value="">— Sélectionnez —</option>
+            <option>Particulier / UHNWI</option>
+            <option>Famille fortunée / Family office</option>
+            <option>Professionnel de santé</option>
+            <option>Chef d'entreprise / Dirigeant</option>
+            <option>Société / Groupe</option>
+            <option>Banquier privé / Notaire / Conseiller</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="fid-form-group">
+          <label data-flang="fr">Objet de votre demande</label>
+          <label data-flang="en" style="display:none">Subject of your request</label>
+          <label data-flang="es" style="display:none">Objeto de su solicitud</label>
+          <textarea id="fidMessage" placeholder="Décrivez brièvement votre situation ou votre besoin..."></textarea>
+        </div>
+        <button type="submit" class="fid-form-submit">
+          <span data-flang="fr">📧 Ouvrir mon client mail avec ce message →</span>
+          <span data-flang="en" style="display:none">📧 Open my email client with this message →</span>
+          <span data-flang="es" style="display:none">📧 Abrir mi correo con este mensaje →</span>
+        </button>
+        <p class="fid-form-note">🔒 Secret professionnel garanti · Réponse sous 24h ouvrables</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── LANG SWITCHER ──
+  function setLangFid(lang) {
+    document.querySelectorAll('.fid-lang-btn').forEach(b => {
+      b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang);
+    });
+    document.querySelectorAll('[data-flang]').forEach(el => {
+      el.style.display = el.dataset.flang === lang ? '' : 'none';
+    });
+  }
+
+  // ── MODAL ──
+  function openFidModal(e) {
+    if (e) e.preventDefault();
+    document.getElementById('fidModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeFidModal() {
+    document.getElementById('fidModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('fidModal').addEventListener('click', function(e) {
+    if (e.target === this) closeFidModal();
+  });
+
+  // ── FORM SUBMIT → ouvre le client mail du visiteur ──
+  function submitFidForm(e) {
+    e.preventDefault();
+    const prenom  = document.getElementById('fidPrenom').value.trim();
+    const nom     = document.getElementById('fidNom').value.trim();
+    const email   = document.getElementById('fidEmail').value.trim();
+    const profil  = document.getElementById('fidProfil').value;
+    const message = document.getElementById('fidMessage').value.trim();
+
+    const subject = encodeURIComponent('Demande de consultation — Avocat fiduciaire | Root & Seed Legal');
+    const body = encodeURIComponent(
+      'Bonjour Maître Belkacem,\n\n' +
+      'Je souhaite vous contacter pour une consultation concernant une mission fiduciaire.\n\n' +
+      'Mes coordonnées :\n' +
+      'Prénom : ' + prenom + '\n' +
+      'Nom : ' + nom + '\n' +
+      'Email : ' + email + '\n' +
+      'Profil : ' + (profil || 'Non précisé') + '\n\n' +
+      'Ma demande :\n' + (message || 'Non précisé') + '\n\n' +
+      'Cordialement,\n' + prenom + ' ' + nom
+    );
+
+    // Ouvre le client mail du VISITEUR (pas rootseedlegal)
+    window.location.href = 'mailto:secretariat@rootseedlegal.fr?subject=' + subject + '&body=' + body;
+
+    closeFidModal();
+    document.getElementById('fidContactForm').reset();
+
+    // Toast confirmation
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:2rem;right:2rem;background:var(--vert-fonce,#1A3C2E);color:#fff;padding:1rem 1.5rem;border-radius:10px;font-size:0.85rem;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,0.25);font-family:Inter,sans-serif;max-width:320px;';
+    toast.innerHTML = '✅ Votre client mail s’est ouvert avec le message pré-rempli à destination de Maître Belkacem.';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 5000);
+  }
+
+  // ── SCROLL ANIMATIONS ──
+  const fidObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fid-oblig-card, .fid-exp-card, .fid-uhnwi-card, .fid-fiche').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    fidObserver.observe(el);
+  });
+</script>
+
+<!-- ══ FOOTER ══ -->
+<footer class="fid-footer">
+  <p>© 2025 Root &amp; Seed Legal · Maître Mounia Belkacem, avocate au Barreau de Paris · Avocat fiduciaire</p>
+  <p>
+    <a href="index.html">Accueil</a> ·
+    <a href="uhnwi.html">Clients privés UHNWI</a> ·
+    <a href="lexibot.html">LexiBot IA</a> ·
+    <a href="mentions-legales.html">Mentions légales</a> ·
+    <a href="cgu.html">CGU</a>
+  </p>
+  <p style="font-size:0.65rem; margin-top:0.5rem; color:rgba(255,255,255,0.3)">
+    Les informations juridiques présentées sur cette page sont fondées sur le droit positif français en vigueur. Elles ne constituent pas un avis juridique. Consultez un avocat pour toute situation personnelle.
+  </p>
+</footer>
+
+</body>
+</html>

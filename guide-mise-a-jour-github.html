@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide mise à jour GitHub → Netlify</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: #38bdf8;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #94a3b8;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+    .step {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .step-num {
+      position: absolute;
+      top: -14px;
+      left: 1.5rem;
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 2px 12px;
+      border-radius: 50px;
+    }
+    .step h2 {
+      font-size: 1.1rem;
+      color: #f1f5f9;
+      margin-bottom: 0.8rem;
+      padding-top: 0.3rem;
+    }
+    .step p { color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.6rem; }
+    .step .url {
+      background: #0f172a;
+      border: 1px solid #38bdf8;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-family: monospace;
+      color: #38bdf8;
+      font-size: 0.85rem;
+      display: block;
+      margin: 0.5rem 0;
+      word-break: break-all;
+    }
+    .img-placeholder {
+      background: #0f172a;
+      border: 2px dashed #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.82rem;
+      margin: 0.8rem 0;
+    }
+    .highlight {
+      background: rgba(56,189,248,0.1);
+      border-left: 3px solid #38bdf8;
+      padding: 0.7rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin: 0.8rem 0;
+      font-size: 0.88rem;
+    }
+    .highlight strong { color: #38bdf8; }
+    .warning {
+      background: rgba(251,191,36,0.1);
+      border-left: 3px solid #fbbf24;
+      padding: 0.7rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin: 0.8rem 0;
+      font-size: 0.88rem;
+      color: #fde68a;
+    }
+    .btn-link {
+      display: inline-block;
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+    .files-list {
+      background: #0f172a;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.82rem;
+    }
+    .files-list li { list-style: none; padding: 3px 0; color: #86efac; }
+    .files-list li::before { content: '📄 '; }
+    .important-box {
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .important-box h3 { color: #4ade80; margin-bottom: 0.5rem; }
+    .important-box p { font-size: 0.9rem; color: #bbf7d0; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>📤 Mettre à jour votre site Root & Seed Legal</h1>
+  <p class="subtitle">Guide pas-à-pas · Sans terminal · Via GitHub uniquement</p>
+
+  <div class="important-box">
+    <h3>⚡ Important à comprendre</h3>
+    <p>Votre site est connecté à GitHub. Netlify surveille GitHub et redéploie automatiquement dès qu'un fichier change. Vous n'avez <strong>pas besoin de toucher à Netlify</strong> — il suffit de mettre à jour les fichiers sur GitHub.</p>
+  </div>
+
+  <!-- ÉTAPE 1 -->
+  <div class="step">
+    <span class="step-num">Étape 1</span>
+    <h2>📁 Décompressez le ZIP reçu</h2>
+    <p>Sur votre ordinateur, trouvez le fichier <strong>rootseedlegal-deploy.zip</strong> téléchargé.</p>
+    <p>Double-cliquez dessus pour le décompresser. Vous obtenez un dossier avec tous ces fichiers :</p>
+    <ul class="files-list">
+      <li>index.html</li>
+      <li>lexibot.html</li>
+      <li>uhnwi.html</li>
+      <li>espace-client.html</li>
+      <li>cgu.html</li>
+      <li>mentions-legales.html</li>
+      <li>guide-administration.html</li>
+      <li>robots.txt</li>
+      <li>sitemap.xml</li>
+      <li>netlify.toml</li>
+      <li>_redirects</li>
+    </ul>
+    <div class="warning">⚠️ Ne glissez <strong>pas</strong> le dossier complet — uploadez les fichiers <strong>individuellement</strong> dans GitHub.</div>
+  </div>
+
+  <!-- ÉTAPE 2 -->
+  <div class="step">
+    <span class="step-num">Étape 2</span>
+    <h2>🌐 Ouvrez votre dépôt GitHub</h2>
+    <p>Allez sur :</p>
+    <span class="url">https://github.com/mbelkacem-bot/rootseedlegal.com</span>
+    <p>Vous verrez la liste de vos fichiers HTML, comme dans un explorateur de fichiers.</p>
+  </div>
+
+  <!-- ÉTAPE 3 -->
+  <div class="step">
+    <span class="step-num">Étape 3</span>
+    <h2>⬆️ Uploadez les fichiers — méthode rapide</h2>
+    <p>Sur la page de votre dépôt GitHub, cliquez sur :</p>
+    <div class="highlight"><strong>Add file</strong> → <strong>Upload files</strong></div>
+    <p>Une page s'ouvre avec une zone de glisser-déposer.</p>
+    <div class="highlight">Glissez <strong>tous les fichiers HTML</strong> du dossier décompressé directement dans cette zone (index.html, lexibot.html, uhnwi.html, etc.)</div>
+    <p>Attendez que tous les fichiers soient chargés (barre verte = 100%).</p>
+  </div>
+
+  <!-- ÉTAPE 4 -->
+  <div class="step">
+    <span class="step-num">Étape 4</span>
+    <h2>💾 Validez (Commit changes)</h2>
+    <p>Tout en bas de la page, vous verrez une section "<strong>Commit changes</strong>".</p>
+    <div class="highlight">
+      Dans le champ texte sous "Commit changes", écrivez par exemple :<br>
+      <strong>Mise à jour mobile responsive</strong>
+    </div>
+    <p>Puis cliquez sur le bouton vert <strong>Commit changes</strong>.</p>
+  </div>
+
+  <!-- ÉTAPE 5 -->
+  <div class="step">
+    <span class="step-num">Étape 5</span>
+    <h2>⏱️ Attendez le déploiement automatique</h2>
+    <p>Netlify détecte automatiquement les changements sur GitHub et redéploie votre site en <strong>30 à 60 secondes</strong>.</p>
+    <p>Pour vérifier que c'est fait :</p>
+    <div class="highlight">Allez sur <strong>app.netlify.com</strong> → votre site → onglet <strong>Deploys</strong> → le dernier déploiement doit afficher <strong>Published</strong> en vert.</div>
+  </div>
+
+  <!-- ÉTAPE 6 -->
+  <div class="step">
+    <span class="step-num">Étape 6</span>
+    <h2>📱 Testez sur votre téléphone</h2>
+    <p>Ouvrez votre site sur votre iPhone ou Android.</p>
+    <div class="warning">⚠️ Si vous voyez encore l'ancienne version, c'est le cache du navigateur. Pour forcer le rechargement :</div>
+    <div class="highlight">
+      <strong>Safari iOS :</strong> Réglages → Safari → Effacer l'historique et les données du site → rechargez<br><br>
+      <strong>Chrome Android :</strong> appuyez longtemps sur le bouton recharger → "Vider le cache et recharger"
+    </div>
+    <p>Ou testez en <strong>navigation privée</strong> (aucun cache).</p>
+  </div>
+
+</div>
+</body>
+</html>

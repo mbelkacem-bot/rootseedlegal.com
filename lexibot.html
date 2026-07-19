@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LexiBot IA — Le premier avocat augmenté | Root & Seed Legal</title>
+  <title>LexiBot IA — Le premier avocat augmenté | Root &amp; Seed Legal</title>
   <meta name="description" content="LexiBot IA : consultation juridique instantanée, génération de documents, veille réglementaire. De la TPE au grand groupe, tous secteurs.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ══════════════════════════════════════════
+       RESET & VARIABLES
+    ══════════════════════════════════════════ */
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
       --rouge: #FF3131; --rouge-fonce: #CC1F1F;
       --noir: #080808; --noir-card: #111111; --noir-border: #1E1E1E;
@@ -15,83 +20,117 @@
       --bleu: #5064ff; --bleu-soft: #8899ff;
       --transition: all 0.3s cubic-bezier(.4,0,.2,1);
     }
-    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
+    }
     body {
-      background: var(--noir); color: var(--blanc);
-      font-family: 'Montserrat', sans-serif; line-height: 1.6;
-      overflow-x: hidden; max-width: 100vw;
+      background: var(--noir);
+      color: var(--blanc);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
     }
     a { text-decoration: none; color: inherit; }
 
-    /* ── NAV ── */
+    /* ══════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════ */
     .lx-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       height: 60px; padding: 0 4%;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(8,8,8,0.95);
+      background: rgba(8,8,8,0.97);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(80,100,255,0.12);
     }
     .lx-nav-back {
-      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--gris); display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gris); display: flex; align-items: center; gap: 0.4rem;
       transition: var(--transition);
     }
-    .lx-nav-back span { display: none; }
     .lx-nav-back:hover { color: var(--blanc-soft); }
     .lx-nav-logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 0.95rem; font-weight: 400; letter-spacing: 0.1em;
+      font-size: 1rem; font-weight: 400; letter-spacing: 0.1em;
       color: var(--bleu-soft);
     }
     .lx-nav-cta {
       background: linear-gradient(135deg, #5064ff, #7888ff);
       color: #fff; padding: 8px 14px;
-      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; border-radius: 2px;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; border-radius: 3px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .lx-nav-cta:hover { opacity: 0.85; }
+
+    /* ══════════════════════════════════════════
+       BOUTONS
+    ══════════════════════════════════════════ */
+    .btn-lx-primary {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #5064ff 0%, #7888ff 100%);
+      color: #fff;
+      padding: 14px 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      border-radius: 3px; text-align: center;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(80,100,255,0.3);
+    }
+    .btn-lx-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .btn-lx-outline {
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: 1.5px solid #7888ff;
+      color: #8899ff;
+      padding: 14px 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      border-radius: 3px; text-align: center;
       transition: var(--transition);
     }
-    .lx-nav-cta:hover { opacity: 0.88; }
+    .btn-lx-outline:hover { background: rgba(80,100,255,0.12); color: #fff; }
 
-    /* ── HERO ── */
+    /* ══════════════════════════════════════════
+       HERO — MOBILE FIRST
+    ══════════════════════════════════════════ */
     .lx-hero {
-      min-height: auto;
       padding: 85px 5% 50px;
       background: linear-gradient(160deg, #070710 0%, #0a0a18 50%, #070710 100%);
       position: relative; overflow: hidden;
     }
     .lx-hero::before {
       content: '';
-      position: absolute; top: -300px; right: -200px;
-      width: 800px; height: 800px;
-      background: radial-gradient(circle, rgba(80,100,255,0.08) 0%, transparent 65%);
+      position: absolute; top: -200px; right: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(80,100,255,0.07) 0%, transparent 65%);
       pointer-events: none;
     }
-    .lx-hero::after {
-      content: '';
-      position: absolute; bottom: -200px; left: -100px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(255,49,49,0.04) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    /* MOBILE-FIRST: hero-inner est en colonne par défaut */
+    /* HERO INNER : colonne par défaut (mobile) */
     .lx-hero-inner {
       max-width: 1200px; margin: 0 auto; width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
-      align-items: stretch;
+      gap: 2.5rem;
       position: relative; z-index: 1;
-      box-sizing: border-box;
     }
+    .lx-hero-text { width: 100%; }
 
     .lx-hero-badge {
-      display: inline-flex; align-items: center; gap: 0.6rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
       background: rgba(80,100,255,0.1); border: 1px solid rgba(80,100,255,0.25);
-      color: var(--bleu-soft); font-size: 0.65rem; letter-spacing: 0.18em;
-      text-transform: uppercase; padding: 0.45rem 0.85rem; border-radius: 2px;
+      color: var(--bleu-soft); font-size: 0.62rem; letter-spacing: 0.18em;
+      text-transform: uppercase; padding: 0.4rem 0.85rem; border-radius: 2px;
       margin-bottom: 1.2rem;
     }
     .lx-hero-badge::before {
@@ -100,134 +139,116 @@
     }
     .lx-hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 8vw, 3rem);
+      font-size: clamp(2rem, 8vw, 2.8rem);
       font-weight: 600; line-height: 1.1; margin-bottom: 1.2rem;
       color: var(--blanc);
     }
     .lx-hero-title em { color: var(--bleu-soft); font-style: italic; }
     .lx-hero-subtitle {
-      font-size: 0.88rem; color: var(--blanc-soft); line-height: 1.65;
-      margin-bottom: 1.5rem;
+      font-size: 0.85rem; color: var(--gris); line-height: 1.75;
+      margin-bottom: 1.2rem;
     }
     .lx-hero-quote {
-      border-left: 2px solid rgba(80,100,255,0.3);
-      padding: 0.8rem 1rem; margin-bottom: 1.5rem;
-      background: rgba(80,100,255,0.04);
+      border-left: 3px solid var(--bleu-soft);
+      padding: 0.7rem 1rem;
+      background: rgba(80,100,255,0.05);
+      border-radius: 0 3px 3px 0;
+      margin-bottom: 1.8rem;
     }
     .lx-hero-quote blockquote {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem; font-style: italic; color: var(--blanc-soft); line-height: 1.6;
+      font-size: 0.9rem; font-style: italic;
+      color: var(--blanc-soft); line-height: 1.6; margin-bottom: 0.4rem;
     }
     .lx-hero-quote cite {
-      display: block; font-size: 0.68rem; color: var(--gris);
-      letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.5rem;
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--bleu-soft); font-style: normal; display: block;
     }
+    /* Actions : colonnes sur mobile */
     .lx-hero-actions {
-      display: flex; flex-direction: column; gap: 0.8rem; width: 100%;
-    }
-    .btn-lx-primary {
-      background: linear-gradient(135deg, #5064ff, #7888ff);
-      color: #fff; padding: 14px 20px;
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; border-radius: 2px;
-      transition: var(--transition); display: block; text-align: center;
-      width: 100%; box-sizing: border-box;
-    }
-    .btn-lx-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-lx-outline {
-      border: 1px solid rgba(80,100,255,0.4); color: var(--bleu-soft);
-      padding: 14px 20px; font-size: 0.8rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase; border-radius: 2px;
-      transition: var(--transition); display: block; text-align: center;
-      width: 100%; box-sizing: border-box;
-    }
-    .btn-lx-outline:hover {
-      background: rgba(80,100,255,0.08); border-color: rgba(80,100,255,0.6);
+      display: flex; flex-direction: column; gap: 0.8rem;
+      width: 100%;
     }
 
-    /* ── CHAT WINDOW (mobile) ── */
+    /* ── CHAT WINDOW ── */
     .lx-chat-window {
-      background: var(--noir-card);
-      border: 1px solid var(--noir-border);
+      width: 100%;
+      background: #0e0e18;
+      border: 1px solid rgba(80,100,255,0.2);
       border-radius: 8px; overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-      width: 100%; box-sizing: border-box;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(80,100,255,0.1);
     }
     .lx-chat-bar {
-      display: flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1rem;
-      background: rgba(255,255,255,0.03);
-      border-bottom: 1px solid var(--noir-border);
+      background: #13131f; padding: 10px 14px;
+      display: flex; align-items: center; gap: 7px;
+      border-bottom: 1px solid rgba(80,100,255,0.15);
     }
-    .lx-chat-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .lx-chat-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
     .lx-chat-label {
-      font-size: 0.65rem; color: var(--gris); letter-spacing: 0.1em; margin-left: 0.3rem;
+      font-size: 0.68rem; color: rgba(255,255,255,0.32); letter-spacing: 0.07em; margin-left: 5px;
     }
     .lx-chat-msgs {
-      padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem;
-      min-height: 200px; max-height: 350px; overflow-y: auto;
+      padding: 1rem; display: flex; flex-direction: column; gap: 0.9rem;
     }
-    .lx-msg { display: flex; align-items: flex-start; gap: 0.6rem; }
+    .lx-msg { display: flex; gap: 0.65rem; align-items: flex-start; }
     .lx-msg.user { flex-direction: row-reverse; }
     .lx-avatar {
       width: 28px; height: 28px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; flex-shrink: 0;
+      font-size: 0.8rem; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.06);
     }
     .lx-bubble {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 6px; padding: 0.7rem 0.9rem;
-      font-size: 0.78rem; line-height: 1.5; max-width: 85%;
-      box-sizing: border-box;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px; padding: 0.65rem 0.9rem;
+      font-size: 0.78rem; color: var(--blanc-soft); line-height: 1.55;
+      max-width: 82%;
     }
-    .lx-msg.bot .lx-bubble {
-      background: rgba(80,100,255,0.08);
-      border-color: rgba(80,100,255,0.2);
-    }
-    .lx-typing { display: flex; gap: 4px; align-items: center; padding: 0.6rem 0.9rem; }
+    .lx-msg.bot .lx-bubble { background: rgba(80,100,255,0.08); border-color: rgba(80,100,255,0.18); }
+    .lx-msg.user .lx-bubble { border-radius: 8px 2px 8px 8px; }
+    .lx-typing { display: flex; gap: 4px; padding: 4px 0; }
     .lx-typing span {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--bleu-soft); animation: typing 1.4s infinite;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--bleu-soft); opacity: 0.5;
+      animation: lxTyping 1.4s infinite;
     }
     .lx-typing span:nth-child(2) { animation-delay: 0.2s; }
     .lx-typing span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes typing {
-      0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
-      30% { opacity: 1; transform: translateY(-4px); }
+    @keyframes lxTyping {
+      0%,80%,100% { opacity: 0.3; transform: translateY(0); }
+      40%          { opacity: 1;   transform: translateY(-4px); }
     }
 
-    /* ── SECTIONS COMMUNES ── */
+    /* ══════════════════════════════════════════
+       SECTIONS COMMUNES
+    ══════════════════════════════════════════ */
     .lx-sectors-section,
     .lx-features-section,
     .lx-pricing-section,
     .lx-cta-section {
-      padding: 60px 5%;
+      padding: 55px 5%;
     }
-    .lx-sectors-section { background: var(--noir-card); }
-    .lx-features-section { background: var(--noir); }
-    .lx-pricing-section { background: var(--noir-card); }
-    .lx-cta-section {
-      background: linear-gradient(160deg, #070710 0%, #0d0d20 100%);
-      text-align: center;
-    }
+    .lx-features-section { background: rgba(255,255,255,0.015); }
 
     .lx-section-header { text-align: center; margin-bottom: 2rem; }
     .lx-section-label {
-      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--bleu-soft); display: block; margin-bottom: 0.75rem;
+      display: inline-block; font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--bleu-soft);
+      background: rgba(80,100,255,0.08); border: 1px solid rgba(80,100,255,0.2);
+      padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 0.8rem;
     }
     .lx-section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.6rem, 5vw, 2.4rem);
-      font-weight: 600; line-height: 1.2; color: var(--blanc);
-      margin-bottom: 0.75rem;
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: 600; color: var(--blanc); line-height: 1.2;
+      margin-bottom: 0.8rem;
     }
-    .lx-section-sub {
-      font-size: 0.88rem; color: var(--blanc-soft); max-width: 600px; margin: 0 auto;
-    }
+    .lx-section-sub { font-size: 0.85rem; color: var(--gris); max-width: 600px; margin: 0 auto; }
 
-    /* ── SECTOR CARDS (mobile: 1 colonne) ── */
+    /* ══════════════════════════════════════════
+       SECTEURS — MOBILE FIRST (1 colonne)
+    ══════════════════════════════════════════ */
     .lx-sector-cards {
       display: flex;
       flex-direction: column;
@@ -238,44 +259,38 @@
       background: var(--noir);
       border: 1px solid var(--noir-border);
       border-radius: 6px;
-      padding: 1.5rem 1.3rem;
+      padding: 1.4rem 1.2rem;
       position: relative; overflow: hidden;
       transition: var(--transition);
-      cursor: default;
-      box-sizing: border-box;
-      width: 100%;
     }
     .lx-sector-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--bleu-soft), transparent);
       opacity: 0; transition: var(--transition);
     }
-    .lx-sector-card:hover { border-color: rgba(80,100,255,0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(80,100,255,0.08); }
+    .lx-sector-card:hover { border-color: rgba(80,100,255,0.3); transform: translateY(-3px); }
     .lx-sector-card:hover::before { opacity: 1; }
     .lx-card-all {
-      background: linear-gradient(135deg, rgba(80,100,255,0.08), rgba(120,136,255,0.05));
+      background: linear-gradient(135deg, rgba(80,100,255,0.08), rgba(120,136,255,0.04));
       border-color: rgba(80,100,255,0.2);
-      display: flex; flex-direction: column; justify-content: center;
     }
-    .lx-sc-icon { font-size: 1.6rem; display: block; margin-bottom: 0.6rem; }
+    .lx-sc-icon { font-size: 1.8rem; display: block; margin-bottom: 0.6rem; }
     .lx-sc-tag {
-      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--bleu-soft); display: block; margin-bottom: 0.4rem;
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--bleu-soft); font-weight: 600; margin-bottom: 0.4rem; display: block;
     }
-    .lx-sc-title {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
-      font-weight: 600; color: var(--blanc); margin-bottom: 0.5rem;
-    }
-    .lx-sc-desc { font-size: 0.78rem; color: var(--blanc-soft); line-height: 1.55; margin-bottom: 0.6rem; }
+    .lx-sc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--blanc); margin-bottom: 0.5rem; }
+    .lx-sc-desc { font-size: 0.78rem; color: var(--gris); line-height: 1.6; margin-bottom: 0.7rem; }
     .lx-sc-example {
-      font-size: 0.72rem; color: var(--gris);
-      border-left: 1px solid rgba(80,100,255,0.2); padding-left: 0.7rem;
-      font-style: italic; line-height: 1.5;
+      font-size: 0.72rem; color: var(--bleu-soft);
+      background: rgba(80,100,255,0.06); border-left: 2px solid var(--bleu-soft);
+      padding: 0.5rem 0.8rem; border-radius: 0 3px 3px 0; line-height: 1.5;
     }
 
-    /* ── FEATURES GRID (mobile: 1 colonne) ── */
+    /* ══════════════════════════════════════════
+       FONCTIONNALITÉS — MOBILE FIRST (1 colonne)
+    ══════════════════════════════════════════ */
     .lx-features-grid {
       display: flex;
       flex-direction: column;
@@ -285,146 +300,150 @@
     .lx-feat-card {
       background: var(--noir-card);
       border: 1px solid var(--noir-border);
-      border-radius: 4px; padding: 1.5rem 1.3rem;
+      border-radius: 4px; padding: 1.4rem 1.2rem;
       transition: var(--transition);
-      box-sizing: border-box; width: 100%;
     }
     .lx-feat-card:hover {
-      border-color: rgba(80,100,255,0.25);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(80,100,255,0.06);
+      border-color: rgba(80,100,255,0.25); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(80,100,255,0.06);
     }
-    .lx-feat-icon { font-size: 1.8rem; display: block; margin-bottom: 1rem; }
-    .lx-feat-title {
-      font-size: 0.9rem; font-weight: 600; color: var(--blanc);
-      letter-spacing: 0.05em; margin-bottom: 0.5rem;
-    }
-    .lx-feat-desc { font-size: 0.8rem; color: var(--blanc-soft); line-height: 1.6; }
+    .lx-feat-icon { font-size: 1.6rem; display: block; margin-bottom: 0.7rem; }
+    .lx-feat-title { font-size: 0.88rem; color: var(--blanc); margin-bottom: 0.4rem; font-weight: 600; }
+    .lx-feat-desc { font-size: 0.78rem; color: var(--gris); line-height: 1.6; }
 
-    /* ── PRICING ── */
+    /* ══════════════════════════════════════════
+       TARIF
+    ══════════════════════════════════════════ */
+    .lx-pricing-section { text-align: center; }
     .lx-price-box {
-      max-width: 460px; margin: 0 auto;
-      background: linear-gradient(135deg, rgba(80,100,255,0.08), rgba(120,136,255,0.05));
-      border: 1px solid rgba(80,100,255,0.2);
+      max-width: 480px; margin: 0 auto;
+      background: var(--noir-card);
+      border: 1px solid rgba(80,100,255,0.25);
       border-radius: 8px; padding: 2rem 1.5rem;
-      box-sizing: border-box; width: 100%;
+      box-shadow: 0 0 60px rgba(80,100,255,0.06);
     }
-    .lx-price-label {
-      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--bleu-soft); display: block; margin-bottom: 1rem;
-    }
+    .lx-price-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); margin-bottom: 0.8rem; display: block; }
     .lx-price-amount {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem; font-weight: 300; color: var(--blanc);
-      line-height: 1; margin-bottom: 0.3rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 600;
+      color: var(--blanc); line-height: 1; margin-bottom: 0.4rem;
     }
-    .lx-price-amount sup { font-size: 1.8rem; vertical-align: top; margin-top: 0.5rem; }
+    .lx-price-amount sup { font-size: 1.6rem; vertical-align: top; margin-top: 0.4rem; }
     .lx-price-sub { font-size: 0.75rem; color: var(--gris); margin-bottom: 1rem; }
     .lx-price-free {
       background: rgba(40,202,65,0.1); border: 1px solid rgba(40,202,65,0.25);
-      color: #28ca41; font-size: 0.75rem; padding: 0.5rem 1rem;
-      border-radius: 3px; margin-bottom: 1.5rem; text-align: center;
+      color: #28ca41; font-size: 0.78rem; font-weight: 600;
+      padding: 0.5rem 1rem; border-radius: 3px; margin-bottom: 1.5rem;
     }
-    .lx-price-perks { list-style: none; margin-bottom: 2rem; }
+    .lx-price-perks { list-style: none; margin-bottom: 1.5rem; text-align: left; }
     .lx-price-perks li {
-      font-size: 0.8rem; color: var(--blanc-soft);
-      padding: 0.4rem 0; border-bottom: 1px solid var(--noir-border);
-      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem; color: var(--blanc-soft); padding: 0.45rem 0;
+      border-bottom: 1px solid var(--noir-border); display: flex; align-items: center; gap: 0.6rem;
     }
-    .lx-price-perks li::before { content: '✓'; color: #28ca41; font-weight: 700; }
+    .lx-price-perks li::before { content: '✓'; color: #28ca41; font-weight: 700; flex-shrink: 0; }
+    .lx-price-perks li:last-child { border-bottom: none; }
 
-    /* ── CTA ── */
+    /* ══════════════════════════════════════════
+       CTA FINAL
+    ══════════════════════════════════════════ */
+    .lx-cta-section {
+      text-align: center;
+      background: linear-gradient(160deg, #0a0a18, #080810);
+      border-top: 1px solid rgba(80,100,255,0.12);
+    }
     .lx-cta-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.6rem, 6vw, 3rem);
-      font-weight: 600; color: var(--blanc); margin-bottom: 1rem;
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+      font-weight: 600; color: var(--blanc); line-height: 1.2; margin-bottom: 0.8rem;
     }
-    .lx-cta-sub {
-      font-size: 0.88rem; color: var(--blanc-soft); max-width: 500px;
-      margin: 0 auto 2rem;
+    .lx-cta-sub { font-size: 0.85rem; color: var(--gris); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .lx-cta-btns {
+      display: flex; flex-direction: column; gap: 0.8rem;
+      max-width: 340px; margin: 0 auto;
     }
 
-    /* ── FOOTER ── */
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
     .lx-footer {
-      display: flex; flex-direction: column;
-      align-items: center; text-align: center;
-      gap: 0.5rem;
       padding: 1.5rem 5%;
       border-top: 1px solid var(--noir-border);
-      font-size: 0.72rem; color: var(--gris);
+      display: flex; flex-direction: column; gap: 0.4rem;
+      text-align: center;
     }
-    .lx-footer a { color: var(--gris); transition: var(--transition); }
+    .lx-footer p { font-size: 0.72rem; color: var(--gris); }
+    .lx-footer a { color: var(--bleu-soft); }
     .lx-footer a:hover { color: var(--blanc-soft); }
 
     /* ══════════════════════════════════════════
-       TABLET : min-width 600px
+       TABLETTE ≥ 600px : 2 colonnes pour les grilles
     ══════════════════════════════════════════ */
     @media (min-width: 600px) {
+      .lx-hero-actions { flex-direction: row; }
+      .btn-lx-primary, .btn-lx-outline { width: auto; display: inline-block; }
+
       .lx-sector-cards {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
       }
       .lx-features-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
       }
-      .lx-hero-actions {
-        flex-direction: row;
-        width: auto;
-      }
-      .btn-lx-primary, .btn-lx-outline {
-        width: auto;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
+      .lx-cta-btns { flex-direction: row; max-width: none; justify-content: center; }
     }
 
     /* ══════════════════════════════════════════
-       NAV DESKTOP : min-width 768px
+       DESKTOP ≥ 1025px : layout 2 colonnes hero + 3 colonnes grilles
     ══════════════════════════════════════════ */
-    @media (min-width: 768px) {
+    @media (min-width: 1025px) {
       .lx-nav { height: 72px; padding: 0 5%; }
-      .lx-nav-back span { display: inline; }
       .lx-nav-logo { font-size: 1.1rem; }
       .lx-nav-cta { padding: 10px 22px; font-size: 0.72rem; }
 
-      .lx-hero { padding: 110px 5% 70px; }
-      .lx-hero-inner { gap: 3rem; }
-
-      .lx-sectors-section,
-      .lx-features-section,
-      .lx-pricing-section,
-      .lx-cta-section { padding: 80px 5%; }
-
-      .lx-footer { flex-direction: row; justify-content: space-between; text-align: left; }
-    }
-
-    /* ══════════════════════════════════════════
-       DESKTOP : min-width 1025px — GRILLE 2 COL HERO
-    ══════════════════════════════════════════ */
-    @media (min-width: 1025px) {
       .lx-hero { padding: 120px 5% 80px; min-height: 100vh; display: flex; align-items: center; }
       .lx-hero-inner {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 5rem;
         align-items: center;
+        flex-direction: unset;
       }
+      .lx-hero-badge { font-size: 0.68rem; letter-spacing: 0.22em; padding: 0.5rem 1rem; margin-bottom: 2rem; }
+      .lx-hero-title { font-size: clamp(2.8rem, 4vw, 4.2rem); margin-bottom: 1.5rem; }
+      .lx-hero-subtitle { font-size: 0.95rem; margin-bottom: 1.5rem; }
+      .lx-hero-quote { padding: 1rem 1.5rem; margin-bottom: 2.5rem; }
+      .lx-hero-quote blockquote { font-size: 1.05rem; }
+
+      .lx-avatar { width: 36px; height: 36px; font-size: 1rem; }
+      .lx-bubble { font-size: 0.83rem; padding: 0.9rem 1.1rem; }
+      .lx-chat-msgs { padding: 1.5rem; gap: 1rem; }
+
+      .lx-sectors-section,
+      .lx-features-section,
+      .lx-pricing-section,
+      .lx-cta-section { padding: 90px 5%; }
+
+      .lx-section-title { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+
       .lx-sector-cards {
-        display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
       }
-      .lx-features-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .lx-hero-badge { font-size: 0.68rem; padding: 0.5rem 1rem; margin-bottom: 2rem; }
-      .lx-hero-title { font-size: clamp(2.8rem, 4.5vw, 4.2rem); }
-      .lx-hero-subtitle { font-size: 0.95rem; }
-      .lx-hero-badge { font-size: 0.68rem; letter-spacing: 0.22em; }
       .lx-sector-card { padding: 2rem 1.8rem; }
+      .lx-sc-title { font-size: 1.25rem; }
+      .lx-sc-desc { font-size: 0.82rem; }
+
+      .lx-features-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
       .lx-feat-card { padding: 2rem 1.8rem; }
+
+      .lx-price-box { padding: 2.5rem 2rem; }
+
+      .lx-footer { flex-direction: row; justify-content: space-between; text-align: left; padding: 1.8rem 5%; }
     }
   </style>
 </head>
@@ -440,7 +459,8 @@
 <!-- HERO -->
 <section class="lx-hero">
   <div class="lx-hero-inner">
-    <div>
+    <!-- Texte -->
+    <div class="lx-hero-text">
       <span class="lx-hero-badge">Actuellement gratuit · Bêta ouverte</span>
       <h1 class="lx-hero-title">Le premier avocat<br><em>augmenté</em><br>inscrit au barreau</h1>
       <p class="lx-hero-subtitle">
@@ -450,13 +470,14 @@
       </p>
       <div class="lx-hero-quote">
         <blockquote>« Steve Jobs a changé nos vies avec le Mac. Zuckerberg avec Facebook. Jeff Bezos avec Amazon. Demain, chacun aura son avocat dans la poche : LexiBot IA. »</blockquote>
-        <cite>— Mounia Belkacem, avocate fondatrice · Root & Seed Legal</cite>
+        <cite>— Mounia Belkacem, avocate fondatrice · Root &amp; Seed Legal</cite>
       </div>
       <div class="lx-hero-actions">
         <a href="https://lexibot.pages.dev/" target="_blank" class="btn-lx-primary">Essayer LexiBot →</a>
         <a href="#secteurs" class="btn-lx-outline">Voir les secteurs</a>
       </div>
     </div>
+
     <!-- Fenêtre chat -->
     <div class="lx-chat-window">
       <div class="lx-chat-bar">
@@ -480,7 +501,7 @@
         </div>
         <div class="lx-msg bot">
           <div class="lx-avatar" style="background:rgba(80,100,255,0.12)">⚖️</div>
-          <div class="lx-bubble">✓ Courrier de contestation généré — prêt à signer et envoyer en LRAR. Voulez-vous également la requête en révision judiciaire du loyer ?</div>
+          <div class="lx-bubble">✓ Courrier de contestation généré — prêt à signer et envoyer en LRAR.</div>
         </div>
         <div class="lx-msg bot">
           <div class="lx-avatar" style="background:rgba(80,100,255,0.12)">⚖️</div>
@@ -496,13 +517,13 @@
   <div class="lx-section-header">
     <span class="lx-section-label">Couverture multisectorielle</span>
     <h2 class="lx-section-title">Un outil pour chaque secteur,<br>chaque taille d'entreprise</h2>
-    <p class="lx-section-sub">LexiBot IA comprend les spécificités réglementaires et contractuelles de chaque domaine. De la TPE de 2 personnes au groupe international.</p>
+    <p class="lx-section-sub">LexiBot IA comprend les spécificités réglementaires de chaque domaine. De la TPE de 2 personnes au groupe international.</p>
   </div>
   <div class="lx-sector-cards">
 
     <div class="lx-sector-card">
       <span class="lx-sc-icon">🏥</span>
-      <span class="lx-sc-tag">Santé & Médical</span>
+      <span class="lx-sc-tag">Santé &amp; Médical</span>
       <h3 class="lx-sc-title">Professionnels de santé</h3>
       <p class="lx-sc-desc">Cliniques, médecins, pharmaciens, dentistes, infirmiers libéraux. Structuration de société d'exercice, SEL, contrats de collaboration, conventions, RGPD santé.</p>
       <div class="lx-sc-example">Ouverture d'une clinique privée : structure juridique optimale, pacte d'associés, convention d'exercice — générés en 3 minutes.</div>
@@ -511,7 +532,7 @@
     <div class="lx-sector-card">
       <span class="lx-sc-icon">🏠</span>
       <span class="lx-sc-tag">Médico-social</span>
-      <h3 class="lx-sc-title">PSAD & Prestataires</h3>
+      <h3 class="lx-sc-title">PSAD &amp; Prestataires</h3>
       <p class="lx-sc-desc">Prestataires de services et distributeurs de matériel médical. Contrats de prestation, conformité CPAM, recours en cas de contrôle, mise en conformité LPP.</p>
       <div class="lx-sc-example">Contrôle CPAM reçu : recours gracieux, droits au contradictoire, réponse dans les délais légaux de 30 jours.</div>
     </div>
@@ -519,23 +540,23 @@
     <div class="lx-sector-card">
       <span class="lx-sc-icon">✈️</span>
       <span class="lx-sc-tag">Industrie</span>
-      <h3 class="lx-sc-title">Aéronautique & Défense</h3>
-      <p class="lx-sc-desc">Constructeurs, équipementiers, MRO, défense. Conformité EAR/ITAR, réglementation REACH & dual-use, contrôles export, licences BIS, contrats OEM.</p>
+      <h3 class="lx-sc-title">Aéronautique &amp; Défense</h3>
+      <p class="lx-sc-desc">Constructeurs, équipementiers, MRO, défense. Conformité EAR/ITAR, réglementation REACH &amp; dual-use, contrôles export, licences BIS, contrats OEM.</p>
       <div class="lx-sc-example">Export composant vers les USA : audit EAR/ITAR, codes ECCN, dossier de licence BIS complet en 8 minutes.</div>
     </div>
 
     <div class="lx-sector-card">
       <span class="lx-sc-icon">🛢️</span>
       <span class="lx-sc-tag">Énergie</span>
-      <h3 class="lx-sc-title">Pétrole, Gaz & Énergies</h3>
+      <h3 class="lx-sc-title">Pétrole, Gaz &amp; Énergies</h3>
       <p class="lx-sc-desc">Compagnies pétrolières, opérateurs gaziers, énergies renouvelables. Contrats JOA, PSA, farm-in/farm-out, négociation d'opérateur, joint-ventures internationaux.</p>
       <div class="lx-sc-example">Négociation JOA offshore : détection de 4 clauses déséquilibrées, amendments et BATNA stratégique prêts.</div>
     </div>
 
     <div class="lx-sector-card">
       <span class="lx-sc-icon">🥐</span>
-      <span class="lx-sc-tag">Artisanat & TPE</span>
-      <h3 class="lx-sc-title">Artisans & Très Petites Entreprises</h3>
+      <span class="lx-sc-tag">Artisanat &amp; TPE</span>
+      <h3 class="lx-sc-title">Artisans &amp; Très Petites Entreprises</h3>
       <p class="lx-sc-desc">Boulangers, pâtissiers, restaurateurs, artisans du bâtiment, commerçants. Baux commerciaux, litiges fournisseurs, droit du travail, cession de fonds, CGV.</p>
       <div class="lx-sc-example">Litige bail : hausse illégale de loyer identifiée et contestée, mise en demeure rédigée, économie ~8 400 €/an.</div>
     </div>
@@ -544,8 +565,8 @@
       <span class="lx-sc-icon">⚡</span>
       <span class="lx-sc-tag">Et bien d'autres</span>
       <h3 class="lx-sc-title">Tous secteurs, toutes tailles</h3>
-      <p class="lx-sc-desc">Tech & startups, finance, immobilier, luxe, sport, media, agriculture, transport, logistique… LexiBot IA s'adapte à votre secteur et à votre réglementation spécifique.</p>
-      <a href="https://lexibot.pages.dev/" target="_blank" class="btn-lx-primary" style="margin-top:1.5rem; display:inline-block">Tester pour mon secteur →</a>
+      <p class="lx-sc-desc">Tech &amp; startups, finance, immobilier, luxe, sport, media, agriculture, transport, logistique… LexiBot IA s'adapte à votre secteur et à votre réglementation spécifique.</p>
+      <a href="https://lexibot.pages.dev/" target="_blank" class="btn-lx-primary" style="margin-top:1.2rem">Tester pour mon secteur →</a>
     </div>
 
   </div>
@@ -570,7 +591,7 @@
     </div>
     <div class="lx-feat-card">
       <span class="lx-feat-icon">🔔</span>
-      <h4 class="lx-feat-title">Veille & conformité</h4>
+      <h4 class="lx-feat-title">Veille &amp; conformité</h4>
       <p class="lx-feat-desc">Surveillance réglementaire en temps réel, alertes personnalisées, audit RGPD intelligent et suivi des évolutions législatives qui vous concernent.</p>
     </div>
     <div class="lx-feat-card">
@@ -580,7 +601,7 @@
     </div>
     <div class="lx-feat-card">
       <span class="lx-feat-icon">🌐</span>
-      <h4 class="lx-feat-title">Multilingue & international</h4>
+      <h4 class="lx-feat-title">Multilingue &amp; international</h4>
       <p class="lx-feat-desc">Toutes juridictions, toutes langues. LexiBot IA est l'interface juridique universelle pour les acteurs globaux opérant dans plusieurs pays.</p>
     </div>
     <div class="lx-feat-card">
@@ -595,11 +616,11 @@
 <section class="lx-pricing-section" id="tarif">
   <div class="lx-section-header">
     <span class="lx-section-label">Tarification</span>
-    <h2 class="lx-section-title">Simple & transparent</h2>
+    <h2 class="lx-section-title">Simple &amp; transparent</h2>
   </div>
   <div class="lx-price-box">
     <span class="lx-price-label">Abonnement mensuel</span>
-    <div class="lx-price-amount"><sup>€</sup>100<span style="font-size:1.2rem;color:var(--gris)"> HT/mois</span></div>
+    <div class="lx-price-amount"><sup>€</sup>100<span style="font-size:1.1rem;color:var(--gris)"> HT/mois</span></div>
     <p class="lx-price-sub">par utilisateur · facturation mensuelle · sans engagement</p>
     <div class="lx-price-free">✓ Actuellement 100% gratuit — Bêta ouverte</div>
     <ul class="lx-price-perks">
@@ -610,7 +631,7 @@
       <li>Chiffrement bout-en-bout · secret professionnel</li>
       <li>Supervisé par Maître Belkacem, avocate au barreau</li>
     </ul>
-    <a href="https://lexibot.pages.dev/" target="_blank" class="btn-lx-primary" style="width:100%;text-align:center;display:block;">Commencer gratuitement →</a>
+    <a href="https://lexibot.pages.dev/" target="_blank" class="btn-lx-primary">Commencer gratuitement →</a>
   </div>
 </section>
 
@@ -618,14 +639,14 @@
 <section class="lx-cta-section">
   <h2 class="lx-cta-title">Votre avocat dans la poche.<br>Dès aujourd'hui.</h2>
   <p class="lx-cta-sub">Rejoignez les premiers utilisateurs de LexiBot IA et bénéficiez de l'accès gratuit pendant toute la phase bêta.</p>
-  <div style="display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap">
+  <div class="lx-cta-btns">
     <a href="https://lexibot.pages.dev/" target="_blank" class="btn-lx-primary">Essayer LexiBot gratuitement →</a>
     <a href="index.html#contact" class="btn-lx-outline">Contacter le cabinet</a>
   </div>
 </section>
 
 <footer class="lx-footer">
-  <p>© 2025 Root & Seed Legal · LexiBot IA — Supervisé par Maître Mounia Belkacem, avocate au Barreau de Paris</p>
+  <p>© 2025 Root &amp; Seed Legal · LexiBot IA — Supervisé par Maître Mounia Belkacem, avocate au Barreau de Paris</p>
   <p><a href="index.html">Retour au site</a> · <a href="mentions-legales.html">Mentions légales</a></p>
 </footer>
 
