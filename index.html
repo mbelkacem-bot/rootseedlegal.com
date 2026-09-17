@@ -2091,7 +2091,7 @@
     <a href="#lexibot">LexIA</a>
     <a href="#urgence" style="color:#ff7777;font-weight:700">🚨 Urgence</a>
     <a href="#clients">Nos Clients</a>
-    <a href="#blog">Insights</a>
+    <a href="#blog">Insights &amp; Podcast</a>
     <a href="espace-client.html" target="_blank">Espace Client</a>
     <a href="#contact" class="nav-cta">Contact</a>
   </div>
@@ -2109,7 +2109,7 @@
   <a href="#uhnwi" onclick="document.getElementById('mobileMenu').classList.remove('open')">Clients Privés</a>
   <a href="podcast.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Podcast</a>
   <a href="#lexibot" onclick="document.getElementById('mobileMenu').classList.remove('open')">LexIA</a>
-  <a href="#blog" onclick="document.getElementById('mobileMenu').classList.remove('open')">Insights</a>
+  <a href="#blog" onclick="document.getElementById('mobileMenu').classList.remove('open')">Insights &amp; Podcast</a>
   <a href="espace-client.html" target="_blank" onclick="document.getElementById('mobileMenu').classList.remove('open')">Espace Client</a>
   <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
 </div>
@@ -2621,14 +2621,59 @@
 <section class="blog" id="blog">
   <div class="section-header fade-in">
     <span class="title-line"></span>
-    <span class="section-label">Veille juridique</span>
-    <h2 class="section-title">Insights &amp; Actualités</h2>
-    <p class="section-subtitle">Analyse des évolutions réglementaires et conseils pratiques pour anticiper les risques juridiques de votre activité.</p>
+    <span class="section-label">Veille juridique &amp; Podcast</span>
+    <h2 class="section-title">Insights &amp; Podcast</h2>
+    <p class="section-subtitle">Articles de fond, décisions de justice commentées et podcast — tout ce que Me Belkacem partage pour vous aider à comprendre et défendre vos droits.</p>
   </div>
-  <div class="blog-grid">
 
-    <!-- ARTICLES : Pour dépublier, commentez le bloc avec <!‑‑ et ‑‑>
-         Pour modifier l'URL : remplacez href="#" par l'URL réelle -->
+  <!-- ENCART PODCAST PRINCIPAL -->
+  <div class="fade-in" style="
+    background: linear-gradient(135deg, #120202, #1e0404);
+    border: 1px solid rgba(255,49,49,0.25);
+    border-radius: 14px;
+    padding: 56px 5%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  ">
+    <div style="position:absolute;top:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,49,49,0.07),transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--rouge);border:1px solid rgba(255,49,49,0.3);padding:5px 14px;border-radius:20px;margin-bottom:20px;">
+        <i class="fas fa-microphone-alt"></i> Nouveau
+      </div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:var(--blanc);margin-bottom:10px;line-height:1.2;">
+        Le podcast qui parle de vos droits<br>et vos libertés — <em style="color:var(--rouge)">tant que vous en avez encore</em>
+      </h3>
+      <p style="color:var(--gris);font-size:0.95rem;line-height:1.8;max-width:580px;margin-bottom:28px;">
+        Droit du travail, pénal, fiscal, vie privée, affaires. Me Belkacem parle aussi des dossiers qu'elle a gagnés — et de ceux qu'elle a perdus. Sans filtre, sans langue de bois.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <a href="podcast.html" style="display:inline-flex;align-items:center;gap:10px;padding:13px 28px;background:var(--rouge);color:#fff;border-radius:6px;font-size:0.88rem;font-weight:600;letter-spacing:0.05em;transition:var(--transition);" onmouseover="this.style.background='var(--rouge-fonce)'" onmouseout="this.style.background='var(--rouge)'">
+          <i class="fas fa-headphones"></i> Découvrir le podcast
+        </a>
+        <a href="podcast.html#notify" style="display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border:1px solid rgba(255,49,49,0.4);color:var(--rouge);border-radius:6px;font-size:0.88rem;font-weight:600;letter-spacing:0.05em;transition:var(--transition);" onmouseover="this.style.background='rgba(255,49,49,0.08)'" onmouseout="this.style.background='transparent'">
+          <i class="fas fa-bell"></i> Être notifié
+        </a>
+      </div>
+    </div>
+    <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:10px;min-width:140px;">
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:16px 20px;text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--rouge);">7</div>
+        <div style="font-size:0.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:0.1em;">Épisodes</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:16px 20px;text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--rouge);">∞</div>
+        <div style="font-size:0.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:0.1em;">À venir</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLES DE FOND -->
+  <div class="blog-grid">
 
     <a href="https://www.legavox.fr/blog/rootseedlegal/" target="_blank" class="blog-card fade-in" style="text-decoration:none">
       <div class="blog-img">⚖️</div>
@@ -2659,62 +2704,6 @@
         <span class="blog-link">Lire l'article</span>
       </div>
     </a>
-
-
-    <!-- ═══════════════ PODCASTS ═══════════════ -->
-    <div class="podcast-section-header fade-in">
-      <span class="podcast-badge">🎙️ Le Podcast</span>
-      <h3 class="podcast-title">Le podcast qui vous informe sur vos droits et libertés<br><em>tant que vous en avez encore</em></h3>
-      <p class="podcast-sub">Par Me Mounia Belkacem — Avocate au Barreau de Paris</p>
-    </div>
-
-    <div class="podcast-grid">
-
-      <div class="podcast-card fade-in">
-        <div class="podcast-thumb">🎙️</div>
-        <div class="podcast-body">
-          <span class="podcast-ep-num">Épisode 1</span>
-          <h4 class="podcast-ep-title">À suivre</h4>
-          <p class="podcast-ep-desc">Le premier épisode arrive bientôt. Restez connecté pour ne rien manquer.</p>
-          <span class="podcast-coming-soon">🔔 Bientôt disponible</span>
-        </div>
-      </div>
-
-      <div class="podcast-card fade-in">
-        <div class="podcast-thumb">🎙️</div>
-        <div class="podcast-body">
-          <span class="podcast-ep-num">Épisode 2</span>
-          <h4 class="podcast-ep-title">À suivre</h4>
-          <p class="podcast-ep-desc">Le deuxième épisode est en préparation. Abonnez-vous pour être notifié.</p>
-          <span class="podcast-coming-soon">🔔 Bientôt disponible</span>
-        </div>
-      </div>
-
-      <div class="podcast-card podcast-card-cta fade-in">
-        <div class="podcast-thumb">📡</div>
-        <div class="podcast-body">
-          <span class="podcast-ep-num">Notifications</span>
-          <h4 class="podcast-ep-title">Soyez informé en premier</h4>
-          <p class="podcast-ep-desc">Inscrivez-vous pour recevoir une alerte dès la sortie de chaque épisode.</p>
-          <a href="mailto:secretariat@rootseedlegal.fr?subject=Podcast%20-%20Notification" class="podcast-notify-btn">M'alerter →</a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- INTERVIEWS : copiez le bloc commenté ci-dessous, décommentez-le et remplacez l'URL -->
-
-    <!-- INTERVIEW EXEMPLE (décommentez pour activer)
-    <a href="https://URL-DE-VOTRE-INTERVIEW" target="_blank" class="blog-card fade-in" style="text-decoration:none">
-      <div class="blog-img">🎙️</div>
-      <div class="blog-body">
-        <span class="blog-category" style="color:#e0a030">Interview</span>
-        <h3 class="blog-title">Titre de l'interview ou du podcast</h3>
-        <p class="blog-excerpt">Courte description de l'interview, du média ou du sujet abordé.</p>
-        <span class="blog-link">Voir l'interview</span>
-      </div>
-    </a>
-    -->
 
   </div>
 </section>
