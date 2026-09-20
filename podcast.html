@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Insights &amp; Podcast — Vos Droits &amp; Libertés | Root &amp; Seed Legal</title>
-  <meta name="description" content="Insights juridiques et podcast de Me Mounia Belkacem : décisions de justice commentées, dossiers gagnés et perdus, droits et libertés. Sans filtre.">
-  <meta property="og:title" content="Le podcast qui parle de vos droits et vos libertés — Root & Seed Legal">
+  <meta name="description" content="Le podcast juridique de Me Mounia Belkacem : décisions de justice commentées, dossiers gagnés et perdus, droits et libertés. Sans filtre.">
+  <meta property="og:title" content="Insights & Podcast — Root & Seed Legal">
   <meta property="og:description" content="Me Mounia Belkacem décrypte le droit pour tous. Droits, libertés, justice — tant que vous en avez encore.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://www.rootseedlegal.com/podcast.html">
@@ -16,33 +16,25 @@
 
   <style>
     :root {
-      --rouge:        #FF3131;
-      --rouge-fonce:  #CC1F1F;
-      --rouge-clair:  #FF5555;
-      --rouge-pale:   rgba(255,49,49,0.12);
-      --noir:         #080808;
-      --noir-card:    #111111;
-      --noir-border:  #1E1E1E;
-      --blanc:        #F4F4F4;
-      --blanc-soft:   #D8D8D8;
-      --gris:         #949494;
-      --transition:   all 0.35s cubic-bezier(0.4,0,0.2,1);
+      --rouge: #FF3131;
+      --rouge-fonce: #CC1F1F;
+      --rouge-pale: rgba(255,49,49,0.12);
+      --noir: #080808;
+      --noir-card: #111111;
+      --noir-border: #1E1E1E;
+      --blanc: #F4F4F4;
+      --blanc-soft: #D8D8D8;
+      --gris: #949494;
+      --vert: #34d399;
+      --or: #fbbf24;
+      --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
-    body {
-      background: var(--noir);
-      color: var(--blanc);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 400;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+    body { background: var(--noir); color: var(--blanc); font-family: 'Montserrat', sans-serif; font-weight: 400; line-height: 1.7; overflow-x: hidden; }
     h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; line-height: 1.2; }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; }
-
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--noir); }
     ::-webkit-scrollbar-thumb { background: var(--rouge); border-radius: 2px; }
@@ -50,34 +42,21 @@
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      padding: 0 5%;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 92px;
-      background: rgba(8,8,8,0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,49,49,0.2);
-      transition: var(--transition);
+      padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+      height: 92px; background: rgba(8,8,8,0.95); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,49,49,0.2); transition: var(--transition);
     }
+    nav.scrolled { height: 72px; background: rgba(8,8,8,0.99); }
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 0.05em; }
     .nav-logo span { color: var(--rouge); }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
     .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blanc-soft); transition: var(--transition); }
     .nav-links a:hover, .nav-links a.active { color: var(--rouge); }
-    .nav-links .nav-cta {
-      padding: 10px 22px; border: 1px solid var(--rouge); border-radius: 3px;
-      color: var(--rouge); font-weight: 600; transition: var(--transition);
-    }
+    .nav-links .nav-cta { padding: 10px 22px; border: 1px solid var(--rouge); border-radius: 3px; color: var(--rouge); font-weight: 600; }
     .nav-links .nav-cta:hover { background: var(--rouge); color: #fff; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--blanc); border-radius: 2px; transition: var(--transition); }
-
-    /* MOBILE MENU */
-    .mobile-menu {
-      display: none; flex-direction: column; gap: 0;
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 2000;
-      background: rgba(8,8,8,0.98); padding: 80px 8% 40px;
-      backdrop-filter: blur(20px);
-    }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--blanc); border-radius: 2px; }
+    .mobile-menu { display: none; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 2000; background: rgba(8,8,8,0.98); padding: 80px 8% 40px; backdrop-filter: blur(20px); }
     .mobile-menu.open { display: flex; }
     .mobile-menu a { font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; padding: 14px 0; border-bottom: 1px solid var(--noir-border); color: var(--blanc-soft); }
     .mobile-menu a:hover { color: var(--rouge); }
@@ -85,227 +64,135 @@
 
     /* HERO */
     .hero {
-      min-height: 60vh;
-      display: flex; align-items: center;
+      min-height: 55vh; display: flex; align-items: center;
       padding: 140px 5% 80px;
       background: linear-gradient(135deg, #080808 0%, #130505 50%, #080808 100%);
       position: relative; overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute; top: -200px; right: -100px;
-      width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,49,49,0.08), transparent 70%);
-      pointer-events: none;
-    }
+    .hero::before { content: ''; position: absolute; top: -200px; right: -100px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(255,49,49,0.08), transparent 70%); pointer-events: none; }
     .hero-content { max-width: 800px; position: relative; z-index: 1; }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--rouge); border: 1px solid rgba(255,49,49,0.3);
-      padding: 6px 16px; border-radius: 20px; margin-bottom: 24px;
-    }
+    .hero-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rouge); border: 1px solid rgba(255,49,49,0.3); padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; }
     .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); color: var(--blanc); margin-bottom: 12px; }
     .hero h1 span { color: var(--rouge); font-style: italic; }
-    .hero-subtitle {
-      font-size: 1rem; color: var(--gris); margin-bottom: 36px; max-width: 600px;
-      font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
-    }
-    .hero-platforms {
-      display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
-    }
-    .platform-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;
-      letter-spacing: 0.05em; transition: var(--transition); border: 1px solid transparent;
-    }
-    .platform-btn.spotify { background: #1DB954; color: #000; }
-    .platform-btn.spotify:hover { background: #1aa34a; }
-    .platform-btn.apple { background: #FC3C44; color: #fff; }
-    .platform-btn.apple:hover { background: #e0353c; }
-    .platform-btn.youtube { background: #FF0000; color: #fff; }
-    .platform-btn.youtube:hover { background: #cc0000; }
-    .platform-btn.deezer { background: #A238FF; color: #fff; }
-    .platform-btn.deezer:hover { background: #8a2de0; }
-    .platform-soon {
-      font-size: 0.75rem; color: var(--gris); font-style: italic;
-      padding: 10px 0;
-    }
+    .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gris); margin-bottom: 36px; font-style: italic; }
+    .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+    .hero-stat { text-align: center; }
+    .hero-stat .num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: var(--rouge); line-height: 1; }
+    .hero-stat .lbl { font-size: 0.72rem; color: var(--gris); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px; }
 
-    /* SECTION */
-    section { padding: 80px 5%; }
-    .section-label {
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--rouge); margin-bottom: 12px;
-    }
+    /* SECTIONS */
+    .section { padding: 80px 5%; }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rouge); margin-bottom: 12px; }
     .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: var(--blanc); margin-bottom: 16px; }
-    .section-intro { font-size: 1rem; color: var(--gris); max-width: 680px; line-height: 1.8; margin-bottom: 48px; }
+    .section-intro { font-size: 0.95rem; color: var(--gris); max-width: 680px; line-height: 1.8; margin-bottom: 48px; }
 
-    /* FEATURED EPISODE */
-    .featured-episode {
+    /* TABS */
+    .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--noir-border); margin-bottom: 48px; flex-wrap: wrap; }
+    .tab-btn {
+      padding: 14px 28px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gris); background: none; border: none;
+      border-bottom: 2px solid transparent; cursor: pointer; transition: var(--transition);
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--blanc); }
+    .tab-btn.active { color: var(--rouge); border-bottom-color: var(--rouge); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* FEATURED VIDEO PLAYER */
+    .player-container {
       background: var(--noir-card);
       border: 1px solid var(--noir-border);
-      border-radius: 12px;
-      overflow: hidden;
-      display: grid; grid-template-columns: 1fr 1fr;
-      margin-bottom: 60px;
-      transition: var(--transition);
+      border-radius: 14px; overflow: hidden; margin-bottom: 48px;
     }
-    .featured-episode:hover { border-color: rgba(255,49,49,0.3); }
-    .featured-img {
-      background: linear-gradient(135deg, #1a0505, #2d0808);
-      display: flex; align-items: center; justify-content: center;
-      min-height: 280px; position: relative; overflow: hidden;
-    }
-    .featured-img .ep-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 8rem; font-weight: 700; color: rgba(255,49,49,0.08);
-      position: absolute; bottom: -20px; right: -10px; line-height: 1;
-    }
-    .featured-img .play-icon {
-      width: 72px; height: 72px; border-radius: 50%;
-      background: var(--rouge); display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; color: #fff; position: relative; z-index: 1;
-      box-shadow: 0 0 40px rgba(255,49,49,0.4);
+    .player-video { width: 100%; aspect-ratio: 16/9; background: #000; display: block; }
+    .player-info { padding: 32px 36px; }
+    .player-ep-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rouge); background: var(--rouge-pale); padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+    .player-title { font-size: clamp(1.3rem, 2.5vw, 1.9rem); color: var(--blanc); margin-bottom: 12px; }
+    .player-desc { font-size: 0.9rem; color: var(--gris); line-height: 1.8; margin-bottom: 20px; max-width: 720px; }
+    .player-meta { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+    .player-meta span { font-size: 0.78rem; color: var(--gris); display: flex; align-items: center; gap: 6px; }
+    .player-meta span i { color: var(--rouge); }
+    .ep-tag { display: inline-block; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris); background: rgba(255,255,255,0.04); border: 1px solid var(--noir-border); padding: 3px 10px; border-radius: 20px; }
+
+    /* EPISODES LIST */
+    .ep-list { display: flex; flex-direction: column; gap: 16px; }
+    .ep-item {
+      display: grid; grid-template-columns: auto 1fr auto;
+      gap: 20px; align-items: center;
+      background: var(--noir-card); border: 1px solid var(--noir-border);
+      border-radius: 10px; padding: 20px 24px;
       cursor: pointer; transition: var(--transition);
     }
-    .featured-img .play-icon:hover { transform: scale(1.1); background: var(--rouge-fonce); }
-    .featured-content { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
-    .ep-badge {
-      display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--rouge); background: var(--rouge-pale);
-      padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; width: fit-content;
-    }
-    .featured-content h3 { font-size: 1.6rem; color: var(--blanc); margin-bottom: 12px; }
-    .featured-content p { font-size: 0.9rem; color: var(--gris); line-height: 1.7; margin-bottom: 24px; }
-    .ep-meta { display: flex; gap: 20px; align-items: center; margin-bottom: 24px; }
-    .ep-meta span { font-size: 0.78rem; color: var(--gris); display: flex; align-items: center; gap: 6px; }
-    .ep-meta span i { color: var(--rouge); }
-    .listen-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 12px 24px; background: var(--rouge); color: #fff;
-      border-radius: 6px; font-size: 0.85rem; font-weight: 600;
-      letter-spacing: 0.05em; transition: var(--transition); width: fit-content;
-    }
-    .listen-btn:hover { background: var(--rouge-fonce); transform: translateY(-2px); }
+    .ep-item:hover { border-color: rgba(255,49,49,0.3); background: #161616; }
+    .ep-item.active { border-color: var(--rouge); background: #161616; }
+    .ep-item.active .ep-item-num { color: var(--rouge); }
+    .ep-item-num { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; color: var(--noir-border); width: 40px; text-align: center; transition: var(--transition); }
+    .ep-item-info { min-width: 0; }
+    .ep-item-title { font-size: 0.95rem; font-weight: 600; color: var(--blanc); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ep-item-sub { font-size: 0.78rem; color: var(--gris); display: flex; gap: 12px; flex-wrap: wrap; }
+    .ep-item-sub span { display: flex; align-items: center; gap: 4px; }
+    .ep-item-badge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+    .badge-victoire { background: rgba(52,211,153,0.1); color: var(--vert); border: 1px solid rgba(52,211,153,0.2); }
+    .badge-defaite { background: var(--rouge-pale); color: var(--rouge); border: 1px solid rgba(255,49,49,0.2); }
+    .badge-analyse { background: rgba(251,191,36,0.1); color: var(--or); border: 1px solid rgba(251,191,36,0.2); }
+    .badge-droit { background: rgba(96,165,250,0.1); color: #60a5fa; border: 1px solid rgba(96,165,250,0.2); }
 
-    /* EPISODES GRID */
-    .episodes-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
-    }
-    .episode-card {
-      background: var(--noir-card);
-      border: 1px solid var(--noir-border);
-      border-radius: 10px; overflow: hidden;
-      transition: var(--transition);
-      display: flex; flex-direction: column;
-    }
-    .episode-card:hover { border-color: rgba(255,49,49,0.3); transform: translateY(-4px); }
-    .episode-card-top {
-      background: linear-gradient(135deg, #120202, #1e0404);
-      padding: 28px; display: flex; align-items: center; gap: 20px;
-      position: relative; overflow: hidden;
-    }
-    .episode-card-top .ep-num-bg {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5rem; font-weight: 700; color: rgba(255,49,49,0.07);
-      position: absolute; right: -10px; bottom: -15px; line-height: 1;
-    }
-    .ep-play-small {
-      width: 50px; height: 50px; border-radius: 50%;
-      background: rgba(255,49,49,0.15); border: 1px solid rgba(255,49,49,0.3);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--rouge); font-size: 1rem; flex-shrink: 0;
-      cursor: pointer; transition: var(--transition);
-    }
-    .ep-play-small:hover { background: var(--rouge); color: #fff; }
-    .ep-info-top { flex: 1; }
-    .ep-info-top .ep-num { font-size: 0.72rem; color: var(--rouge); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
-    .ep-info-top .ep-duration { font-size: 0.78rem; color: var(--gris); margin-top: 4px; }
-    .episode-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-    .episode-card-body h3 { font-size: 1.15rem; color: var(--blanc); margin-bottom: 10px; line-height: 1.3; }
-    .episode-card-body p { font-size: 0.85rem; color: var(--gris); line-height: 1.7; flex: 1; }
-    .ep-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .ep-tag {
-      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--gris); background: rgba(255,255,255,0.04);
-      border: 1px solid var(--noir-border); padding: 3px 10px; border-radius: 20px;
-    }
+    /* ARTICLES GRID */
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    .article-card { background: var(--noir-card); border: 1px solid var(--noir-border); border-radius: 10px; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; }
+    .article-card:hover { border-color: rgba(255,49,49,0.3); transform: translateY(-4px); }
+    .article-icon { padding: 32px; font-size: 2rem; background: linear-gradient(135deg, #120202, #1a0303); }
+    .article-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .article-cat { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rouge); margin-bottom: 10px; }
+    .article-body h3 { font-size: 1.1rem; color: var(--blanc); margin-bottom: 10px; line-height: 1.3; }
+    .article-body p { font-size: 0.85rem; color: var(--gris); line-height: 1.7; flex: 1; margin-bottom: 20px; }
+    .article-link { font-size: 0.8rem; font-weight: 600; color: var(--rouge); display: flex; align-items: center; gap: 6px; transition: var(--transition); }
+    .article-link:hover { gap: 10px; }
 
-    /* COMING SOON */
-    .coming-soon-section {
-      background: var(--noir-card);
-      border: 1px solid var(--noir-border);
-      border-radius: 12px;
-      padding: 60px 5%;
-      text-align: center;
-      margin-top: 60px;
-    }
-    .coming-soon-section h3 { font-size: 2rem; margin-bottom: 16px; }
-    .coming-soon-section p { color: var(--gris); max-width: 500px; margin: 0 auto 32px; }
-    .notify-form { display: flex; gap: 12px; max-width: 440px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
-    .notify-form input {
-      flex: 1; min-width: 220px; padding: 12px 18px;
-      background: rgba(255,255,255,0.04); border: 1px solid var(--noir-border);
-      border-radius: 6px; color: var(--blanc); font-size: 0.9rem;
-      font-family: 'Montserrat', sans-serif; outline: none;
-      transition: var(--transition);
-    }
-    .notify-form input:focus { border-color: var(--rouge); }
-    .notify-form button {
-      padding: 12px 24px; background: var(--rouge); color: #fff;
-      border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600;
-      cursor: pointer; transition: var(--transition);
-    }
-    .notify-form button:hover { background: var(--rouge-fonce); }
-
-    /* HOST SECTION */
-    .host-section {
-      display: grid; grid-template-columns: auto 1fr;
-      gap: 40px; align-items: center;
-      background: var(--noir-card);
-      border: 1px solid var(--noir-border);
-      border-radius: 12px; padding: 48px;
-      margin-top: 60px;
-    }
-    .host-photo {
-      width: 140px; height: 140px; border-radius: 50%;
-      object-fit: cover; object-position: top;
-      border: 3px solid var(--rouge);
-      box-shadow: 0 0 30px rgba(255,49,49,0.2);
-    }
+    /* HOST */
+    .host-section { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; background: var(--noir-card); border: 1px solid var(--noir-border); border-radius: 12px; padding: 48px; margin-top: 16px; }
+    .host-photo { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid var(--rouge); box-shadow: 0 0 30px rgba(255,49,49,0.2); }
     .host-info h3 { font-size: 1.6rem; margin-bottom: 8px; }
-    .host-info .host-title { font-size: 0.85rem; color: var(--rouge); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+    .host-title { font-size: 0.85rem; color: var(--rouge); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
     .host-info p { font-size: 0.9rem; color: var(--gris); line-height: 1.8; max-width: 600px; }
 
+    /* NOTIFY */
+    .notify-box { background: var(--noir-card); border: 1px solid var(--noir-border); border-radius: 12px; padding: 48px; text-align: center; margin-top: 60px; }
+    .notify-box h3 { font-size: 1.8rem; margin-bottom: 12px; }
+    .notify-box p { color: var(--gris); max-width: 480px; margin: 0 auto 28px; font-size: 0.9rem; }
+    .notify-form { display: flex; gap: 12px; max-width: 440px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+    .notify-form input { flex: 1; min-width: 200px; padding: 12px 18px; background: rgba(255,255,255,0.04); border: 1px solid var(--noir-border); border-radius: 6px; color: var(--blanc); font-size: 0.9rem; font-family: 'Montserrat', sans-serif; outline: none; transition: var(--transition); }
+    .notify-form input:focus { border-color: var(--rouge); }
+    .notify-form button { padding: 12px 24px; background: var(--rouge); color: #fff; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+    .notify-form button:hover { background: var(--rouge-fonce); }
+
     /* FOOTER */
-    footer {
-      padding: 48px 5% 32px;
-      border-top: 1px solid var(--noir-border);
-      display: flex; flex-wrap: wrap; gap: 20px;
-      justify-content: space-between; align-items: center;
-    }
+    footer { padding: 48px 5% 32px; border-top: 1px solid var(--noir-border); display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
     footer .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; }
     footer .footer-logo span { color: var(--rouge); }
     footer p { font-size: 0.78rem; color: var(--gris); }
-    footer nav { position: static; height: auto; background: none; border: none; backdrop-filter: none; padding: 0; flex-wrap: wrap; gap: 16px; }
-    footer nav a { font-size: 0.78rem; color: var(--gris); transition: var(--transition); }
-    footer nav a:hover { color: var(--rouge); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.78rem; color: var(--gris); transition: var(--transition); }
+    .footer-links a:hover { color: var(--rouge); }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-      .featured-episode { grid-template-columns: 1fr; }
-      .featured-img { min-height: 200px; }
+      .ep-item { grid-template-columns: auto 1fr; }
+      .ep-item-badge { display: none; }
       .host-section { grid-template-columns: 1fr; text-align: center; }
       .host-photo { margin: 0 auto; }
+      .player-info { padding: 24px; }
     }
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .hero { padding: 120px 5% 60px; }
-      .hero-platforms { flex-direction: column; align-items: flex-start; }
-      .host-section { padding: 32px 24px; }
+      .hero-stats { gap: 20px; }
+      .ep-item { grid-template-columns: 1fr; gap: 8px; }
+      .ep-item-num { display: none; }
+      .tab-btn { padding: 12px 16px; font-size: 0.72rem; }
+      .host-section { padding: 32px 20px; }
     }
   </style>
 </head>
@@ -319,7 +206,7 @@
     <a href="index.html#profil">Me Belkacem</a>
     <a href="mandataire-sportif-football.html">Mandataire sportif</a>
     <a href="index.html#uhnwi">Clients Privés</a>
-    <a href="podcast.html" class="active">Podcast</a>
+    <a href="podcast.html" class="active">Insights & Podcast</a>
     <a href="index.html#urgence" style="color:#ff7777;font-weight:700">🚨 Urgence</a>
     <a href="espace-client.html" target="_blank">Espace Client</a>
     <a href="index.html#contact" class="nav-cta">Contact</a>
@@ -329,15 +216,13 @@
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
   <a href="index.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Accueil</a>
   <a href="index.html#services" onclick="document.getElementById('mobileMenu').classList.remove('open')">Services</a>
   <a href="index.html#profil" onclick="document.getElementById('mobileMenu').classList.remove('open')">Me Belkacem</a>
   <a href="mandataire-sportif-football.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Mandataire sportif</a>
-  <a href="index.html#uhnwi" onclick="document.getElementById('mobileMenu').classList.remove('open')">Clients Privés</a>
-  <a href="podcast.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Podcast</a>
+  <a href="podcast.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Insights & Podcast</a>
   <a href="index.html#urgence" onclick="document.getElementById('mobileMenu').classList.remove('open')" style="color:#ff7777">🚨 Urgence</a>
   <a href="espace-client.html" target="_blank" onclick="document.getElementById('mobileMenu').classList.remove('open')">Espace Client</a>
   <a href="index.html#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
@@ -346,266 +231,283 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-tag">
-      <i class="fas fa-microphone-alt"></i>
-      Insights &amp; Podcast juridique
-    </div>
+    <div class="hero-tag"><i class="fas fa-microphone-alt"></i> Insights &amp; Podcast juridique</div>
     <h1>Le podcast qui parle de<br><span>vos droits et vos libertés</span></h1>
     <p class="hero-subtitle">— tant que vous en avez encore.</p>
-    <div class="hero-platforms">
-      <span class="platform-soon"><i class="fas fa-clock" style="color:var(--rouge);margin-right:6px"></i>Bientôt disponible sur :</span>
-      <a href="#" class="platform-btn spotify"><i class="fab fa-spotify"></i> Spotify</a>
-      <a href="#" class="platform-btn apple"><i class="fab fa-apple"></i> Apple Podcasts</a>
-      <a href="#" class="platform-btn youtube"><i class="fab fa-youtube"></i> YouTube</a>
-      <a href="#" class="platform-btn deezer"><i class="fas fa-music"></i> Deezer</a>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">9</div><div class="lbl">Épisodes</div></div>
+      <div class="hero-stat"><div class="num">2</div><div class="lbl">Victoires commentées</div></div>
+      <div class="hero-stat"><div class="num">1</div><div class="lbl">Défaite analysée</div></div>
+      <div class="hero-stat"><div class="num">∞</div><div class="lbl">À venir</div></div>
     </div>
   </div>
 </section>
 
-<!-- ÉPISODES -->
-<section>
-  <div class="section-label"><i class="fas fa-headphones"></i> &nbsp;Épisodes</div>
-  <h2 class="section-title">Le droit expliqué,<br>sans filtre ni détour</h2>
-  <p class="section-intro">
-    Chaque épisode aborde un sujet juridique concret : vos droits face à l'État, à votre employeur, à vos créanciers, à la justice. Des cas réels, des réponses claires, une avocate qui ne mâche pas ses mots.
-  </p>
+<!-- CONTENU PRINCIPAL -->
+<section class="section">
 
-  <!-- ÉPISODE À LA UNE - PLACEHOLDER -->
-  <div class="featured-episode">
-    <div class="featured-img">
-      <div class="ep-number">01</div>
-      <div class="play-icon" onclick="alert('Épisode bientôt disponible !')">
-        <i class="fas fa-play"></i>
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('podcast', this)"><i class="fas fa-play-circle" style="margin-right:6px"></i>Épisodes</button>
+    <button class="tab-btn" onclick="switchTab('dossiers', this)"><i class="fas fa-gavel" style="margin-right:6px"></i>Décisions de justice</button>
+    <button class="tab-btn" onclick="switchTab('articles', this)"><i class="fas fa-newspaper" style="margin-right:6px"></i>Articles</button>
+  </div>
+
+  <!-- ═══════════════ TAB : ÉPISODES ═══════════════ -->
+  <div id="tab-podcast" class="tab-content active">
+
+    <!-- LECTEUR PRINCIPAL -->
+    <div class="player-container" id="main-player">
+      <video id="main-video" class="player-video" controls preload="metadata">
+        <source src="videos/ep1_video.mp4" type="video/mp4">
+      </video>
+      <div class="player-info">
+        <div class="player-ep-badge" id="player-badge"><i class="fas fa-microphone-alt"></i> Épisode 1</div>
+        <h2 class="player-title" id="player-title">Les prestataires de santé à domicile face aux indus</h2>
+        <p class="player-desc" id="player-desc">Me Belkacem expose la problématique des prestataires de santé dont le financement dépend d'une signature médicale annuelle, souvent difficile à obtenir. Elle souligne le risque financier majeur (les indus) et propose des conseils pratiques : anticipation, traçabilité écrite et information des patients.</p>
+        <div class="player-meta">
+          <span><i class="fas fa-clock"></i> <span id="player-duration">~10 min</span></span>
+          <span id="player-tags"></span>
+        </div>
       </div>
     </div>
-    <div class="featured-content">
-      <span class="ep-badge">Épisode à venir</span>
-      <h3>Peut-on vraiment tout perdre en cas de redressement fiscal ?</h3>
-      <p>
-        L'administration fiscale vous envoie un avis de vérification. Que se passe-t-il ensuite ? Quels sont vos droits, vos recours, vos limites ? Me Belkacem décortique la procédure de A à Z.
-      </p>
-      <div class="ep-meta">
-        <span><i class="fas fa-clock"></i> ~35 min</span>
-        <span><i class="fas fa-calendar"></i> Bientôt</span>
-        <span><i class="fas fa-tag"></i> Droit fiscal</span>
+
+    <!-- LISTE ÉPISODES -->
+    <div class="ep-list" id="ep-list">
+
+      <div class="ep-item active" onclick="playEp(this)" data-src="videos/ep1_video.mp4" data-ep="1" data-title="Les prestataires de santé à domicile face aux indus" data-desc="Me Belkacem expose la problématique des prestataires de santé dont le financement dépend d'une signature médicale annuelle. Elle souligne le risque financier des indus (art. L.133-4 CSS) et propose des conseils concrets : anticipation, traçabilité écrite et information des patients." data-duration="~10 min" data-tags="Droit de la santé,Sécurité sociale">
+        <div class="ep-item-num">01</div>
+        <div class="ep-item-info">
+          <div class="ep-item-title">Les prestataires de santé à domicile face aux indus</div>
+          <div class="ep-item-sub">
+            <span><i class="fas fa-clock"></i> ~10 min</span>
+            <span><i class="fas fa-tag"></i> Droit de la santé</span>
+          </div>
+        </div>
+        <span class="ep-item-badge badge-droit">Droit & Santé</span>
       </div>
-      <a href="#notify" class="listen-btn">
-        <i class="fas fa-bell"></i> Être notifié à la sortie
+
+      <div class="ep-item" onclick="playEp(this)" data-src="videos/ep2_video.mp4" data-ep="2" data-title="De l'acte et de ses matrices : ce que le plaideur ne voit pas" data-desc="Me Belkacem propose une réflexion sur la temporalité du droit des contrats à travers quatre matrices : pourparlers, formation, exécution et fin. Elle souligne l'importance de cibler précisément le moment juridique pour éviter des erreurs de qualification qui fragilisent les demandes devant le juge." data-duration="~11 min" data-tags="Droit des contrats,Stratégie judiciaire">
+        <div class="ep-item-num">02</div>
+        <div class="ep-item-info">
+          <div class="ep-item-title">De l'acte et de ses matrices : ce que le plaideur ne voit pas</div>
+          <div class="ep-item-sub">
+            <span><i class="fas fa-clock"></i> ~11 min</span>
+            <span><i class="fas fa-tag"></i> Droit des contrats</span>
+          </div>
+        </div>
+        <span class="ep-item-badge badge-droit">Stratégie</span>
+      </div>
+
+      <div class="ep-item" onclick="playEp(this)" data-src="videos/ep3_video.mp4" data-ep="3" data-title="Avocat mandataire sportif vs Agent FIFA : qui fait quoi ?" data-desc="Cet épisode confronte les cadres réglementaires d'un agent FIFA et d'une avocate mandataire sportive lors d'un transfert. Il souligne les différences en termes de rémunération et de déontologie, avec mention de l'arrêt CJUE du 16 juillet 2026 sur le plafonnement des commissions." data-duration="~9 min" data-tags="Droit du sport,Agent FIFA,Mandataire sportif">
+        <div class="ep-item-num">03</div>
+        <div class="ep-item-info">
+          <div class="ep-item-title">Avocat mandataire sportif vs Agent FIFA : qui fait quoi ?</div>
+          <div class="ep-item-sub">
+            <span><i class="fas fa-clock"></i> ~9 min</span>
+            <span><i class="fas fa-tag"></i> Droit du sport</span>
+          </div>
+        </div>
+        <span class="ep-item-badge badge-droit">Sport & Droit</span>
+      </div>
+
+      <div class="ep-item" onclick="playEp(this)" data-src="videos/ep4_video.mp4" data-ep="4" data-title="Vie privée à l'ère numérique : ce que les entreprises savent vraiment de vous" data-desc="Me Belkacem déconstruit l'idée reçue selon laquelle la vie privée sert à cacher des secrets — il s'agit avant tout de contrôle. Elle détaille les outils concrets du RGPD (droits d'accès, d'effacement, d'opposition) face aux data brokers, à la surveillance patronale et aux réseaux sociaux." data-duration="~8 min" data-tags="RGPD,Vie privée,Droit du travail">
+        <div class="ep-item-num">04</div>
+        <div class="ep-item-info">
+          <div class="ep-item-title">Vie privée à l'ère numérique : ce que les entreprises savent vraiment de vous</div>
+          <div class="ep-item-sub">
+            <span><i class="fas fa-clock"></i> ~8 min</span>
+            <span><i class="fas fa-tag"></i> RGPD & Vie privée</span>
+          </div>
+        </div>
+        <span class="ep-item-badge badge-droit">RGPD</span>
+      </div>
+
+      <div class="ep-item" onclick="playEp(this)" data-src="videos/ep5_video.mp4" data-ep="5" data-title="Rupture brutale : comment j'ai fait condamner un donneur d'ordre après 14 ans" data-desc="Me Belkacem relate une affaire gagnée : un fournisseur dont le contrat a été rompu sans préavis après 14 ans de relation commerciale. Sa stratégie gagnante reposait sur une demande de cotation prouvant que la rupture n'était pas prévisible, en application de l'article L.422-1 du Code de commerce." data-duration="~9 min" data-tags="Victoire,Droit commercial,Rupture brutale">
+        <div class="ep-item-num">05</div>
+        <div class="ep-item-info">
+          <div class="ep-item-title">Rupture brutale : comment j'ai fait condamner un donneur d'ordre après 14 ans</div>
+          <div class="ep-item-sub">
+            <span><i class="fas fa-clock"></i> ~9 min</span>
+            <span><i class="fas fa-tag"></i> ✅ Victoire — Droit commercial</span>
+          </div>
+        </div>
+        <span class="ep-item-badge badge-victoire">✅ Victoire</span>
+      </div>
+
+      <div class="ep-item" onclick="playEp(this)" data-src="videos/ep6_video.mp4" data-ep="6" data-title="Balle au centre : quand l'orgueil coûte plus cher que le procès" data-desc="Une affaire de bail commercial où les bailleurs ont refusé une transaction après une victoire en première instance. La Cour d'appel a infirmé le jugement, les laissant avec un titre contre une société insolvable et des frais considérables. Une leçon sur le coût de l'entêtement judiciaire." data-duration="~9 min" data-tags="Défaite,Bail commercial,Procédure civile">
+        <div class="ep-item-num">06</div>
+        <div class="ep-item-info">
+          <div class="ep-item-title">Balle au centre : quand l'orgueil coûte plus cher que le procès</div>
+          <div class="ep-item-sub">
+            <span><i class="fas fa-clock"></i> ~9 min</span>
+            <span><i class="fas fa-tag"></i> ❌ Défaite — Bail commercial</span>
+          </div>
+        </div>
+        <span class="ep-item-badge badge-defaite">❌ Défaite</span>
+      </div>
+
+      <div class="ep-item" onclick="playEp(this)" data-src="videos/ep7_video.mp4" data-ep="7" data-title="Saisie conservatoire : comment j'ai fait lever une saisie injuste" data-desc="Me Belkacem explique comment elle a obtenu la mainlevée d'une saisie de comptes bancaires en démontrant le manque de loyauté de la partie adverse lors de la requête initiale. Une leçon sur l'importance de la précision procédurale sur la vitesse d'action (art. L.511-1 CPCE)." data-duration="~10 min" data-tags="Victoire,Voies d'exécution,Saisie conservatoire">
+        <div class="ep-item-num">07</div>
+        <div class="ep-item-info">
+          <div class="ep-item-title">Saisie conservatoire : comment j'ai fait lever une saisie injuste</div>
+          <div class="ep-item-sub">
+            <span><i class="fas fa-clock"></i> ~10 min</span>
+            <span><i class="fas fa-tag"></i> ✅ Victoire — Voies d'exécution</span>
+          </div>
+        </div>
+        <span class="ep-item-badge badge-victoire">✅ Victoire</span>
+      </div>
+
+      <div class="ep-item" onclick="playEp(this)" data-src="videos/ep8_video.mp4" data-ep="8" data-title="3 ans de combat pour récupérer 2 300 € dus par l'État" data-desc="Me Belkacem relate le combat d'une étudiante en médecine non rémunérée pour ses vacations Covid par une caisse publique. Elle souligne l'asymétrie entre citoyens et administration : gagner un procès n'est que la première étape avant un long parcours d'exécution forcée." data-duration="~9 min" data-tags="Contentieux administratif,Droit de la santé,Exécution">
+        <div class="ep-item-num">08</div>
+        <div class="ep-item-info">
+          <div class="ep-item-title">3 ans de combat pour récupérer 2 300 € dus par l'État</div>
+          <div class="ep-item-sub">
+            <span><i class="fas fa-clock"></i> ~9 min</span>
+            <span><i class="fas fa-tag"></i> Contentieux administratif</span>
+          </div>
+        </div>
+        <span class="ep-item-badge badge-droit">Administratif</span>
+      </div>
+
+      <div class="ep-item" onclick="playEp(this)" data-src="videos/ep9_video.mp4" data-ep="9" data-title="Girondins de Bordeaux : autopsie juridique d'une chute en Régional 1" data-desc="Me Belkacem analyse les étapes juridiques ayant conduit à la relégation des Girondins de Bordeaux en Régional 1. Elle explique pourquoi les garanties financières tardives n'ont pas pu annuler les décisions de la DNCG et détaille les limites des recours devant le CNOSF et le juge administratif." data-duration="~6 min" data-tags="Droit du sport,DNCG,Girondins">
+        <div class="ep-item-num">09</div>
+        <div class="ep-item-info">
+          <div class="ep-item-title">Girondins de Bordeaux : autopsie juridique d'une chute en Régional 1</div>
+          <div class="ep-item-sub">
+            <span><i class="fas fa-clock"></i> ~6 min</span>
+            <span><i class="fas fa-tag"></i> Droit du sport</span>
+          </div>
+        </div>
+        <span class="ep-item-badge badge-droit">Sport</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ TAB : DOSSIERS ═══════════════ -->
+  <div id="tab-dossiers" class="tab-content">
+
+    <div style="margin-bottom:48px;">
+      <h3 style="font-size:1.1rem;color:var(--gris);font-weight:400;line-height:1.7;max-width:680px;">
+        Me Belkacem revient sur ses propres affaires — les victoires <em style="color:var(--vert)">et</em> les défaites. Parce que comprendre pourquoi on perd est souvent plus instructif que de savoir pourquoi on gagne.
+      </h3>
+    </div>
+
+    <!-- VICTOIRES -->
+    <div style="margin-bottom:48px;">
+      <div class="section-label" style="margin-bottom:24px;display:flex;align-items:center;gap:10px;"><span style="color:var(--vert)">✅</span> Victoires</div>
+      <div class="ep-list">
+
+        <div class="ep-item" onclick="switchTab('podcast', document.querySelector('.tab-btn')); setTimeout(()=>{ document.querySelector('[data-ep=\'5\']').click(); document.querySelector('[data-ep=\'5\']').scrollIntoView({behavior:'smooth'}); }, 100);">
+          <div class="ep-item-num" style="color:var(--vert);">05</div>
+          <div class="ep-item-info">
+            <div class="ep-item-title">Rupture brutale : 14 ans de relation commerciale rompue sans préavis</div>
+            <div class="ep-item-sub">
+              <span><i class="fas fa-clock"></i> ~9 min</span>
+              <span>Art. L.422-1 Code de commerce · Indemnisation perte de marge</span>
+            </div>
+          </div>
+          <span class="ep-item-badge badge-victoire">✅ Victoire</span>
+        </div>
+
+        <div class="ep-item" onclick="switchTab('podcast', document.querySelector('.tab-btn')); setTimeout(()=>{ document.querySelector('[data-ep=\'7\']').click(); document.querySelector('[data-ep=\'7\']').scrollIntoView({behavior:'smooth'}); }, 100);">
+          <div class="ep-item-num" style="color:var(--vert);">07</div>
+          <div class="ep-item-info">
+            <div class="ep-item-title">Mainlevée de saisie conservatoire : la déloyauté adverse retournée</div>
+            <div class="ep-item-sub">
+              <span><i class="fas fa-clock"></i> ~10 min</span>
+              <span>Art. L.511-1 CPCE · Procédure sur requête · Commissaire de justice</span>
+            </div>
+          </div>
+          <span class="ep-item-badge badge-victoire">✅ Victoire</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DÉFAITES -->
+    <div style="margin-bottom:48px;">
+      <div class="section-label" style="margin-bottom:24px;display:flex;align-items:center;gap:10px;"><span style="color:var(--rouge)">❌</span> Défaites — et ce qu'on en apprend</div>
+      <div class="ep-list">
+
+        <div class="ep-item" onclick="switchTab('podcast', document.querySelector('.tab-btn')); setTimeout(()=>{ document.querySelector('[data-ep=\'6\']').click(); document.querySelector('[data-ep=\'6\']').scrollIntoView({behavior:'smooth'}); }, 100);">
+          <div class="ep-item-num" style="color:var(--rouge);">06</div>
+          <div class="ep-item-info">
+            <div class="ep-item-title">Bail commercial : l'orgueil des bailleurs leur coûte leur jugement</div>
+            <div class="ep-item-sub">
+              <span><i class="fas fa-clock"></i> ~9 min</span>
+              <span>Bail commercial · Appel infirmatif · Société insolvable</span>
+            </div>
+          </div>
+          <span class="ep-item-badge badge-defaite">❌ Défaite</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- HOST DANS DOSSIERS -->
+    <div class="host-section">
+      <img src="images/belkacem-photo1-costume-noir.jpg" alt="Me Mounia Belkacem" class="host-photo">
+      <div class="host-info">
+        <h3>Me Mounia Belkacem</h3>
+        <div class="host-title">Avocate au Barreau de Paris · Fondatrice Root & Seed Legal</div>
+        <p>
+          "J'ai choisi de parler de mes dossiers perdus autant que de mes victoires. En 15 ans de barreau, j'ai compris que la défaite bien analysée vaut souvent plus qu'un succès mal compris. Ce podcast est un retour d'expérience honnête — pas un catalogue de performances."
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════ TAB : ARTICLES ═══════════════ -->
+  <div id="tab-articles" class="tab-content">
+    <div class="articles-grid">
+
+      <a href="https://www.legavox.fr/blog/rootseedlegal/" target="_blank" class="article-card">
+        <div class="article-icon">⚖️</div>
+        <div class="article-body">
+          <div class="article-cat">Droit des Affaires</div>
+          <h3>Structurer son entreprise en 2025 : les bonnes pratiques juridiques</h3>
+          <p>Choix de la forme sociale, pactes d'associés, gouvernance et protection des fondateurs : les clés d'une structuration réussie.</p>
+          <span class="article-link">Lire sur Legavox <i class="fas fa-arrow-right"></i></span>
+        </div>
       </a>
-    </div>
-  </div>
 
-  <!-- GRILLE ÉPISODES À VENIR -->
-  <div class="episodes-grid">
+      <a href="#" class="article-card">
+        <div class="article-icon">🛡️</div>
+        <div class="article-body">
+          <div class="article-cat">RGPD & Cybersécurité</div>
+          <h3>Violations de données : obligations légales et stratégie de réponse</h3>
+          <p>En cas d'incident de sécurité, vos obligations envers la CNIL et les personnes concernées. Comment réagir rapidement et efficacement.</p>
+          <span class="article-link">Bientôt <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
 
-    <div class="episode-card">
-      <div class="episode-card-top">
-        <div class="ep-num-bg">02</div>
-        <div class="ep-play-small" onclick="alert('Épisode bientôt disponible !')"><i class="fas fa-play"></i></div>
-        <div class="ep-info-top">
-          <div class="ep-num">Épisode 02</div>
-          <div class="ep-duration"><i class="fas fa-clock" style="margin-right:4px;color:var(--rouge)"></i>~40 min</div>
+      <a href="#" class="article-card">
+        <div class="article-icon">🔬</div>
+        <div class="article-body">
+          <div class="article-cat">IA & Bioéthique</div>
+          <h3>IA dans le secteur médical : le cadre juridique en mutation</h3>
+          <p>AI Act européen, responsabilité des algorithmes, données de santé : décryptage des enjeux réglementaires pour les acteurs de la MedTech.</p>
+          <span class="article-link">Bientôt <i class="fas fa-arrow-right"></i></span>
         </div>
-      </div>
-      <div class="episode-card-body">
-        <h3>Licenciement abusif : comment retourner la situation en votre faveur</h3>
-        <p>Votre employeur vous licencie. Vous avez 12 mois pour agir. Mais par où commencer ? Quelles preuves récolter ? Quel tribunal saisir ? Tout ce que vous devez savoir.</p>
-        <div class="ep-tags">
-          <span class="ep-tag">Droit du travail</span>
-          <span class="ep-tag">Prud'hommes</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="episode-card">
-      <div class="episode-card-top">
-        <div class="ep-num-bg">03</div>
-        <div class="ep-play-small" onclick="alert('Épisode bientôt disponible !')"><i class="fas fa-play"></i></div>
-        <div class="ep-info-top">
-          <div class="ep-num">Épisode 03</div>
-          <div class="ep-duration"><i class="fas fa-clock" style="margin-right:4px;color:var(--rouge)"></i>~30 min</div>
-        </div>
-      </div>
-      <div class="episode-card-body">
-        <h3>Garde à vue : vos droits minute par minute</h3>
-        <p>Convocation, arrestation, garde à vue. Que pouvez-vous dire ? Que devez-vous taire ? Quand pouvez-vous voir un avocat ? Le guide de survie juridique.</p>
-        <div class="ep-tags">
-          <span class="ep-tag">Droit pénal</span>
-          <span class="ep-tag">Libertés</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="episode-card">
-      <div class="episode-card-top">
-        <div class="ep-num-bg">04</div>
-        <div class="ep-play-small" onclick="alert('Épisode bientôt disponible !')"><i class="fas fa-play"></i></div>
-        <div class="ep-info-top">
-          <div class="ep-num">Épisode 04</div>
-          <div class="ep-duration"><i class="fas fa-clock" style="margin-right:4px;color:var(--rouge)"></i>~45 min</div>
-        </div>
-      </div>
-      <div class="episode-card-body">
-        <h3>Vie privée à l'ère numérique : ce que les entreprises savent de vous</h3>
-        <p>RGPD, data brokers, surveillance patronale, réseaux sociaux. Vos données sont-elles vraiment protégées ? Comment exercer vos droits d'accès et d'effacement.</p>
-        <div class="ep-tags">
-          <span class="ep-tag">Données personnelles</span>
-          <span class="ep-tag">RGPD</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="episode-card">
-      <div class="episode-card-top">
-        <div class="ep-num-bg">05</div>
-        <div class="ep-play-small" onclick="alert('Épisode bientôt disponible !')"><i class="fas fa-play"></i></div>
-        <div class="ep-info-top">
-          <div class="ep-num">Épisode 05</div>
-          <div class="ep-duration"><i class="fas fa-clock" style="margin-right:4px;color:var(--rouge)"></i>~38 min</div>
-        </div>
-      </div>
-      <div class="episode-card-body">
-        <h3>Divorce conflictuel : préserver ses biens, ses enfants, sa santé mentale</h3>
-        <p>Séparation de biens, résidence alternée, pension alimentaire, harcèlement de l'ex-conjoint. Les vraies questions juridiques du divorce amiable ou judiciaire.</p>
-        <div class="ep-tags">
-          <span class="ep-tag">Droit de la famille</span>
-          <span class="ep-tag">Divorce</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="episode-card">
-      <div class="episode-card-top">
-        <div class="ep-num-bg">06</div>
-        <div class="ep-play-small" onclick="alert('Épisode bientôt disponible !')"><i class="fas fa-play"></i></div>
-        <div class="ep-info-top">
-          <div class="ep-num">Épisode 06</div>
-          <div class="ep-duration"><i class="fas fa-clock" style="margin-right:4px;color:var(--rouge)"></i>~42 min</div>
-        </div>
-      </div>
-      <div class="episode-card-body">
-        <h3>Créer une société : les pièges que personne ne vous dit</h3>
-        <p>SARL, SAS, SASU, holding. Responsabilité personnelle du dirigeant, abus de biens sociaux, rémunération optimale, associés qui partent en guerre. Ce que les experts-comptables oublient de vous dire.</p>
-        <div class="ep-tags">
-          <span class="ep-tag">Droit des affaires</span>
-          <span class="ep-tag">Création d'entreprise</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="episode-card">
-      <div class="episode-card-top">
-        <div class="ep-num-bg">07</div>
-        <div class="ep-play-small" onclick="alert('Épisode bientôt disponible !')"><i class="fas fa-play"></i></div>
-        <div class="ep-info-top">
-          <div class="ep-num">Épisode 07</div>
-          <div class="ep-duration"><i class="fas fa-clock" style="margin-right:4px;color:var(--rouge)"></i>~35 min</div>
-        </div>
-      </div>
-      <div class="episode-card-body">
-        <h3>Loyer impayé, expulsion, squatteurs : le droit immobilier sans fard</h3>
-        <p>Bailleur ou locataire, vos droits ne sont pas les mêmes. Procédure d'expulsion, délais de grâce, squatteurs, caution solidaire : ce que dit vraiment la loi.</p>
-        <div class="ep-tags">
-          <span class="ep-tag">Droit immobilier</span>
-          <span class="ep-tag">Baux</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- DÉCISIONS DE JUSTICE -->
-  <div style="margin-top:80px;">
-    <div class="section-label"><i class="fas fa-gavel"></i> &nbsp;Décisions de justice</div>
-    <h2 class="section-title">Les dossiers — gagnés <span style="color:var(--rouge)">et perdus</span></h2>
-    <p class="section-intro">
-      Me Belkacem commente ses propres affaires — les victoires, mais aussi les défaites. Parce que comprendre pourquoi on perd est souvent plus instructif que de savoir pourquoi on gagne.
-    </p>
-
-    <div class="episodes-grid">
-
-      <div class="episode-card" style="border-left:3px solid #34d399;">
-        <div class="episode-card-top" style="background:linear-gradient(135deg,#021209,#041a0e);">
-          <div class="ep-num-bg" style="color:rgba(52,211,153,0.07);">✓</div>
-          <div class="ep-play-small" style="background:rgba(52,211,153,0.12);border-color:rgba(52,211,153,0.3);color:#34d399;" onclick="alert('Épisode bientôt disponible !')"><i class="fas fa-play"></i></div>
-          <div class="ep-info-top">
-            <div class="ep-num" style="color:#34d399;">✅ Victoire</div>
-            <div class="ep-duration"><i class="fas fa-clock" style="margin-right:4px;color:#34d399"></i>À venir</div>
-          </div>
-        </div>
-        <div class="episode-card-body">
-          <h3>Un dossier gagné — bientôt commenté</h3>
-          <p>Me Belkacem revient sur une affaire marquante : les faits, la stratégie, les arguments qui ont fait la différence, et ce que vous pouvez en retenir.</p>
-          <div class="ep-tags">
-            <span class="ep-tag" style="color:#34d399;border-color:rgba(52,211,153,0.2);">Victoire</span>
-            <span class="ep-tag">À venir</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="episode-card" style="border-left:3px solid var(--rouge);">
-        <div class="episode-card-top" style="background:linear-gradient(135deg,#120202,#1e0404);">
-          <div class="ep-num-bg" style="color:rgba(255,49,49,0.07);">✗</div>
-          <div class="ep-play-small" onclick="alert('Épisode bientôt disponible !')"><i class="fas fa-play"></i></div>
-          <div class="ep-info-top">
-            <div class="ep-num" style="color:var(--rouge);">❌ Défaite</div>
-            <div class="ep-duration"><i class="fas fa-clock" style="margin-right:4px;color:var(--rouge)"></i>À venir</div>
-          </div>
-        </div>
-        <div class="episode-card-body">
-          <h3>Un dossier perdu — et les leçons tirées</h3>
-          <p>Comprendre pourquoi on perd est souvent plus précieux que la victoire. Me Belkacem revient sur une affaire difficile avec honnêteté et lucidité.</p>
-          <div class="ep-tags">
-            <span class="ep-tag" style="color:var(--rouge);border-color:rgba(255,49,49,0.2);">Défaite</span>
-            <span class="ep-tag">À venir</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="episode-card" style="border-left:3px solid #fbbf24;">
-        <div class="episode-card-top" style="background:linear-gradient(135deg,#120e01,#1e1502);">
-          <div class="ep-num-bg" style="color:rgba(251,191,36,0.07);">⚖</div>
-          <div class="ep-play-small" style="background:rgba(251,191,36,0.12);border-color:rgba(251,191,36,0.3);color:#fbbf24;" onclick="alert('Épisode bientôt disponible !')"><i class="fas fa-play"></i></div>
-          <div class="ep-info-top">
-            <div class="ep-num" style="color:#fbbf24;">⚖️ Analyse</div>
-            <div class="ep-duration"><i class="fas fa-clock" style="margin-right:4px;color:#fbbf24"></i>À venir</div>
-          </div>
-        </div>
-        <div class="episode-card-body">
-          <h3>Une décision de justice commentée</h3>
-          <p>Une décision récente de la Cour de cassation ou d'une juridiction du fond, décryptée pour comprendre son impact concret sur vos droits quotidiens.</p>
-          <div class="ep-tags">
-            <span class="ep-tag" style="color:#fbbf24;border-color:rgba(251,191,36,0.2);">Jurisprudence</span>
-            <span class="ep-tag">À venir</span>
-          </div>
-        </div>
-      </div>
+      </a>
 
     </div>
-  </div>
 
-  <!-- HÔTE -->
-  <div class="host-section">
-    <img src="images/belkacem-photo1-costume-noir.jpg" alt="Me Mounia Belkacem" class="host-photo">
-    <div class="host-info">
-      <h3>Me Mounia Belkacem</h3>
-      <div class="host-title">Avocate au Barreau de Paris · Fondatrice Root & Seed Legal</div>
-      <p>
-        Juriste de terrain depuis plus de 15 ans, Me Belkacem a choisi ce podcast pour une raison simple : trop de gens subissent des injustices par ignorance de leurs droits. Elle ne prétend pas tout simplifier — le droit est complexe. Mais elle pense que chacun mérite de comprendre les règles du jeu. Tant qu'il en reste.
-      </p>
+    <!-- NOTIFY DANS ARTICLES -->
+    <div class="notify-box" id="notify" style="margin-top:48px;">
+      <div class="section-label" style="margin-bottom:12px;"><i class="fas fa-bell"></i> &nbsp;Alertes</div>
+      <h3>Nouvel article ou épisode ?</h3>
+      <p>Laissez votre email pour être notifié dès qu'un nouveau contenu est publié.</p>
+      <form class="notify-form" onsubmit="handleNotify(event)">
+        <input type="email" id="notify-email" placeholder="votre@email.fr" required>
+        <button type="submit"><i class="fas fa-bell"></i> &nbsp;Me notifier</button>
+      </form>
+      <p id="notify-msg" style="margin-top:16px;color:var(--vert);font-size:0.85rem;display:none"></p>
     </div>
-  </div>
-
-  <!-- NOTIFICATION -->
-  <div class="coming-soon-section" id="notify">
-    <div class="section-label" style="margin-bottom:16px"><i class="fas fa-bell"></i> &nbsp;Alertes sorties</div>
-    <h3>Soyez notifié dès le premier épisode</h3>
-    <p>Le podcast est en production. Laissez votre email pour recevoir une notification lors de chaque nouvelle sortie.</p>
-    <form class="notify-form" onsubmit="handleNotify(event)">
-      <input type="email" id="notify-email" placeholder="votre@email.fr" required>
-      <button type="submit"><i class="fas fa-bell"></i> &nbsp;Me notifier</button>
-    </form>
-    <p id="notify-msg" style="margin-top:16px;color:var(--rouge);font-size:0.85rem;display:none"></p>
   </div>
 
 </section>
@@ -613,7 +515,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Root <span>&</span> Seed Legal</div>
-  <nav>
+  <nav class="footer-links">
     <a href="index.html">Accueil</a>
     <a href="index.html#contact">Contact</a>
     <a href="mentions-legales.html">Mentions légales</a>
@@ -629,18 +531,56 @@
     document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 50)
   })
 
-  // Notification form
+  // Tabs
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'))
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'))
+    document.getElementById('tab-' + name).classList.add('active')
+    if (btn) btn.classList.add('active')
+    else {
+      const btns = document.querySelectorAll('.tab-btn')
+      const map = { podcast: 0, dossiers: 1, articles: 2 }
+      btns[map[name]]?.classList.add('active')
+    }
+  }
+
+  // Lecteur vidéo
+  function playEp(el) {
+    const video = document.getElementById('main-video')
+    const src = el.dataset.src
+    const ep = el.dataset.ep
+    const title = el.dataset.title
+    const desc = el.dataset.desc
+    const duration = el.dataset.duration
+    const tags = el.dataset.tags ? el.dataset.tags.split(',') : []
+
+    // Mettre à jour lecteur
+    video.src = src
+    video.load()
+    video.play()
+
+    // Mettre à jour infos
+    document.getElementById('player-badge').innerHTML = '<i class="fas fa-microphone-alt"></i> Épisode ' + ep
+    document.getElementById('player-title').textContent = title
+    document.getElementById('player-desc').textContent = desc
+    document.getElementById('player-duration').textContent = duration
+    document.getElementById('player-tags').innerHTML = tags.map(t => '<span class="ep-tag" style="margin-left:8px">' + t + '</span>').join('')
+
+    // Scroll vers le lecteur
+    document.getElementById('main-player').scrollIntoView({ behavior: 'smooth', block: 'start' })
+
+    // Active class sur la liste
+    document.querySelectorAll('.ep-item').forEach(i => i.classList.remove('active'))
+    el.classList.add('active')
+  }
+
+  // Notification
   function handleNotify(e) {
     e.preventDefault()
-    const email = document.getElementById('notify-email').value
     const msg = document.getElementById('notify-msg')
     msg.style.display = 'block'
-    msg.style.color = 'var(--rouge)'
-    msg.textContent = '✓ Merci ! Vous serez notifié(e) dès la sortie du premier épisode.'
+    msg.textContent = '✓ Merci ! Vous serez notifié(e) dès la prochaine publication.'
     document.getElementById('notify-email').value = ''
-
-    // Ici on pourrait envoyer l'email à une API
-    // fetch('/api/podcast-notify', { method: 'POST', body: JSON.stringify({ email }) })
   }
 </script>
 
