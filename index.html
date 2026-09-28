@@ -588,8 +588,8 @@
 
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
 
-      .lexibot-header { grid-template-columns: 1fr; gap: 2.5rem; }
-      .lexibot-features-grid { grid-template-columns: repeat(2, 1fr); }
+      .moonIA-header { grid-template-columns: 1fr; gap: 2.5rem; }
+      .moonIA-features-grid { grid-template-columns: repeat(2, 1fr); }
 
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .about-inner { grid-template-columns: 1fr; gap: 3rem; }
@@ -607,8 +607,8 @@
 
       nav { padding: 0 4%; }
 
-      .lexibot-features-grid { grid-template-columns: 1fr; }
-      .lexibot-cta-row { flex-direction: column; align-items: flex-start; }
+      .moonIA-features-grid { grid-template-columns: 1fr; }
+      .moonIA-cta-row { flex-direction: column; align-items: flex-start; }
 
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
@@ -649,8 +649,8 @@
     .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* ===== LEXIA — SECTEURS ANIMÉS ===== */
-    .lexibot-sectors {
+    /* ===== MOON-IA — SECTEURS ANIMÉS ===== */
+    .moonIA-sectors {
       position: relative;
       overflow: hidden;
       min-height: 320px;
@@ -753,15 +753,15 @@
     .lx-strip-highlight strong { color: #8899ff; }
 
 
-    /* ===== LEXIA SECTION ===== */
-    .lexibot-section {
+    /* ===== MOON-IA SECTION ===== */
+    .moonIA-section {
       background: linear-gradient(160deg, #0a0a0a 0%, #111118 50%, #0a0a0a 100%);
       border-top: 1px solid var(--noir-border);
       border-bottom: 1px solid var(--noir-border);
       position: relative;
       overflow: hidden;
     }
-    .lexibot-section::before {
+    .moonIA-section::before {
       content: '';
       position: absolute;
       top: -200px; right: -200px;
@@ -769,19 +769,19 @@
       background: radial-gradient(circle, rgba(80,100,255,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
-    .lexibot-inner {
+    .moonIA-inner {
       max-width: 1200px;
       margin: 0 auto;
     }
     /* 2-column header: text left, visual right */
-    .lexibot-header {
+    .moonIA-header {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: center;
       margin-bottom: 4rem;
     }
-    .lexibot-badge {
+    .moonIA-badge {
       display: inline-block;
       background: rgba(80,100,255,0.12);
       border: 1px solid rgba(80,100,255,0.3);
@@ -793,7 +793,7 @@
       border-radius: 2px;
       margin-bottom: 1.5rem;
     }
-    .lexibot-title {
+    .moonIA-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.2rem, 3.5vw, 3.2rem);
       font-weight: 600;
@@ -801,25 +801,25 @@
       line-height: 1.15;
       margin-bottom: 1.5rem;
     }
-    .lexibot-title span {
+    .moonIA-title span {
       color: #8899ff;
       font-style: italic;
     }
-    .lexibot-desc {
+    .moonIA-desc {
       font-size: 0.95rem;
       color: var(--gris);
       line-height: 1.8;
       margin-bottom: 2rem;
       max-width: 480px;
     }
-    .lexibot-quote {
+    .moonIA-quote {
       border-left: 3px solid #8899ff;
       padding: 1rem 1.5rem;
       background: rgba(80,100,255,0.05);
       border-radius: 0 4px 4px 0;
       margin-bottom: 2.5rem;
     }
-    .lexibot-quote blockquote {
+    .moonIA-quote blockquote {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.1rem;
       font-style: italic;
@@ -827,20 +827,20 @@
       line-height: 1.6;
       margin: 0 0 0.6rem 0;
     }
-    .lexibot-quote cite {
+    .moonIA-quote cite {
       font-size: 0.72rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #8899ff;
       font-style: normal;
     }
-    .lexibot-cta-row {
+    .moonIA-cta-row {
       display: flex;
       align-items: center;
       gap: 1.5rem;
       flex-wrap: wrap;
     }
-    .btn-lexibot {
+    .btn-moonIA {
       display: inline-block;
       background: linear-gradient(135deg, #5064ff 0%, #7888ff 100%);
       color: #fff;
@@ -855,37 +855,37 @@
       text-decoration: none;
       box-shadow: 0 4px 20px rgba(80,100,255,0.3);
     }
-    .btn-lexibot:hover {
+    .btn-moonIA:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(80,100,255,0.5);
     }
-    .btn-lexibot-outline {
+    .btn-moonIA-outline {
       background: transparent !important;
       border: 2px solid #7888ff;
       color: #8899ff;
       box-shadow: none;
     }
-    .btn-lexibot-outline:hover {
+    .btn-moonIA-outline:hover {
       background: rgba(80,100,255,0.15) !important;
       color: #fff;
       box-shadow: 0 4px 16px rgba(80,100,255,0.25);
     }
-    .lexibot-price {
+    .moonIA-price {
       font-size: 0.82rem;
       color: var(--gris);
     }
-    .lexibot-price strong {
+    .moonIA-price strong {
       color: #8899ff;
     }
     /* Visual: chat window mockup */
-    .lexibot-visual {
+    .moonIA-visual {
       background: #0e0e18;
       border: 1px solid rgba(80,100,255,0.2);
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(80,100,255,0.1);
     }
-    .lexibot-screen-bar {
+    .moonIA-screen-bar {
       background: #13131f;
       padding: 12px 16px;
       display: flex;
@@ -893,33 +893,33 @@
       gap: 8px;
       border-bottom: 1px solid rgba(80,100,255,0.15);
     }
-    .lexibot-dot {
+    .moonIA-dot {
       width: 12px; height: 12px;
       border-radius: 50%;
       display: inline-block;
     }
-    .lexibot-screen-label {
+    .moonIA-screen-label {
       font-size: 0.72rem;
       color: rgba(255,255,255,0.35);
       letter-spacing: 0.08em;
       margin-left: 6px;
     }
-    .lexibot-chat {
+    .moonIA-chat {
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
       min-height: 280px;
     }
-    .lexibot-msg {
+    .moonIA-msg {
       display: flex;
       gap: 0.8rem;
       align-items: flex-start;
     }
-    .lexibot-msg.user {
+    .moonIA-msg.user {
       flex-direction: row-reverse;
     }
-    .lexibot-avatar {
+    .moonIA-avatar {
       width: 36px; height: 36px;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
@@ -927,7 +927,7 @@
       flex-shrink: 0;
       border: 1px solid rgba(255,255,255,0.06);
     }
-    .lexibot-bubble {
+    .moonIA-bubble {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.07);
       border-radius: 8px;
@@ -937,45 +937,45 @@
       line-height: 1.6;
       max-width: 80%;
     }
-    .lexibot-msg.bot .lexibot-bubble {
+    .moonIA-msg.bot .moonIA-bubble {
       background: rgba(80,100,255,0.08);
       border-color: rgba(80,100,255,0.18);
     }
-    .lexibot-msg.user .lexibot-bubble {
+    .moonIA-msg.user .moonIA-bubble {
       border-radius: 8px 2px 8px 8px;
     }
     /* Features grid: 3 columns */
-    .lexibot-features-grid {
+    .moonIA-features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-top: 1rem;
     }
-    .lexibot-feature {
+    .moonIA-feature {
       background: var(--noir-card);
       border: 1px solid var(--noir-border);
       border-radius: 4px;
       padding: 1.8rem 1.5rem;
       transition: var(--transition);
     }
-    .lexibot-feature:hover {
+    .moonIA-feature:hover {
       border-color: rgba(80,100,255,0.3);
       transform: translateY(-4px);
       box-shadow: 0 12px 30px rgba(80,100,255,0.08);
     }
-    .lexibot-feature-icon {
+    .moonIA-feature-icon {
       font-size: 1.8rem;
       display: block;
       margin-bottom: 1rem;
     }
-    .lexibot-feature h4 {
+    .moonIA-feature h4 {
       font-size: 0.92rem;
       color: var(--blanc);
       margin-bottom: 0.5rem;
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
     }
-    .lexibot-feature p {
+    .moonIA-feature p {
       font-size: 0.8rem;
       color: var(--gris);
       line-height: 1.6;
@@ -1883,9 +1883,9 @@
     }
 
     /* ══════════════════════════════════════════════════
-       LEXIA FOUNDER TAG
+       MOON-IA FOUNDER TAG
     ══════════════════════════════════════════════════ */
-    .lexibot-founder-tag {
+    .moonIA-founder-tag {
       display: flex;
       align-items: flex-start;
       gap: .75rem;
@@ -1895,9 +1895,9 @@
       padding: .85rem 1.1rem;
       margin: .75rem 0 1rem;
     }
-    .lexibot-founder-line { font-size: .82rem; color: #bbb; line-height: 1.6; }
-    .lexibot-founder-line strong { color: #8899ff; font-size: .88rem; }
-    .lexibot-founder-line small { font-size: .75rem; color: #888; }
+    .moonIA-founder-line { font-size: .82rem; color: #bbb; line-height: 1.6; }
+    .moonIA-founder-line strong { color: #8899ff; font-size: .88rem; }
+    .moonIA-founder-line small { font-size: .75rem; color: #888; }
 
     /* ══════════════════════════════════════════════════
        RESPONSIVE NOUVELLES SECTIONS (patch3)
@@ -1914,7 +1914,7 @@
 
   
     /* ══════════════════════════════════════════════════
-       CORRECTIF MOBILE LEXIA — PRIORITÉ MAXIMALE
+       CORRECTIF MOBILE MOON-IA — PRIORITÉ MAXIMALE
        (block en dernier dans la cascade CSS = gagne toujours)
     ══════════════════════════════════════════════════ */
 
@@ -1927,8 +1927,8 @@
     /* ─── MOBILE : < 1025px ─── */
     @media screen and (max-width: 1024px) {
 
-      /* Header LexIA : 2 cols → 1 col */
-      .lexibot-header {
+      /* Header Moon-IA : 2 cols → 1 col */
+      .moonIA-header {
         display: flex !important;
         flex-direction: column !important;
         gap: 2rem !important;
@@ -1937,14 +1937,14 @@
       }
 
       /* Visuel chat : pleine largeur */
-      .lexibot-visual {
+      .moonIA-visual {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
       }
 
       /* Features grille : 2 cols */
-      .lexibot-features-grid {
+      .moonIA-features-grid {
         grid-template-columns: 1fr 1fr !important;
         gap: 1rem !important;
       }
@@ -1961,21 +1961,21 @@
       }
 
       /* Inner container : pleine largeur */
-      .lexibot-inner {
+      .moonIA-inner {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
       }
 
       /* CTA row : colonne */
-      .lexibot-cta-row {
+      .moonIA-cta-row {
         flex-direction: column !important;
         align-items: flex-start !important;
         gap: 1rem !important;
       }
 
-      /* Boutons LexIA : pleine largeur */
-      .btn-lexibot {
+      /* Boutons Moon-IA : pleine largeur */
+      .btn-moonIA {
         width: 100% !important;
         text-align: center !important;
         box-sizing: border-box !important;
@@ -1985,7 +1985,7 @@
     /* ─── MOBILE : < 769px ─── */
     @media screen and (max-width: 768px) {
 
-      .lexibot-features-grid {
+      .moonIA-features-grid {
         grid-template-columns: 1fr !important;
         gap: 0.8rem !important;
       }
@@ -2000,27 +2000,27 @@
         gap: 0.6rem !important;
       }
 
-      .lexibot-title {
+      .moonIA-title {
         font-size: clamp(1.8rem, 6vw, 2.8rem) !important;
       }
 
-      .lexibot-desc {
+      .moonIA-desc {
         font-size: 0.85rem !important;
         max-width: 100% !important;
       }
 
-      .lexibot-chat {
+      .moonIA-chat {
         padding: 1rem !important;
         min-height: 200px !important;
       }
 
-      .lexibot-bubble {
+      .moonIA-bubble {
         font-size: 0.78rem !important;
         padding: 0.7rem 0.9rem !important;
         max-width: 85% !important;
       }
 
-      .lexibot-avatar {
+      .moonIA-avatar {
         width: 28px !important;
         height: 28px !important;
         font-size: 0.85rem !important;
@@ -2043,11 +2043,11 @@
         display: none !important;
       }
 
-      .lexibot-quote {
+      .moonIA-quote {
         padding: 0.7rem 1rem !important;
       }
 
-      .lexibot-quote blockquote {
+      .moonIA-quote blockquote {
         font-size: 0.9rem !important;
       }
     }
@@ -2059,15 +2059,15 @@
         grid-template-columns: repeat(2, 1fr) !important;
       }
 
-      .lexibot-title {
+      .moonIA-title {
         font-size: clamp(1.6rem, 7.5vw, 2.2rem) !important;
       }
 
-      .lexibot-section {
+      .moonIA-section {
         padding: 50px 4% !important;
       }
 
-      .btn-lexibot {
+      .btn-moonIA {
         padding: 12px 20px !important;
         font-size: 0.75rem !important;
       }
@@ -2088,7 +2088,7 @@
     <a href="mandataire-sportif-football.html">Mandataire sportif</a>
     <a href="#uhnwi">Clients Privés</a>
     <a href="podcast.html">Podcast</a>
-    <a href="#lexibot">LexIA</a>
+    <a href="#moonIA">Moon-IA</a>
     <a href="#urgence" style="color:#ff7777;font-weight:700">🚨 Urgence</a>
     <a href="#clients">Nos Clients</a>
     <a href="#blog">Insights &amp; Podcast</a>
@@ -2108,7 +2108,7 @@
   <a href="mandataire-sportif-football.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Mandataire sportif</a>
   <a href="#uhnwi" onclick="document.getElementById('mobileMenu').classList.remove('open')">Clients Privés</a>
   <a href="podcast.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Podcast</a>
-  <a href="#lexibot" onclick="document.getElementById('mobileMenu').classList.remove('open')">LexIA</a>
+  <a href="#moonIA" onclick="document.getElementById('mobileMenu').classList.remove('open')">Moon-IA</a>
   <a href="#blog" onclick="document.getElementById('mobileMenu').classList.remove('open')">Insights &amp; Podcast</a>
   <a href="espace-client.html" target="_blank" onclick="document.getElementById('mobileMenu').classList.remove('open')">Espace Client</a>
   <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
@@ -2341,117 +2341,117 @@
   </div>
 </section>
 
-<!-- LEXIA -->
-<section class="lexibot-section" id="lexibot">
-  <div class="lexibot-inner">
+<!-- MOON-IA -->
+<section class="moonIA-section" id="moonIA">
+  <div class="moonIA-inner">
 
     <!-- HEADER 2 COL -->
-    <div class="lexibot-header">
+    <div class="moonIA-header">
       <!-- Texte gauche -->
       <div class="fade-in">
-        <span class="lexibot-badge">✦ Créé &amp; conçu par Me Mounia Belkacem</span>
-        <h2 class="lexibot-title">Le premier avocat<br><span>augmenté</span><br>inscrit au barreau</h2>
-        <div class="lexibot-founder-tag">
-          <img src="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAkAAAAQACAYAAAAJEuZgAAAQAElEQVR4Aez9B6PkxpktCJ4DXFNV9KTUPW/79Zjdn727Y96bN90ttdRyLUN5UoakJEokRVGU6ETRs1i+rs/EnvMFAggggcy8t4oU++3EjROf/8IAmYgK3KqqfvbUt5qnf..." alt="" class="lexibot-founder-avatar-tiny" style="display:none">
-          <span class="lexibot-founder-line">
+        <span class="moonIA-badge">✦ Créé &amp; conçu par Me Mounia Belkacem</span>
+        <h2 class="moonIA-title">Le premier avocat<br><span>augmenté</span><br>inscrit au barreau</h2>
+        <div class="moonIA-founder-tag">
+          <img src="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAkAAAAQACAYAAAAJEuZgAAAQAElEQVR4Aez9B6PkxpktCJ4DXFNV9KTUPW/79Zjdn727Y96bN90ttdRyLUN5UoakJEokRVGU6ETRs1i+rs/EnvMFAggggcy8t4oU++3EjROf/8IAmYgK3KqqfvbUt5qnf..." alt="" class="moonIA-founder-avatar-tiny" style="display:none">
+          <span class="moonIA-founder-line">
             🏛️ <strong>Une création exclusive de Root &amp; Seed Legal</strong><br>
-            <small>Conçu, développé et détenu par Me Mounia Belkacem, avocate fondatrice — LexIA est une innovation propriétaire du cabinet, pas un produit tiers.</small>
+            <small>Conçu, développé et détenu par Me Mounia Belkacem, avocate fondatrice — Moon-IA est une innovation propriétaire du cabinet, pas un produit tiers.</small>
           </span>
         </div>
-        <p class="lexibot-desc">
+        <p class="moonIA-desc">
           De la boulangerie artisanale au groupe pétrolier international,
           de la clinique privée à la compagnie aéronautique —
-          <strong style="color:#8899ff">LexIA</strong> rend le droit accessible,
+          <strong style="color:#8899ff">Moon-IA</strong> rend le droit accessible,
           instantané et stratégique pour <em>toutes</em> les structures.
         </p>
-        <div class="lexibot-quote">
+        <div class="moonIA-quote">
           <blockquote>« Steve Jobs a changé nos vies avec le Mac. Zuckerberg avec Facebook.
-          Jeff Bezos avec Amazon. Demain, chacun aura son avocat dans la poche : LexIA. »</blockquote>
-          <cite>— Me Mounia Belkacem, avocate fondatrice &amp; créatrice de LexIA · Root &amp; Seed Legal</cite>
+          Jeff Bezos avec Amazon. Demain, chacun aura son avocat dans la poche : Moon-IA. »</blockquote>
+          <cite>— Me Mounia Belkacem, avocate fondatrice &amp; créatrice de Moon-IA · Root &amp; Seed Legal</cite>
         </div>
-        <div class="lexibot-cta-row">
-          <a href="https://fce43770-0c98-491e-af52-cc1a03bd9bcd.vip.gensparksite.com" target="_blank" class="btn-lexibot" title="7 jours gratuits · CB requise · Aucun débit pendant le trial">Accéder à LexIA →</a>
-          <a href="https://fce43770-0c98-491e-af52-cc1a03bd9bcd.vip.gensparksite.com" target="_blank" class="btn-lexibot btn-lexibot-outline">Se connecter</a>
-          <span class="lexibot-price">🎁 7 jours gratuits · puis à partir de <strong>29 € HT/mois</strong></span>
+        <div class="moonIA-cta-row">
+          <a href="https://fce43770-0c98-491e-af52-cc1a03bd9bcd.vip.gensparksite.com" target="_blank" class="btn-moonIA" title="7 jours gratuits · CB requise · Aucun débit pendant le trial">Accéder à Moon-IA →</a>
+          <a href="https://fce43770-0c98-491e-af52-cc1a03bd9bcd.vip.gensparksite.com" target="_blank" class="btn-moonIA btn-moonIA-outline">Se connecter</a>
+          <span class="moonIA-price">🎁 7 jours gratuits · puis à partir de <strong>29 € HT/mois</strong></span>
         </div>
       </div>
 
       <!-- Écran simulé droite — conversation dynamique -->
-      <div class="lexibot-visual fade-in">
-        <div class="lexibot-screen-bar">
-          <span class="lexibot-dot" style="background:#ff5f57"></span>
-          <span class="lexibot-dot" style="background:#ffbd2e"></span>
-          <span class="lexibot-dot" style="background:#28ca41"></span>
-          <span class="lexibot-screen-label">LexIA · Session sécurisée</span>
+      <div class="moonIA-visual fade-in">
+        <div class="moonIA-screen-bar">
+          <span class="moonIA-dot" style="background:#ff5f57"></span>
+          <span class="moonIA-dot" style="background:#ffbd2e"></span>
+          <span class="moonIA-dot" style="background:#28ca41"></span>
+          <span class="moonIA-screen-label">Moon-IA · Session sécurisée</span>
         </div>
         <!-- Slides sectorielles animées -->
-        <div class="lexibot-sectors">
+        <div class="moonIA-sectors">
           <div class="lx-sector active" data-sector="0">
             <div class="lx-sector-tag">🏥 Professionnels de santé</div>
-            <div class="lexibot-chat">
-              <div class="lexibot-msg user">
-                <div class="lexibot-avatar" style="background:rgba(255,255,255,0.05)">👨‍⚕️</div>
-                <div class="lexibot-bubble">Je veux ouvrir une clinique privée avec 3 associés. Quelle structure juridique ?</div>
+            <div class="moonIA-chat">
+              <div class="moonIA-msg user">
+                <div class="moonIA-avatar" style="background:rgba(255,255,255,0.05)">👨‍⚕️</div>
+                <div class="moonIA-bubble">Je veux ouvrir une clinique privée avec 3 associés. Quelle structure juridique ?</div>
               </div>
-              <div class="lexibot-msg bot">
-                <div class="lexibot-avatar" style="background:rgba(80,100,255,0.15)">⚖️</div>
-                <div class="lexibot-bubble">J'analyse votre situation… SEL (SELARL) recommandée. Je génère le pacte d'associés et la convention d'exercice en moins de 2 minutes. Souhaitez-vous intégrer une clause de rachat en cas de départ ?</div>
+              <div class="moonIA-msg bot">
+                <div class="moonIA-avatar" style="background:rgba(80,100,255,0.15)">⚖️</div>
+                <div class="moonIA-bubble">J'analyse votre situation… SEL (SELARL) recommandée. Je génère le pacte d'associés et la convention d'exercice en moins de 2 minutes. Souhaitez-vous intégrer une clause de rachat en cas de départ ?</div>
               </div>
             </div>
           </div>
 
           <div class="lx-sector" data-sector="1">
             <div class="lx-sector-tag">🏠 PSAD & Prestataires médico-sociaux</div>
-            <div class="lexibot-chat">
-              <div class="lexibot-msg user">
-                <div class="lexibot-avatar" style="background:rgba(255,255,255,0.05)">👤</div>
-                <div class="lexibot-bubble">Notre PSAD vient de recevoir un contrôle CPAM. Quels sont nos droits ?</div>
+            <div class="moonIA-chat">
+              <div class="moonIA-msg user">
+                <div class="moonIA-avatar" style="background:rgba(255,255,255,0.05)">👤</div>
+                <div class="moonIA-bubble">Notre PSAD vient de recevoir un contrôle CPAM. Quels sont nos droits ?</div>
               </div>
-              <div class="lexibot-msg bot">
-                <div class="lexibot-avatar" style="background:rgba(80,100,255,0.15)">⚖️</div>
-                <div class="lexibot-bubble">Droits au contradictoire activés. Je prépare le recours gracieux avec pièces justificatives et prépare une réponse dans les délais réglementaires de 30 jours.</div>
+              <div class="moonIA-msg bot">
+                <div class="moonIA-avatar" style="background:rgba(80,100,255,0.15)">⚖️</div>
+                <div class="moonIA-bubble">Droits au contradictoire activés. Je prépare le recours gracieux avec pièces justificatives et prépare une réponse dans les délais réglementaires de 30 jours.</div>
               </div>
             </div>
           </div>
 
           <div class="lx-sector" data-sector="2">
             <div class="lx-sector-tag">✈️ Aéronautique & Défense</div>
-            <div class="lexibot-chat">
-              <div class="lexibot-msg user">
-                <div class="lexibot-avatar" style="background:rgba(255,255,255,0.05)">👤</div>
-                <div class="lexibot-bubble">Conformité REACH & dual-use pour notre nouveau composant exporté vers les USA.</div>
+            <div class="moonIA-chat">
+              <div class="moonIA-msg user">
+                <div class="moonIA-avatar" style="background:rgba(255,255,255,0.05)">👤</div>
+                <div class="moonIA-bubble">Conformité REACH & dual-use pour notre nouveau composant exporté vers les USA.</div>
               </div>
-              <div class="lexibot-msg bot">
-                <div class="lexibot-avatar" style="background:rgba(80,100,255,0.15)">⚖️</div>
-                <div class="lexibot-bubble">Audit réglementaire EAR/ITAR lancé. Risque de contrôle export détecté : niveau modéré. Je génère le dossier de licence BIS avec les codes ECCN correspondants.</div>
+              <div class="moonIA-msg bot">
+                <div class="moonIA-avatar" style="background:rgba(80,100,255,0.15)">⚖️</div>
+                <div class="moonIA-bubble">Audit réglementaire EAR/ITAR lancé. Risque de contrôle export détecté : niveau modéré. Je génère le dossier de licence BIS avec les codes ECCN correspondants.</div>
               </div>
             </div>
           </div>
 
           <div class="lx-sector" data-sector="3">
             <div class="lx-sector-tag">🛢️ Énergie & Pétrole</div>
-            <div class="lexibot-chat">
-              <div class="lexibot-msg user">
-                <div class="lexibot-avatar" style="background:rgba(255,255,255,0.05)">👤</div>
-                <div class="lexibot-bubble">Contrat JOA pour un bloc offshore. Négociation avec un opérateur américain.</div>
+            <div class="moonIA-chat">
+              <div class="moonIA-msg user">
+                <div class="moonIA-avatar" style="background:rgba(255,255,255,0.05)">👤</div>
+                <div class="moonIA-bubble">Contrat JOA pour un bloc offshore. Négociation avec un opérateur américain.</div>
               </div>
-              <div class="lexibot-msg bot">
-                <div class="lexibot-avatar" style="background:rgba(80,100,255,0.15)">⚖️</div>
-                <div class="lexibot-bubble">Analyse du JOA AIPN 2012 en cours. Je détecte 4 clauses déséquilibrées sur le cash call et les défauts. Proposition d'amendments et BATNA stratégique prêts.</div>
+              <div class="moonIA-msg bot">
+                <div class="moonIA-avatar" style="background:rgba(80,100,255,0.15)">⚖️</div>
+                <div class="moonIA-bubble">Analyse du JOA AIPN 2012 en cours. Je détecte 4 clauses déséquilibrées sur le cash call et les défauts. Proposition d'amendments et BATNA stratégique prêts.</div>
               </div>
             </div>
           </div>
 
           <div class="lx-sector" data-sector="4">
             <div class="lx-sector-tag">🥐 Artisans & TPE (boulanger, pâtissier…)</div>
-            <div class="lexibot-chat">
-              <div class="lexibot-msg user">
-                <div class="lexibot-avatar" style="background:rgba(255,255,255,0.05)">👤</div>
-                <div class="lexibot-bubble">J'ai un litige avec mon bailleur commercial qui veut augmenter mon loyer de 30 %.</div>
+            <div class="moonIA-chat">
+              <div class="moonIA-msg user">
+                <div class="moonIA-avatar" style="background:rgba(255,255,255,0.05)">👤</div>
+                <div class="moonIA-bubble">J'ai un litige avec mon bailleur commercial qui veut augmenter mon loyer de 30 %.</div>
               </div>
-              <div class="lexibot-msg bot">
-                <div class="lexibot-avatar" style="background:rgba(80,100,255,0.15)">⚖️</div>
-                <div class="lexibot-bubble">Bail commercial 3/6/9 analysé. L'indice ILC autorise +2,3 % maximum. Je rédige la mise en demeure et le recours en révision judiciaire. Vous économisez ~8 400 €/an.</div>
+              <div class="moonIA-msg bot">
+                <div class="moonIA-avatar" style="background:rgba(80,100,255,0.15)">⚖️</div>
+                <div class="moonIA-bubble">Bail commercial 3/6/9 analysé. L'indice ILC autorise +2,3 % maximum. Je rédige la mise en demeure et le recours en révision judiciaire. Vous économisez ~8 400 €/an.</div>
               </div>
             </div>
           </div>
@@ -2472,7 +2472,7 @@
     <div class="lx-sector-cards-section fade-in">
       <div class="lx-sector-cards-title">
         <span class="lx-sc-badge">✦ Multisectoriel</span>
-        <h3>LexIA couvre <em>tous vos secteurs</em></h3>
+        <h3>Moon-IA couvre <em>tous vos secteurs</em></h3>
         <p>De la TPE artisanale aux grands groupes cotés — une seule IA, toutes les expertises juridiques</p>
       </div>
       <div class="lx-sector-cards-grid">
@@ -2541,7 +2541,7 @@
           <div class="lx-sc-icon-wrap">⚡</div>
           <div class="lx-sc-content">
             <h4>Et tous les autres</h4>
-            <p>Startups, scale-ups, PME, ETI, grands groupes — de la création au CAC 40, LexIA s'adapte à votre dimension.</p>
+            <p>Startups, scale-ups, PME, ETI, grands groupes — de la création au CAC 40, Moon-IA s'adapte à votre dimension.</p>
             <div class="lx-sc-tags">
               <span>Startup → CAC 40</span><span>International</span><span>Sur-mesure</span>
             </div>
@@ -2553,34 +2553,34 @@
     </div>
 
     <!-- Grille fonctionnalités -->
-    <div class="lexibot-features-grid">
-      <div class="lexibot-feature fade-in">
-        <span class="lexibot-feature-icon">💬</span>
+    <div class="moonIA-features-grid">
+      <div class="moonIA-feature fade-in">
+        <span class="moonIA-feature-icon">💬</span>
         <h4>Consultation Instantanée</h4>
         <p>Un chatbot juridique expert remplace le réflexe « chercher sur Google » par un conseil précis, ancré dans le droit local.</p>
       </div>
-      <div class="lexibot-feature fade-in">
-        <span class="lexibot-feature-icon">📄</span>
+      <div class="moonIA-feature fade-in">
+        <span class="moonIA-feature-icon">📄</span>
         <h4>Génération Documentaire</h4>
         <p>Contrats, CGV, assignations, requêtes — générés automatiquement, adaptés à votre secteur et votre juridiction.</p>
       </div>
-      <div class="lexibot-feature fade-in">
-        <span class="lexibot-feature-icon">🔔</span>
+      <div class="moonIA-feature fade-in">
+        <span class="moonIA-feature-icon">🔔</span>
         <h4>Veille &amp; Conformité</h4>
         <p>Surveillance réglementaire en temps réel, alertes personnalisées et audit RGPD intelligent pour votre activité.</p>
       </div>
-      <div class="lexibot-feature fade-in">
-        <span class="lexibot-feature-icon">⚡</span>
+      <div class="moonIA-feature fade-in">
+        <span class="moonIA-feature-icon">⚡</span>
         <h4>Arbitrage Augmenté</h4>
         <p>Calcul des dommages potentiels, probabilité de succès et négociation assistée en cas de différend.</p>
       </div>
-      <div class="lexibot-feature fade-in">
-        <span class="lexibot-feature-icon">🌐</span>
+      <div class="moonIA-feature fade-in">
+        <span class="moonIA-feature-icon">🌐</span>
         <h4>Multilingue &amp; International</h4>
-        <p>Toutes juridictions, toutes langues. LexIA est l'interface juridique universelle pour les acteurs globaux.</p>
+        <p>Toutes juridictions, toutes langues. Moon-IA est l'interface juridique universelle pour les acteurs globaux.</p>
       </div>
-      <div class="lexibot-feature fade-in">
-        <span class="lexibot-feature-icon">🔐</span>
+      <div class="moonIA-feature fade-in">
+        <span class="moonIA-feature-icon">🔐</span>
         <h4>Souveraineté des Données</h4>
         <p>Hébergement européen, chiffrement bout-en-bout, secret professionnel préservé. Vos données n'appartiennent qu'à vous.</p>
       </div>
@@ -3148,7 +3148,7 @@
     });
   }
 
-  // ── LexIA sector rotator ──────────────────────────────────────────────
+  // ── Moon-IA sector rotator ──────────────────────────────────────────────
   (function(){
     var current = 0;
     var total = 5;
